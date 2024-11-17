@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FatherBoard - Home</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <script>
+        // JavaScript to load the header content
+        window.onload = function() {
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-container').innerHTML = data;
+                });
+        };
+    </script>
+</head>
+<body>
+    <!-- This is where the header will be inserted -->
+    <div id="header-container"></div>
+
+    <!-- Your homepage content goes here -->
+    <div class="content">
+        <h1>Welcome to FatherBoard!</h1>
+        <!-- Other homepage content -->
+    </div>
+</body>
+</html>
