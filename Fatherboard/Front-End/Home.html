@@ -1,27 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>FatherBoard - Home</title>
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    <script>
-        // JavaScript to load the header content
-        window.onload = function() {
-            fetch('header.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('header-container').innerHTML = data;
-                });
-        };
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FatherBoard - Homepage</title>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"> <!-- Link for the header styles -->
+    <link rel="stylesheet" type="text/css" href="homepage.css"> <!-- Link for homepage-specific styles -->
 </head>
 <body>
-    <!-- This is where the header will be inserted -->
-    <div id="header-container"></div>
 
-    <!-- Your homepage content goes here -->
-    <div class="content">
-        <h1>Welcome to FatherBoard!</h1>
-        <!-- Other homepage content -->
-    </div>
+    <!-- Header Section (unchanged, linked to stylesheet.css) -->
+    <header class="main-header">
+        <div class="container">
+            <a href="#default">
+                <img src="FatherboardTransparentCrop.png" id="logo" alt="FatherBoard Logo" width="100" height="50">
+            </a>
+
+            <form class="SearchBar">
+                <input type="text" placeholder="Search.." name="search">
+            </form>
+
+            <nav class="main-nav">
+                <ul class="main-nav-list">
+                    <li><a href="#register" class="active">About Us</a></li>
+                    <li><a href="#login">Account</a></li>
+                    <li><a href="#products">Basket</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="container">
+            <nav class="lower-nav">
+                <ul class="lower-nav-list">
+                    <li>
+                        <a href="#product1">Memory</a>
+                        <a href="#product2">CPUs</a>
+                        <a href="#product3">Prebuilt Computers</a>
+                        <a href="#product4">GPUs</a>
+                        <a href="#product5">PSUs</a>
+                        <a href="#sale">Sale!!!</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Banner Section -->
+    <section class="banner">
+        <div class="banner-text">
+            <h1>Welcome to FatherBoard</h1>
+        </div>
+    </section>
+
+    <!-- Category Icons Section -->
+    <section class="category-icons">
+        <div class="category-item">
+            <img src="images/memory.png" alt="Memory">
+            <p>Memory</p>
+        </div>
+        <div class="category-item">
+            <img src="images/cpu.png" alt="CPU">
+            <p>CPUs</p>
+        </div>
+        <div class="category-item">
+            <img src="images/prebuilt.png" alt="Prebuilt Computers">
+            <p>Prebuilt Computers</p>
+        </div>
+        <div class="category-item">
+            <img src="images/gpu.png" alt="GPU">
+            <p>GPUs</p>
+        </div>
+        <div class="category-item">
+            <img src="images/psu.png" alt="PSU">
+            <p>PSUs</p>
+        </div>
+    </section>
+
 </body>
 </html>
