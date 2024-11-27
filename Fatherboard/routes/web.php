@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\CustomerInfo;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/login', function () {
@@ -54,10 +55,17 @@ Route::get('/register', function() {
 });
 
 Route::get('/home', function() {
-    return view("home", ["person"=>CustomerInfo::all()]);
+    return view("home", ["data"=>Product::all()]);
 });
 
-Route::post('/get/{}', function()
+Route::post('/get/products', function()
 {
+    $data = Product::all();
+    return view("products", ["data"=>$data] );
+});
 
+
+Route::get('/config', function()
+{
+    return view("config", ["addr"=>"s"]);
 });
