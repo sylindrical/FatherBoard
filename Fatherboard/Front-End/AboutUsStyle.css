@@ -1,3 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Montserrat;
+}
+
+a{
+    z-index: 5;
+}
+
+p {
+    text-align: center;
+}
+
+body h1{
+    font-family: "Roboto", sans-serif;
+}
+
+
+.split {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    overflow-x: hidden;
+    padding-top:20px;
+}
+
+.left{
+    left:0
+}
+
+
+.right{
+    right:0;
+    padding-top: 950px;
+    padding-right: 1100px;
+}
+
+.centered {
+    position: absolute;
+    top:37%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
 
 .container{ /* using flexbox for the header - container is used to keep items in the header.*/
     background-color: black;
