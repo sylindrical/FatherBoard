@@ -7,6 +7,11 @@
     <title>Central</title>
 </head>
 <body>
-    <h2>You are seeing the nrmal</h2>
+    <h1>Submit A Review</h1>
+    <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Rate This product
+</button>
+
 </body>
 </html>
+
