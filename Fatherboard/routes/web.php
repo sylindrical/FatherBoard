@@ -56,3 +56,8 @@ Route::get('/register', function() {
 Route::get('/home', function() {
     return view("home", ["person"=>CustomerInfo::all()]);
 });
+
+Route::post('/get/{}', function()
+{
+
+});
