@@ -57,23 +57,3 @@ Route::get('/register', function() {
 Route::get('/home', function() {
     return view("home", ["person"=>CustomerInfo::all()]);
 });
-
-//Need to write this part of the code 
-//Route::post('/_review', function()
-//{
-  //  $review = request("Review");
-  //  $rating = request("Rating");
-//$name = request("name");
-//$p_id = 
-    //$customer = CustomerInfo::where("Username", $username)->where("Password", $password)->get();
-   // if ($customer->count() == 0)
-    {
-      //  return redirect('login');
-
-    }
- //   else
-    {
-     //   return redirect('home');
-
-    }
-//});
