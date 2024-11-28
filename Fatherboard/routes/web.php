@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SettingController;
 use App\Models\CustomerInfo;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
@@ -42,7 +43,4 @@ Route::post('/get/products', function()
 });
 
 
-Route::get('/settings', function()
-{
-    return view("settings", ["addr"=>"s"]);
-});
+Route::get('/settings', [SettingController::class, 'pageSettings']);

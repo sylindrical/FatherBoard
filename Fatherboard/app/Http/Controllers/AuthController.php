@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\CustomerInfo;
+use App\Models\CustomerInformation;
 
 class AuthController extends Controller
 {
     
     public static function login($username, $password): bool
     {
-        $customer = CustomerInfo::where("Username", $username)->where("Password", $password)->get();
+        $customer = CustomerInformation::where("Username", $username)->where("Password", $password)->get();
         if ($customer->count() == 0)
         {
             return false;
@@ -54,7 +54,7 @@ class AuthController extends Controller
         $conf = ["Username"=>$username,"Password"=>$password];
     
         
-        CustomerInfo::create($conf);
+        CustomerInformation::create($conf);
     
         return redirect("/login");
     }
@@ -84,7 +84,10 @@ class AuthController extends Controller
             {
                 $username = $_SESSION["username"];
                 $password = $_SESSION["password"];
-                return self::login($username, $password); 
+                if (self::login($username, $password))
+                {
+                    return CustomerInformation::where("Username", $username)->where("Password", $password)->get();
+                }; 
             }
         }
 
