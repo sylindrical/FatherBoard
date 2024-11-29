@@ -46,3 +46,9 @@ Route::post('/get/products', function()
 
 
 Route::get('/settings', [SettingController::class, 'pageSettings']);
+
+
+Route::post("/create/product", function ()
+{
+
+});
