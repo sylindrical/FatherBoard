@@ -2,6 +2,9 @@
     <x-slot:title>
         Register
     </x-slot:title>
+    <x-slot:sheet>
+        register
+    </x-slot:sheet>
     <h2>Register</h2>
 
     <form action="./_register" method="POST">
