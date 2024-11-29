@@ -2,9 +2,13 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SettingController;
+
 use App\Models\CustomerInfo;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\ReviewController
+
 
 Route::get('/login', [AuthController::class, "giveLogin"]);
 Route::get('/', function()
@@ -43,4 +47,7 @@ Route::post('/get/products', function()
 });
 
 
+
 Route::get('/settings', [SettingController::class, 'pageSettings']);
+
+
