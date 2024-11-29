@@ -7,12 +7,11 @@ use App\Models\CustomerInfo;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\ReviewController
+use App\Http\Controllers\ReviewController;
 
 
-Route::get('/login', [AuthController::class, "giveLogin"]);
-Route::get('/', function()
-{
+Route::get('/login', [AuthController::class, 'giveLogin']);
+Route::get('/',function(){
     return view('welcome');
 });
 
@@ -21,8 +20,9 @@ Route::post('/_login', [AuthController::class, 'form_login']);
 
 Route::post('/_register', [AuthController::class, "form_register"]);
 
-
-
+Route::get('/review', function () {
+    return view('review');
+});
 Route::get("/register",[AuthController::class,"giveRegister"])->name("register");
 
 Route::get('logout', [AuthController::class, "logOut"]);
