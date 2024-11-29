@@ -1,0 +1,183 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{ /* using flexbox for the header - container is used to keep items in the header.*/
+    background-color: black;
+    max-width: 100%;
+    min-width: none;
+    padding: 10px;
+    display: flex;
+    position: sticky;
+    align-items: center;
+}
+
+
+
+.main-header .container{ /*spacing for flexbox */
+   justify-content: space-around;
+}
+
+.SearchBar{ /*managing searchbar size, so its aligned well. */
+    margin-left: 6em;
+    flex-grow: 1;
+    flex-shrink: 1;
+    max-width: 100%;
+    min-width: 1px;
+}
+
+.SearchBar input{ /* managing input bar size, so it doesn't push items when zoomed in. */
+    width: 95%;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.main-nav { /* stops buttons on right (account, about us basket) from shrinking */
+    flex-shrink: 0;
+}
+
+.lower-nav li{ /* display for the buttons beneath the search bar. */
+    display: inline;
+    white-space: nowrap;
+}
+
+
+
+.main-nav li{ 
+    display: inline;
+    white-space: nowrap;
+}
+
+/*i've used a list for the header, main-nav are the items aligned with the search bar, lower nav is below the search bar,  */
+
+
+.main-nav a {
+    padding: 0.5em 2em;
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    border-radius: 4px;
+    padding: 0.5em 1em;
+    display: block;
+}
+
+/* sizing for each link, and border. */
+
+.main-nav ul{
+    margin: 0em 1em 0.5em;
+    text-align: center;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    gap: 20px;    
+}
+
+/*alinging main nav  */ 
+
+.main-nav li{
+    display: inline;
+}
+/*display for the main nav items. */
+
+
+.main-nav a {
+    display: inline-block;
+    padding: .5em 3em;
+}
+
+.main-nav .active{
+        background-color: purple;
+        color: white;
+}
+
+/*different colour link for the page the user is on. */
+
+.main-nav a{
+    float: left;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 4px;
+}
+
+.main-nav a:hover{
+    background-color: #ddd;
+    color: black;
+}
+
+/*hover effect for when a user hovers over a link */
+
+
+
+/* lower nav is the same, needs to be updated though.*/
+
+.lower-nav {
+    flex-shrink: 0;
+}
+
+.lower-nav li{
+    display: inline;
+    white-space: nowrap;
+}
+
+
+.lower-nav a {
+    padding: 0.5em 2em;
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    border-radius: 4px;
+    padding: 0.5em 1em;
+    display: block;
+}
+
+.lower-nav ul{
+    margin: 0em 1em 0.5em;
+    text-align: center;
+    display: flex;
+    padding: 0;
+    margin: 0;
+    gap: 20px;    
+}
+
+.lower-nav li{
+    display: inline;
+}
+
+.lower-nav a {
+    display: inline-block;
+    padding: .5em 3em;
+}
+
+.lower-nav .active{
+        background-color: purple;
+        color: white;
+}
+
+.lower-nav a{
+    float: left;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    border-radius: 4px;
+}
+
+.lower-nav a:hover{
+    background-color: #ddd;
+    color: black;
+}
+
+
+@media screen and (max-width: 800px) {
+    .main-nav ul {
+        flex-direction: column; /* when zoomed in, buttons on the right of the header will stack.*/
+        align-items: flex-start; 
+    }
+    .main-nav li {
+        margin-bottom: 10px; /* spacing between items stacked vertically*/
+    }
+}
