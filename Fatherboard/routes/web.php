@@ -48,7 +48,10 @@ Route::post('/get/products', function()
 Route::get('/settings', [SettingController::class, 'pageSettings']);
 
 
-Route::post("/create/product", function ()
-{
+Route::post("/create/product", [ProductController::class, 'create']);
 
-});
+Route::post("/edit/product", [ProductController::class, 'edit']);
+
+Route::post("/update/product", [ProductController::class, 'update']);
+
+Route::post("/delete/product", [ProductController::class, 'destroy']);
