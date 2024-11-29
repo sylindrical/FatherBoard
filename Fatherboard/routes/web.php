@@ -6,6 +6,8 @@ use App\Models\CustomerInfo;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ProductController;
+
 Route::get('/login', [AuthController::class, "giveLogin"]);
 Route::get('/', function()
 {
@@ -35,7 +37,7 @@ Route::get('/home', function() {
 
     }
 });
-
+Route::get('/product/{id}', action: [ProductController::class, "show"]);
 Route::post('/get/products', function()
 {
     $data = Product::all();

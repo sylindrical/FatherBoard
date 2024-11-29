@@ -3,6 +3,9 @@
         Product
     </x-slot:title>
 
-    <h2>{{ product["Title"]}} </h2>
-    <p>{{ product["Description"]}} </p>
+    <x-slot:sheet>
+        product
+    </x-slot:sheet>
+    <h2>{{ $product->Title}} </h2>
+    <p>{{ $product["Description"]}} </p>
 </x-layout>
