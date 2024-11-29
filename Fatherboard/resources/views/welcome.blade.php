@@ -7,10 +7,8 @@
     <title>Central</title>
 </head>
 <body>
-    <h1>Submit A Review</h1>
-    <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Rate This product
-</button>
+    <h1>you are seeing the nrmal</h1>
+
 
 
 </body>
