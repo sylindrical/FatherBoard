@@ -1,63 +1,54 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SettingController;
 use App\Models\CustomerInfo;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/login', function () {
-    return view('login');
-});
+use App\Http\Controllers\ProductController;
 
+Route::get('/login', [AuthController::class, "giveLogin"]);
 Route::get('/', function()
 {
     return view('welcome');
 });
-Route::post('/_login', function()
-{
-    $username = request("username");
-    $password = request("password");
 
-    $customer = CustomerInfo::where("Username", $username)->where("Password", $password)->get();
-    if ($customer->count() == 0)
-    {
-        return redirect('login');
 
-    }
-    else
-    {
-        return redirect('home');
+Route::post('/_login', [AuthController::class, 'form_login']);
 
-    }
-
-    // dd($customer->count()==0);
-    
-    # CustomerInfo::fi
-    
-});
-
-Route::post('/_register', function()
-{
-    $username = request("username");
-    $password = request("password");
-
-    $conf = ["Username"=>$username,"Password"=>$password];
-
-    
-    CustomerInfo::create($conf);
-
-    return redirect("/login");
-});
+Route::post('/_register', [AuthController::class, "form_register"]);
 
 
 
-Route::get('/register', function() {
-    return view("register");
-});
+Route::get("/register",[AuthController::class,"giveRegister"])->name("register");
 
+Route::get('logout', [AuthController::class, "logOut"]);
 Route::get('/home', function() {
-    return view("home", ["person"=>CustomerInfo::all()]);
+
+    $loggedIn = AuthController::loggedIn();
+    if ($loggedIn)
+    {
+        
+    return view("home", ["data"=>Product::all()]);
+    }
+    else{
+        return view('login');
+
+    }
+});
+Route::get('/product/{id}', action: [ProductController::class, "show"]);
+Route::post('/get/products', function()
+{
+    $data = Product::all();
+    return view("products", ["data"=>$data] );
 });
 
-Route::post('/get/{}', function()
+
+Route::get('/settings', [SettingController::class, 'pageSettings']);
+
+
+Route::post("/create/product", function ()
 {
 
 });

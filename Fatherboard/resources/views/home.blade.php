@@ -1,12 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
-</head>
-<body>
+<x-layout>
+    <x-slot:title>
+        Home
+    </x-slot:title>
+    <x-slot:sheet>
+        home
+    </x-slot:sheet>
     <h2>Home Page</h2>
-</body>
-</html>
+
+<br>
+<div id="ProductContainer">
+    <?php
+    foreach($data as $x=>$item)
+    {
+
+            ?>
+            <div class="ProductItem">
+            <h2><?php echo $item['Title'] ?></h2>
+            <p><?php echo $item['Description'] ?></p>
+            <p><?php echo $item['Owner'] ?></p>
+            </div>
+            <?php
+
+    }
+    ?>
+    </div>
+</x-layout>
