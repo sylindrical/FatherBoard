@@ -14,9 +14,7 @@ class CustomerInfo extends Model
     protected $casts = [
 
         'email_verified_at' => 'datetime',
-        'Username' => 'encrypted',
         'Password' => 'hashed',
-
 
     ];
 
