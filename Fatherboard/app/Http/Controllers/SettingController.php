@@ -14,9 +14,14 @@ class SettingController extends Controller
 
         if ($user = AuthController::loggedIn())
         {
-            $addr = $user->first()->address->first();
-            return view('settings', ["address"=>$addr]);
+            $addr = $user->first()->address;
 
+            return view('settings', ["addr"=>$addr]);
+
+        }
+        else
+        {
+            return redirect("./login");
         }
     }
 }

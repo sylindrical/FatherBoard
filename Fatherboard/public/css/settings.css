@@ -1,0 +1,48 @@
+*
+{
+    padding:0;
+    margin:0;
+}
+
+
+
+#setting-container
+{
+
+    margin:0;
+    padding:0;
+    display:grid;
+    grid-template-columns: 200px auto;
+    grid-template-rows: [start] 1fr [end];
+    grid-template-areas: "options data"
+                         "options data";
+    
+}
+address-element {
+    display: block;
+    margin: 5vh 0;
+}
+
+
+.option
+{
+    display:block;
+    width:100%;
+    background: none;
+    border:none;
+}
+
+.option:hover
+{
+    background-color: lightblue;
+}
+.content
+{
+    grid-area: data;
+}
+
+#options
+{
+    grid-area:options;
+    background-color: aliceblue;
+}

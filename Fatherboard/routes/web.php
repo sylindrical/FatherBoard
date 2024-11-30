@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SettingController;
 use App\Models\CustomerInfo;
 use App\Models\Product;
@@ -24,19 +25,7 @@ Route::post('/_register', [AuthController::class, "form_register"]);
 Route::get("/register",[AuthController::class,"giveRegister"])->name("register");
 
 Route::get('logout', [AuthController::class, "logOut"]);
-Route::get('/home', function() {
-
-    $loggedIn = AuthController::loggedIn();
-    if ($loggedIn)
-    {
-        
-    return view("home", ["data"=>Product::all()]);
-    }
-    else{
-        return view('login');
-
-    }
-});
+Route::get('/home', [HomeController::class, "giveHome"]);
 Route::get('/product/{id}', action: [ProductController::class, "show"]);
 
 Route::get('/products', function()

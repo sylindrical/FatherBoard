@@ -1,30 +1,74 @@
-<x-layout>
-    <x-slot:title>Settings</x-slot:title>
-    <x-slot:sheet>
-        settings
-    </x-slot:sheet>
-    <main>
-        <template id="address-template">
-            <p id="Country">TCo</p>
-            <p id="City">TCi</p>
-            <p id="AddressLine">TAl</p>
+<x-lowlayout>
 
-        </template>
-    <div>
+
+    <x-slot:head>
+        <link rel="stylesheet" href={{ asset('css/settings.css') }}>
+        <script src={{ asset('js/settings.js') }}></script>
+        <title>Settings</title>
+    </x-slot:head>
+
+    <template id="address-template">
+        <style>
+            p
+            {
+                margin:0;
+            }
+            </style>
+        <p id="Country"><slot name="Country">Unknown Country</slot></p>
+        <p id="City"><slot name="City">Unknown City</slot></p>
+        <p id="AddressLine"><slot name="AddressLine">Unknown Address</slot></p>
+
+    </template>
+
+    <main id="setting-container">
+
+
+
+    
+    <div id="settings">
         <ul>
-            <li>Personal </li>
-            <li>Address </li>
-            <li>Billing </li>
-            <li>History</li>
+            <li>
+                <button class="option">Personal</button> 
+            </li>
+            <li>
+                <button class="option">Address</button> 
+            </li>
+            <li>
+                <button class="option">Billing</button> 
+            </li>
+            <li>
+                <button class="option">History</button> 
+            </li>
 
         </ul>
     </div>
-    <h3>Address Information</h3>
-    <p>{{ $address["Country"] }} </p>
 
-    <p>{{ $address["City"]}} </p>
+    <div class="content" id="address-info">
+        <h3>Address Information</h3>
 
-    <p>{{ $address["Address Line"]}} </p>
+        <?php if ($addr->count() >0)
+        {
+            foreach ($addr as $key => $value) {
+                # code...
+            
+            ?>
+            <address-element>
+                <span slot="Country">{{ $value["Country"] }}</span>
+                <span slot="City">{{ $value["City"] }}</span>
+                <span slot="AddressLine">{{$value["Address Line"] }}</span>
+
+            </address-element>
+
+            <?php }}
+        else {
+            ?> 
+
+            <p>You do not have an address currently.</p>
+
+        <?php
+        }
+?>
+    </div>
     </main>
 
-</x-layout>
+</x-lowlayout>
