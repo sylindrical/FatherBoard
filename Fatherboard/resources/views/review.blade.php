@@ -8,18 +8,12 @@
 </head>
 <body>
     <h1>Submit A Review</h1>
-    <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Rate This product
-        
+    <button id="reviewform" class="btn btn-primary" data-customer-id="{{ $customer->id}}" data-product-id="{{$product->id}}">
+        Please Review Product
 </button>
 
-<form action="./_review" method="POST">
-        @csrf
-        <input type="text" name="review">
-        <input type="enum" name="rating">
-
-        <input type="submit" name="submit">
-    </form>
+<div id="reviewPopup" class="popup" style="display: none;">
+    <div class="popup-content">
 
 </body>
 </html>

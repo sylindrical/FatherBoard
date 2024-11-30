@@ -15,7 +15,7 @@ Route::get('/',function(){
     return view('welcome');
 });
 
-
+Route::post('/submit-review',[ReviewController::class,'store'])->name('submitReview');
 Route::post('/_login', [AuthController::class, 'form_login']);
 
 Route::post('/_register', [AuthController::class, "form_register"]);
