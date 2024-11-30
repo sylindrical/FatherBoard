@@ -1,23 +1,20 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
-</head>
-<body>
+<x-layout>
+    <x-slot:title>
+        s
+    </x-slot:title>
+    <x-slot:sheet>
+        login
+    </x-slot:sheet>
     <h2>Log in</h2>
 
     <form action="./_login" method="POST">
         @csrf
         <input type="text" name="username">
         <input type="text" name="password">
-
+        <input type="checkbox" name="permanent">
         <input type="submit" name="submit">
     </form>
 
     <p></p>
-</body>
-</html>
+</x-layout>
