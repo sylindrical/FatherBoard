@@ -1,15 +1,28 @@
+<x-layout>
+    <x-slot:title>
+        Products
+    </x-slot:title>
+    <x-slot:sheet>
+        products
+    </x-slot:sheet>
+    <h2>Products</h2>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+<br>
+<div id="ProductContainer">
     <?php
-        print_r($data)
+    foreach($data as $x=>$item)
+    {
+        
+            ?>
+
+            <div class="ProductItem"><p hidden class="product_identity">{{$x}}</p>
+            <h2><?php echo $item['Title'] ?></h2>
+            <p><?php echo $item['Description'] ?></p>
+            <p><?php echo $item['Owner'] ?></p>
+            </div>
+            <?php
+
+    }
     ?>
-</body>
-</html>
+    </div>
+</x-layout>

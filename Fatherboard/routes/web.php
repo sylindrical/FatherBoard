@@ -38,11 +38,13 @@ Route::get('/home', function() {
     }
 });
 Route::get('/product/{id}', action: [ProductController::class, "show"]);
-Route::post('/get/products', function()
+
+Route::get('/products', function()
 {
     $data = Product::all();
     return view("products", ["data"=>$data] );
 });
+
 
 
 Route::get('/settings', [SettingController::class, 'pageSettings']);

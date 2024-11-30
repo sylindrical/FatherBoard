@@ -38,7 +38,8 @@ class ProductController extends Controller
     public function show(int $id)
     {
         $product = Product::findOrFail($id);
-        return view('product',["product"=>$product]);
+        $image = "rtx2070.png";
+        return view('product',["product"=>$product,"image"=>$image]);
     }
 
     /**
