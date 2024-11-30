@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->string("review");
-            $table->enum("Rating",['1','2','3','4','5']);
-            $table->foreignId("customer_infos_id");
-            $table->foreignId("p_id");
+            $table->string('review');
+            $table->integer('rating');
+            $table->foreignId('customer_infos_id')->constrained('customer_infos')->onDelete('cascade');
+            $table->foreignId('products_id')->constrained('products')->onDelete('cascade');
             $table->timestamps();
         });
     }
