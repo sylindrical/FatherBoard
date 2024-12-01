@@ -19,9 +19,10 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(int $id)
     {
-        
+        $product = product::create_function($id);
+        return view('product',["product"=>$product]);
     }
 
     /**
@@ -29,7 +30,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        
+       return view ('request', ["request"=>$request]);
     }
 
     /**
@@ -54,7 +55,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        return view('prodcut', ["reqest"=>$product]);
+        return view('product', ["reqest"=>$product]);
     }
 
     /**
