@@ -23,7 +23,7 @@ class AuthController extends Controller
     
         }
     }
-    public function form_login()
+public function form_login()
     {
         $username = request("username");
         $password = request("password");
