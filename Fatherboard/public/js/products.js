@@ -10,13 +10,13 @@ window.addEventListener("load", function()
 
     this.setTimeout(()=> {  
     items.forEach((x)=>{
-        let y = parseInt((x.firstChild.firstChild.data))+1;
+        let y = parseInt((x.firstChild.textContent))+1;
 
         x.addEventListener("click",()=>productClick(y))
     })
 
 
-},2000)
+},50)
 }
 )
 
