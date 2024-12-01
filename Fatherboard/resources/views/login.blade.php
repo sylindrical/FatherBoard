@@ -1,23 +1,19 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<x-lowlayout>
+    <x-slot:head>
+    <link rel="stylesheet" href={{ asset('css/login.css') }}>
+    <script src={{ asset('js/login.js') }}></script>
     <title>Login</title>
-</head>
-<body>
+    </x-slot:head>
     <h2>Log in</h2>
 
     <form action="./_login" method="POST">
         @csrf
         <input type="text" name="username">
         <input type="text" name="password">
-
+        <input type="checkbox" name="permanent">
         <input type="submit" name="submit">
     </form>
 
     <p></p>
-</body>
-</html>
+</x-lowlayout>
