@@ -5,7 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const totalPriceEl = document.getElementById("total-price");
 
     // Dummy products
-    const products = []; // No products in the basket
+    const products = [
+        { id: 1, name: "RTX 3060", price: 399.99, quantity: 1 },
+    ];
+    
 
 
     // Render the basket
