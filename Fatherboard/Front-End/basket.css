@@ -1,0 +1,71 @@
+/* General Styles for the Basket Page */
+.basket-page {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.basket-container {
+    padding: 20px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.empty {
+    text-align: center;
+    color: #666;
+    font-size: 1.2rem;
+}
+
+.basket-items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.basket-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+}
+
+.basket-item img {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+}
+
+.item-details {
+    flex: 1;
+}
+
+.basket-summary {
+    text-align: center;
+    margin-top: 20px;
+}
+
+button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+/* Utility Classes */
+.hidden {
+    display: none;
+}
