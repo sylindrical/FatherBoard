@@ -7,11 +7,13 @@
         <title>Settings</title>
     </x-slot:head>
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <template id="address-template">
         <style>
             p
             {
                 margin:0;
+                padding:0;
             }
             </style>
         <p id="Country"><slot name="Country">Unknown Country</slot></p>
@@ -20,27 +22,48 @@
 
     </template>
 
+
+    <template id="personal-template">
+        <style>
+            p
+            {
+                margin:0;
+                padding:0;
+            }
+        </style>
+        <label>Username:</label>
+        <b><slot name="Username">Unknown Username</slot></b>
+        <label>Password:</label>
+
+        <b><slot name="Password">Unknown Password</slot></b>
+    </template>
+
     <main id="setting-container">
 
 
-
     
-    <div id="settings">
+    <div id="settings" >
         <ul>
             <li>
-                <button class="option">Personal</button> 
+                <button class="option" id="button_personal">Personal</button> 
             </li>
             <li>
-                <button class="option">Address</button> 
+                <button class="option" id="button_address">Address</button> 
             </li>
             <li>
-                <button class="option">Billing</button> 
+                <button class="option" id="button_billing">Billing</button> 
             </li>
             <li>
-                <button class="option">History</button> 
+                <button class="option" id="button_history">History</button> 
             </li>
 
         </ul>
+    </div>
+
+    <div id="option-information">
+    <div class="content" id="personal-info">
+
+
     </div>
 
     <div class="content" id="address-info">
@@ -69,6 +92,7 @@
         }
 ?>
     </div>
+</div>
     </main>
 
 </x-lowlayout>

@@ -35,6 +35,10 @@ Route::get('/products', function()
 });
 
 
+Route::post('/get/address', [SettingController::class, "showAddress"]);
+
+Route::post('/get/personal', [SettingController::class, "showPersonal"]);
+
 
 Route::get('/settings', [SettingController::class, 'pageSettings']);
 

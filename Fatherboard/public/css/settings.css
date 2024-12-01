@@ -4,7 +4,9 @@
     margin:0;
 }
 
-
+ul{
+    list-style-type: none;
+}
 
 #setting-container
 {
@@ -20,7 +22,7 @@
 }
 address-element {
     display: block;
-    margin: 5vh 0;
+    margin-bottom: 5vh;
 }
 
 
