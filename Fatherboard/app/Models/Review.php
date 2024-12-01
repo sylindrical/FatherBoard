@@ -9,7 +9,7 @@ class Review extends Model
 {
     use hasFactory;
     protected $table = 'reviews' ;
-    protected $fillable = ['review','rating','u_id','p_id'];
+    protected $fillable = ['customer_id','products_id','review','rating'];
 
 // Need to add one to many relationship  one product has many reviews 
 
