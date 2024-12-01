@@ -9,6 +9,7 @@
 
 body {
     font-family: Montserrat;
+    background-color: #d2d2d2 !important;
 }
 
 a{
@@ -29,7 +30,7 @@ body h1{
     width: 50%;
     position: fixed;
     overflow-x: hidden;
-    padding-top:20px;
+    padding-top:1.25rem;
 }
 
 .left{
@@ -39,8 +40,8 @@ body h1{
 
 .right{
     right:0;
-    padding-top: 950px;
-    padding-right: 1100px;
+    padding-top: 59.375rem;
+    padding-right: 68.75rem;
 }
 
 .centered {
@@ -55,7 +56,7 @@ body h1{
     background-color: black;
     max-width: 100%;
     min-width: none;
-    padding: 10px;
+    padding: 0.625rem;
     display: flex;
     position: sticky;
     align-items: center;
@@ -72,13 +73,13 @@ body h1{
     flex-grow: 1;
     flex-shrink: 1;
     max-width: 100%;
-    min-width: 1px;
+    min-width: 0.063rem;
 }
 
 .SearchBar input{ /* managing input bar size, so it doesn't push items when zoomed in. */
     width: 95%;
-    padding: 5px;
-    font-size: 16px;
+    padding: 0.313rem;
+    font-size: 1rem;
 }
 
 .main-nav { /* stops buttons on right (account, about us basket) from shrinking */
@@ -104,8 +105,8 @@ body h1{
     padding: 0.5em 2em;
     text-decoration: none;
     color: white;
-    font-size: 18px;
-    border-radius: 4px;
+    font-size: 1.125rem;
+    border-radius: 0.25rem;
     padding: 0.5em 1em;
     display: block;
 }
@@ -118,7 +119,7 @@ body h1{
     display: flex;
     padding: 0;
     margin: 0;
-    gap: 20px;    
+    gap: 1.25rem;    
 }
 
 /*alinging main nav  */ 
@@ -146,8 +147,8 @@ body h1{
     color: white;
     text-align: center;
     text-decoration: none;
-    font-size: 18px;
-    border-radius: 4px;
+    font-size: 1.125rem;
+    border-radius: 0.25rem;
 }
 
 .main-nav a:hover{
@@ -175,8 +176,8 @@ body h1{
     padding: 0.5em 2em;
     text-decoration: none;
     color: white;
-    font-size: 18px;
-    border-radius: 4px;
+    font-size: 1.125rem;
+    border-radius: 0.25rem;
     padding: 0.5em 1em;
     display: block;
 }
@@ -187,7 +188,7 @@ body h1{
     display: flex;
     padding: 0;
     margin: 0;
-    gap: 20px;    
+    gap: 1.25rem;    
 }
 
 .lower-nav li{
@@ -209,8 +210,8 @@ body h1{
     color: white;
     text-align: center;
     text-decoration: none;
-    font-size: 18px;
-    border-radius: 4px;
+    font-size: 1.125rem;
+    border-radius: 0.25rem;
 }
 
 .lower-nav a:hover{
@@ -219,12 +220,12 @@ body h1{
 }
 
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 50rem) {
     .main-nav ul {
         flex-direction: column; /* when zoomed in, buttons on the right of the header will stack.*/
         align-items: flex-start; 
     }
     .main-nav li {
-        margin-bottom: 10px; /* spacing between items stacked vertically*/
+        margin-bottom: 0.625rem; /* spacing between items stacked vertically*/
     }
 }
