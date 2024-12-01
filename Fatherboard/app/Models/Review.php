@@ -10,5 +10,11 @@ class Review extends Model
     use hasFactory;
     protected $table = 'reviews' ;
     protected $fillable = ['review','rating','u_id','p_id'];
-}
+
 // Need to add one to many relationship  one product has many reviews 
+
+public function customer()
+{
+    return $this->belongsTo(User::class,'customer_id');
+}
+}
