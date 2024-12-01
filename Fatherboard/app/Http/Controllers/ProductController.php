@@ -18,6 +18,13 @@ class ProductController extends Controller
     }
 
 
+    public function indexSpecific(Request $rq)
+    {
+        $user_cat = $rq->input("category");
+        
+        $data = Product::where("Type",$user_cat)->get();
+        return json_encode($data);
+    }
     /**
      * Show the form for creating a new resource.
      */

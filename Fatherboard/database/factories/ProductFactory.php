@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
  */
 use App\Models\Product;
+use Illuminate\Console\View\Components\Choice;
+use Nette\Utils\Random;
+
 class ProductFactory extends Factory
 {
     /**
@@ -19,10 +22,12 @@ class ProductFactory extends Factory
 
     public function definition(): array
     {
+        $types = ['CPU','Memory','GPU','PSU','Prebuilt'];
         return [
             "Title" => fake()->name(),
             "Description" => fake()->text(),
-            "Owner" => fake()->name(),
+            "Manufacturer" => fake()->name(),
+            "Type" => $types[random_int(0,sizeof($types))]
         ];
     }
 }

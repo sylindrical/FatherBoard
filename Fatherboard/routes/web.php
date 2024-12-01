@@ -35,7 +35,7 @@ Route::get('/home', [HomeController::class, "giveHome"]);
 Route::get('/product/{id}', action: [ProductController::class, "show"]);
 
 Route::get('/products', [ProductController::class, "index"]);
-Route::post('/products', [ProductController::class, "ind"]);
+Route::post('/products', [ProductController::class, "indexSpecific"]);
 
 
 
