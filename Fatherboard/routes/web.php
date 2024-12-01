@@ -23,7 +23,10 @@ Route::post('/_register', [AuthController::class, "form_register"]);
 Route::get('/review', function () {
     return view('review');
 });
-Route::get('/product/{id}/review', [ReviewController::class,'showReview'])->name('reviewForm')->middleware('auth');
+
+Route::get('/product/{id}/review', [ReviewController::class,'showReview'])
+->name('review.show');
+
 Route::get("/register",[AuthController::class,"giveRegister"])->name("register");
 
 Route::get('logout', [AuthController::class, "logOut"]);
