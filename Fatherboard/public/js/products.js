@@ -4,19 +4,16 @@ let productIdentifier = "product_identity";
 
 
 
-window.addEventListener("load", function()
+window.addEventListener("DOMContentLoaded", function()
 {
     let items = document.querySelectorAll(".ProductItem");
 
-    this.setTimeout(()=> {  
     items.forEach((x)=>{
         let y = parseInt((x.firstChild.textContent))+1;
 
         x.addEventListener("click",()=>productClick(y))
-    })
+    });
 
-
-},50)
 }
 )
 

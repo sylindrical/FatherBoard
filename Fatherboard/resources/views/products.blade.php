@@ -8,6 +8,13 @@
     <h2>Products</h2>
 
 <br>
+<select name="type">
+    <option value="gpu">GPU</option>
+    <option value="cpu">CPU</option>
+    <option value="psu">PSU</option>
+    <option value="memory">Memory</option>
+    <option value="prebuilt-pcs">Pre-built pcs</option>
+</select>
 <div id="ProductContainer">
     <?php
     foreach($data as $x=>$item)

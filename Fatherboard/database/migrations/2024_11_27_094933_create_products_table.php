@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string("Title");
             $table->text("Description");
             $table->string("Owner");
+            $table->enum("Type", ['CPU','Memory','GPU','PSU','Prebuilt']);
         });
     }
 

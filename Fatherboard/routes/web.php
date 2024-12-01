@@ -29,13 +29,14 @@ Route::get("/register",[AuthController::class,"giveRegister"])->name("register")
 
 Route::get('logout', [AuthController::class, "logOut"]);
 Route::get('/home', [HomeController::class, "giveHome"]);
+
+
+
 Route::get('/product/{id}', action: [ProductController::class, "show"]);
 
-Route::get('/products', function()
-{
-    $data = Product::all();
-    return view("products", ["data"=>$data] );
-});
+Route::get('/products', [ProductController::class, "index"]);
+Route::post('/products', [ProductController::class, "ind"]);
+
 
 
 Route::post('/get/address', [SettingController::class, "showAddress"]);

@@ -22,7 +22,7 @@ class ProductFactory extends Factory
         return [
             "Title" => fake()->name(),
             "Description" => fake()->text(),
-            "Owner" => fake()->name()
+            "Owner" => fake()->name(),
         ];
     }
 }
