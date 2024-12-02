@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Orders;
-use App\Http\Requests\StoreOrdersRequest;
-use App\Http\Requests\UpdateOrdersRequest;
 
 class OrdersController extends Controller
 {
@@ -25,14 +23,6 @@ class OrdersController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreOrdersRequest $request)
-    {
-        //
-    }
-
-    /**
      * Display the specified resource.
      */
     public function show(Orders $orders)
@@ -44,14 +34,6 @@ class OrdersController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Orders $orders)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateOrdersRequest $request, Orders $orders)
     {
         //
     }
