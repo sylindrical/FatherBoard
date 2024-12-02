@@ -8,7 +8,7 @@ use Database\Factories\ProductFactory;
 class Product extends Model
 {
     use HasFactory;
-    public $fillable = ["Title","Description", "Owner"];
+    public $fillable = ["Title","Description", "Manufacturer", "Type"];
 
 
     public static function newFactory()

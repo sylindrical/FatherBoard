@@ -16,7 +16,8 @@ return new class extends Migration
             $table->timestamps();
             $table->string("Title");
             $table->text("Description");
-            $table->string("Owner");
+            $table->string("Manufacturer");
+            $table->enum("Type", ['CPU','Memory','GPU','PSU','Prebuilt']);
         });
     }
 

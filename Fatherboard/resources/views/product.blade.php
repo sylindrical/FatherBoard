@@ -1,10 +1,10 @@
-<x-layout>
-    <x-slot:title>
-        Product
-    </x-slot:title>
-    <x-slot:sheet>
-        product
-    </x-slot:sheet>
+<x-lowlayout>
+
+    <x-slot:head>
+        <link rel="stylesheet" href={{ asset('css/product.css') }}>
+        <script src={{ asset('js/product.js') }}></script>
+        <title>Product</title>
+    </x-slot:head>
 
     <main id="product">
         <div id="image_container">
@@ -25,4 +25,4 @@
 
     </main>
 
-</x-layout>
+</x-lowlayout>

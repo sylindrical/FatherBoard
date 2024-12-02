@@ -205,7 +205,7 @@ class AuthController extends Controller
         self::cookieLogout();
         self::sessionLogOut();
 
-        return self::giveLogin();
+        return redirect("/login");
     }
 
     
