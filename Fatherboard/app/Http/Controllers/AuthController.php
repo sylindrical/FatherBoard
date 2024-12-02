@@ -23,6 +23,16 @@ class AuthController extends Controller
     
         }
     }
+    public static function loginView()
+    {
+        return view(view: '/login');
+    }
+
+    public static function registerView()
+    {
+        return view(view: '/register');
+
+    }
     public function form_login()
     {
         $username = request("username");
@@ -58,8 +68,15 @@ class AuthController extends Controller
 
     public static function giveLogin()
     {
+        if ($x = self::loggedIn())
+        {
+            return redirect('/home');
+        }
         return view('login');
     }
+
+
+
 
     public static function addUser($username, $password)
     {
@@ -83,13 +100,16 @@ class AuthController extends Controller
 
         $hash_password = password_hash($password, PASSWORD_DEFAULT);
 
-        return self::giveLogin();
+        return redirect("/login");
     }
     
     public static function giveRegister()
     {
-        return view('register');
-    }
+        if ($x = self::loggedIn())
+        {
+            return redirect('/home');
+        }
+        return view('register');    }
 
     public static function isCookieLogin()
     {
@@ -185,7 +205,7 @@ class AuthController extends Controller
         self::cookieLogout();
         self::sessionLogOut();
 
-        return self::giveLogin();
+        return redirect("/login");
     }
 
     
