@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->enum('order_status', ['Pending','Fufilled']);
             $table->foreignId('customer_id')->constrained('customer_information')->onDelete('cascade');
         });
 
@@ -21,7 +22,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
-            $table->foreignId('products_id')->constrained(table: 'products', indexName: 'id')->onDelete('cascade');
+            $table->foreignId('products_id')->constrained('products')->onDelete('cascade');
             $table->integer('number_ordered');
         });
     }
