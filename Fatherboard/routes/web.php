@@ -52,3 +52,5 @@ Route::post('/get/products', function()
 
 Route::get('/settings', [SettingController::class, 'pageSettings']);
 
+Route::post('/basket/add',[BasketController::class,'add'])->name('basket.add');
+Route::post('/basket/remove',[BasketController::class,'remove'])->name('basket.index');
