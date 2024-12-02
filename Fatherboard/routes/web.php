@@ -1,19 +1,16 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SettingController;
 use App\Models\CustomerInfo;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use App\Models\Review;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
 
 
 Route::get('/login', [AuthController::class, 'giveLogin']);
 Route::get('/',function(){
-
     return view('welcome');
 });
 
@@ -31,27 +28,27 @@ Route::get('/product/{id}/review', [ReviewController::class,'showReview'])
 Route::get("/register",[AuthController::class,"giveRegister"])->name("register");
 
 Route::get('logout', [AuthController::class, "logOut"]);
-Route::get('/home', [HomeController::class, "giveHome"]);
+Route::get('/home', function() {
 
+    $loggedIn = AuthController::loggedIn();
+    if ($loggedIn)
+    {
+        
+    return view("home", ["data"=>Product::all()]);
+    }
+    else{
+        return view('login');
 
+    }
+});
 
-Route::get('/product/{id}', action: [ProductController::class, "show"]);
+Route::post('/get/products', function()
+{
+    $data = Product::all();
+    return view("products", ["data"=>$data] );
+});
 
-Route::get('/products', [ProductController::class, "index"]);
-Route::post('/products', [ProductController::class, "indexSpecific"]);
-
-
-
-Route::post('/get/address', [SettingController::class, "showAddress"]);
-
-Route::post('/get/personal', [SettingController::class, "showPersonal"]);
 
 
 Route::get('/settings', [SettingController::class, 'pageSettings']);
-
-Route::post("/create/product", function ()
-{
-
-});
-
 

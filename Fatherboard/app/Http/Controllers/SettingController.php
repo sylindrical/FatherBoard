@@ -14,36 +14,9 @@ class SettingController extends Controller
 
         if ($user = AuthController::loggedIn())
         {
-            $addr = $user->first()->address;
-
-            return view('settings', ["addr"=>$addr]);
+            $addr = $user->first()->address->first();
+            return view('settings', ["address"=>$addr]);
 
         }
-        else
-        {
-            return redirect("./login");
-        }
-    }
-
-    public static function showAddress()
-    {
-        if ($user = AuthController::loggedIn())
-        {
-            $addr = $user->first()->address;
-
-            return json_encode($addr);
-        }
-        return json_encode("");
-    }
-
-    public static function showPersonal()
-    {
-        if ($user = AuthController::loggedIn())
-        {
-            $addr = $user->first();
-
-            return json_encode($addr);
-        }
-        return json_encode("");   
     }
 }
