@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->string('review');
+            $table->text('review');
             $table->integer('rating');
-            $table->foreignId('customer_infos_id')->constrained('customer_information')->onDelete('cascade');
-            $table->foreignId('products_id')->constrained('products')->onDelete('cascade');
+            $table->foreignId('customer_id')->nullable()->default(null)->constrained('users')->onDelete('cascade');
+            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,4 +28,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('reviews');
     }
-}; 
+};

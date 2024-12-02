@@ -1,62 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Montserrat;
-    background-color: #d2d2d2 !important;
-}
-
-a{
-    z-index: 5;
-}
-
-p {
-    text-align: center;
-}
-
-body h1{
-    font-family: "Roboto", sans-serif;
-}
-
-
-.split {
-    height: 100%;
-    width: 50%;
-    position: fixed;
-    overflow-x: hidden;
-    padding-top:1.25rem;
-}
-
-.left{
-    left:0
-}
-
-
-.right{
-    right:0;
-    padding-top: 59.375rem;
-    padding-right: 68.75rem;
-}
-
-.centered {
-    position: absolute;
-    top:37%;
-    left:50%;
-    transform: translate(-50%,-50%);
-    text-align: center;
-}
 
 .container{ /* using flexbox for the header - container is used to keep items in the header.*/
     background-color: black;
     max-width: 100%;
     min-width: none;
-    padding: 0.625rem;
+    padding: 10px;
     display: flex;
     position: sticky;
     align-items: center;
@@ -73,13 +20,13 @@ body h1{
     flex-grow: 1;
     flex-shrink: 1;
     max-width: 100%;
-    min-width: 0.063rem;
+    min-width: 1px;
 }
 
 .SearchBar input{ /* managing input bar size, so it doesn't push items when zoomed in. */
     width: 95%;
-    padding: 0.313rem;
-    font-size: 1rem;
+    padding: 5px;
+    font-size: 16px;
 }
 
 .main-nav { /* stops buttons on right (account, about us basket) from shrinking */
@@ -105,8 +52,8 @@ body h1{
     padding: 0.5em 2em;
     text-decoration: none;
     color: white;
-    font-size: 1.125rem;
-    border-radius: 0.25rem;
+    font-size: 18px;
+    border-radius: 4px;
     padding: 0.5em 1em;
     display: block;
 }
@@ -119,7 +66,7 @@ body h1{
     display: flex;
     padding: 0;
     margin: 0;
-    gap: 1.25rem;    
+    gap: 20px;    
 }
 
 /*alinging main nav  */ 
@@ -147,8 +94,8 @@ body h1{
     color: white;
     text-align: center;
     text-decoration: none;
-    font-size: 1.125rem;
-    border-radius: 0.25rem;
+    font-size: 18px;
+    border-radius: 4px;
 }
 
 .main-nav a:hover{
@@ -176,8 +123,8 @@ body h1{
     padding: 0.5em 2em;
     text-decoration: none;
     color: white;
-    font-size: 1.125rem;
-    border-radius: 0.25rem;
+    font-size: 18px;
+    border-radius: 4px;
     padding: 0.5em 1em;
     display: block;
 }
@@ -188,7 +135,7 @@ body h1{
     display: flex;
     padding: 0;
     margin: 0;
-    gap: 1.25rem;    
+    gap: 20px;    
 }
 
 .lower-nav li{
@@ -210,8 +157,8 @@ body h1{
     color: white;
     text-align: center;
     text-decoration: none;
-    font-size: 1.125rem;
-    border-radius: 0.25rem;
+    font-size: 18px;
+    border-radius: 4px;
 }
 
 .lower-nav a:hover{
@@ -220,12 +167,12 @@ body h1{
 }
 
 
-@media screen and (max-width: 50rem) {
+@media screen and (max-width: 800px) {
     .main-nav ul {
         flex-direction: column; /* when zoomed in, buttons on the right of the header will stack.*/
         align-items: flex-start; 
     }
     .main-nav li {
-        margin-bottom: 0.625rem; /* spacing between items stacked vertically*/
+        margin-bottom: 10px; /* spacing between items stacked vertically*/
     }
 }

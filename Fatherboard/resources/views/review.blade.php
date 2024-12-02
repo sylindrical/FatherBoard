@@ -8,12 +8,24 @@
 </head>
 <body>
     <h1>Submit A Review</h1>
-    <button id="reviewform" class="btn btn-primary" data-customer-id="{{ $customer->id}}" data-product-id="{{$product->id}}">
-        Please Review Product
-</button>
+    <form action="{{ route('submitReview') }}" method ="POST">
+    @csrf
 
-<div id="reviewPopup" class="popup" style="display: none;">
-    <div class="popup-content">
+<h1> Product:</h1>
+<input type="integer" name="product_id">
+
+<h1>Rating:</h1>
+<input type="number" name="rating" min="1"max="5">
+<h1>Review:</h1>
+<textarea name="review" maxlength="500"></textarea>
+<button type="submit">submit your review!</button>
+
+</form>
+@if(session('success'))
+<div class ="alert alert-success">
+    {{session('success')}}
+</div>
+@endif
 
 </body>
 </html>
