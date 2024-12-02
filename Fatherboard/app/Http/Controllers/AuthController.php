@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Hash;
 use App\Models\CustomerInformation;
 
 class AuthController extends Controller
@@ -11,17 +11,25 @@ class AuthController extends Controller
     
     public static function login($username, $password): bool
     {
-        $customer = CustomerInformation::where("Username", $username)->where("Password", $password)->get();
-        if ($customer->count() == 0)
-        {
-            return false;
-    
+        $customer = CustomerInformation::where("Username", $username)->first();
+        if (!$customer) {
+            return false; // User not found
         }
-        else
+        /*else
         {
             return true;
     
+        }*/
+
+        if (Hash::check($password, $customer->Password)) {
+            return true; //correct password & username exists in the database, therefore true
         }
+        
+        
+        return false;  
+        
+        
+
     }
     public function form_login()
     {
@@ -91,20 +99,24 @@ class AuthController extends Controller
         return view('register');
     }
 
-    public static function isCookieLogin()
-    {
-        if (isset($_COOKIE["username"]) && isset($_COOKIE["password"]))
-        {
-            $username = $_COOKIE["username"];
-            $password = $_COOKIE["password"];
-            if (self::login($username, $password))
-            {
-                return CustomerInformation::where("Username", $username)->where("Password", $password)->get();
-            }; 
-        }
+ 
 
-        return false;
-    }
+        public static function isCookieLogin()
+        {
+            if (isset($_COOKIE["username"]) && isset($_COOKIE["password"])) {
+                $username = $_COOKIE["username"];
+                $password = $_COOKIE["password"];
+
+                $customer = CustomerInformation::where("Username", $username)->first();
+                if ($customer && Hash::check($password, $customer->Password)) {
+                    return $customer;
+                }
+            }
+        
+            return false;
+        }
+        
+
 
     // Checks if the hashed value of "password" matches the assumed hash password in the database
     // If it matches, the model instance, representing the class, will be returned
@@ -135,23 +147,23 @@ class AuthController extends Controller
         }
     }
     public static function isSessionLogin()
-    {
-        self::enableSession();
+{
+    self::enableSession();
 
-        if (isset($_SESSION["username"]))
-        {
-            if (isset($_SESSION["password"]))
-            {
-                $username = $_SESSION["username"];
-                $password = $_SESSION["password"];
-                if (self::login($username, $password))
-                {
-                    return CustomerInformation::where("Username", $username)->where("Password", $password)->get();
-                }; 
-            }
+    if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
+        $username = $_SESSION["username"];
+        $password = $_SESSION["password"];
+        $customer = CustomerInformation::where("Username", $username)->first(); // Fetch customer username from database
+
+        if ($customer && Hash::check($password, $customer->Password)) {
+            return $customer; // returns customer if username and password matches
         }
-        return false;
     }
+
+    return false;
+}
+
+
 
 
     public static function loggedIn()
