@@ -22,8 +22,25 @@ class ProductController extends Controller
     {
         $user_cat = $rq->input("category");
         
+        if (count($user_cat) == 1)
+        {
         $data = Product::where("Type",$user_cat)->get();
         return json_encode($data);
+        }
+        else if (count($user_cat) >1)
+        {
+            $data = Product::where(function ($x) use ($user_cat){
+            
+                foreach ($user_cat as $category)
+                {
+                    $x->orWhere("Type","=",$category);
+                };
+            })->get();
+            return json_encode($data);
+
+        }
+        return json_encode("");
+
     }
     /**
      * Show the form for creating a new resource.

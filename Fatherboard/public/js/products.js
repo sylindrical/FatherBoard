@@ -36,8 +36,8 @@ window.addEventListener("DOMContentLoaded", function()
 
 
 
-    button_filter.addEventListener("click",filterClick)
     
+    button_filter.addEventListener("click",change);
 addLinks();
 
 }
@@ -55,15 +55,14 @@ function addLinks()
 }
 
 
-function filterClick()
+function filterClick(data)
 {
-    let type = menu_product_type.value;
+    // let type = menu_product_type.value;
     let csrf = document.getElementsByName("csrf-token");
     let csrf_token = csrf[0].getAttribute("content");
-    console.log(csrf_token);
     fetch("/products", {method : "POST", headers :{
                     'Content-Type': 'application/json',
-                    "X-CSRF-TOKEN" : csrf_token} ,body : JSON.stringify({category : type })}).then((x)=>x.json()).then((dec)=>
+                    "X-CSRF-TOKEN" : csrf_token} ,body : JSON.stringify({category : data })}).then((x)=>x.json()).then((dec)=>
                     {
                         console.log(dec);
                         showProduct(dec);
@@ -138,3 +137,92 @@ console.log("clicked" + num);
 // Simulate a mouse click:
 window.location.href = "./product/" + num;
 }
+
+//
+
+function change() { // https://stackoverflow.com/a/48316156
+    var categoryCheckbox = document.querySelectorAll(".categories input[type='checkbox']");
+    var priceCheckbox = document.querySelectorAll(".prices input[type='checkbox']");
+    var filters = {
+      categories: getClassOfCheckedCheckboxes(categoryCheckbox),
+      prices: getClassOfCheckedCheckboxes(priceCheckbox)
+    };
+    console.log(filters["categories"]);
+    filterResults(filters);
+    filterClick(filters["categories"]);
+  }
+  
+  function getClassOfCheckedCheckboxes(checkboxes) {
+    var classes = [];
+  
+    if (checkboxes && checkboxes.length > 0) {
+      for (var i = 0; i < checkboxes.length; i++) {
+        var cb = checkboxes[i];
+  
+        if (cb.checked) {
+          classes.push(cb.getAttribute("rel"));
+        }
+      }
+    }
+  
+    return classes;
+  }
+  
+  function filterResults(filters) {
+    var rElems = document.querySelectorAll(".result div");
+    var hiddenElems = [];
+  
+    if (!rElems || rElems.length <= 0) {
+      return;
+    }
+  
+    for (var i = 0; i < rElems.length; i++) {
+      var el = rElems[i];
+  
+      if (filters.categories.length > 0) {
+        var isHidden = true;
+  
+        for (var j = 0; j < filters.categories.length; j++) {
+          var filter = filters.categories[j];
+  
+          if (el.classList.contains(filter)) {
+            isHidden = false;
+            break;
+          }
+        }
+  
+        if (isHidden) {
+          hiddenElems.push(el);
+        }
+      }
+  
+      if (filters.prices.length > 0) {
+        var isHidden = true;
+  
+        for (var j = 0; j < filters.prices.length; j++) {
+          var filter = filters.prices[j];
+  
+          if (el.classList.contains(filter)) {
+            isHidden = false;
+            break;
+          }
+        }
+  
+        if (isHidden) {
+          hiddenElems.push(el);
+        }
+      }
+    }
+  
+    for (var i = 0; i < rElems.length; i++) {
+      rElems[i].style.display = "block";
+    }
+  
+    if (hiddenElems.length <= 0) {
+      return;
+    }
+  
+    for (var i = 0; i < hiddenElems.length; i++) {
+      hiddenElems[i].style.display = "none";
+    }
+  }
