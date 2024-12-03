@@ -32,24 +32,30 @@ Route::get('/home', [HomeController::class, "giveHome"]);
 
 
 
+// Handles products
 Route::get('/product/{id}', action: [ProductController::class, "show"]);
-
 Route::get('/products', [ProductController::class, "index"]);
 Route::post('/products', [ProductController::class, "indexSpecific"]);
-
-
-
-Route::post('/get/address', [SettingController::class, "showAddress"]);
-
-Route::post('/get/personal', [SettingController::class, "showPersonal"]);
-
-
-Route::get('/settings', [SettingController::class, 'pageSettings']);
-
-
 
 Route::post("/create/product", function ()
 {
 
 });
+
+
+
+// Settings-related
+
+Route::get('/settings', [SettingController::class, 'pageSettings']);
+
+// Handles address
+Route::post('/get/address', [SettingController::class, "showAddress"]);
+Route::post('/add/address', [SettingController::class, "form_addAddress"]);
+Route::post("/delete/address", [SettingController::class, "form_removeAddress"]);
+
+
+
+
+Route::post('/get/personal', [SettingController::class, "showPersonal"]);
+
 

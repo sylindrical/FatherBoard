@@ -166,7 +166,7 @@ class AuthController extends Controller
                 $password = $_SESSION["password"];
                 if (self::login($username, $password))
                 {
-                    return CustomerInformation::where("Username", $username)->where("Password", $password)->get();
+                    return CustomerInformation::where("Username", $username)->where("Password", $password)->first();
                 }; 
             }
         }

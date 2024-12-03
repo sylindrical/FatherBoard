@@ -15,11 +15,15 @@
                 margin:0;
                 padding:0;
             }
+            
             </style>
+
+
         <p id="Country"><slot name="Country">Unknown Country</slot></p>
         <p id="City"><slot name="City">Unknown City</slot></p>
         <p id="AddressLine"><slot name="AddressLine">Unknown Address</slot></p>
-
+        
+        <button name="remove-item">-</button>
     </template>
 
 
@@ -37,7 +41,45 @@
 
         <b><slot name="Password">Unknown Password</slot></b>
     </template>
+{{-- 
+    <template id="template_add_address_box">
 
+    </template> --}}
+
+    <div id="add_address_box"  hidden>
+    <div>
+
+    </div>
+        <form id="add_address_form" method="POST" action="/add/address">
+            <div>
+            <label for="Country">Country</label>
+
+            <select id="inp_country">
+                <option>UK</option>
+                <option>USA</option>
+                <option>France</option>
+                <option>Germany</option>
+                <option>Spain</option>
+            </select>
+        </div>
+            
+        <div>
+            <label for="City">City</label>
+            <input type="text" id="inp_city" name="City"></input>
+        </div>
+
+        <div>
+
+            <label for="City">Address Line</label>
+
+            <input type="text" id="inp_addrLine" name="Address Line"></input>
+        </div>
+        <div>
+            <input type="submit" name="add_address_button" id="add_address_submit" value="Add" target=""></input>
+        </div>
+        </form>
+
+    </div>
     <main id="setting-container">
 
 
@@ -68,6 +110,7 @@
 
     <div class="content" id="address-info">
         <h3>Address Information</h3>
+        <button id="button_show_address_gui">Add Address</button>
 
         <?php if ($addr->count() >0)
         {
@@ -79,7 +122,7 @@
                 <span slot="Country">{{ $value["Country"] }}</span>
                 <span slot="City">{{ $value["City"] }}</span>
                 <span slot="AddressLine">{{$value["Address Line"] }}</span>
-
+                <p name="address_id" value={{ $value["id"] }} hidden></p>
             </address-element>
 
             <?php }}

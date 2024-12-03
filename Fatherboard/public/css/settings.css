@@ -14,15 +14,79 @@ ul{
     margin:0;
     padding:0;
     display:grid;
+    margin: 5em 8em;
     grid-template-columns: 200px auto;
-    grid-template-rows: [start] 1fr [end];
+    grid-template-rows: [start] 100vh [end];
     grid-template-areas: "options data"
                          "options data";
     
 }
+
 address-element {
     display: block;
     margin-bottom: 5vh;
+    margin-top:2vh;
+    border-left:0.25rem solid gray;
+    padding: 1.5em 0.5em;
+}
+
+
+address-element:hover
+{
+    background-color: white;;
+    
+}
+
+#add_address_box
+{
+    position:fixed;
+    background-color: wheat;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+
+}
+
+#add_address_form
+{
+    display:flex;
+    flex-direction: column;
+    border: 2px solid black;
+    border-radius: 2px;
+    padding:50px;
+    justify-content: center;
+    align-items: stretch;
+}
+#add_address_form div
+{
+    margin: 15px 0;
+    display:block;
+}
+#add_address_form label
+{
+    display:block;
+    margin:0;
+    padding:0;
+    text-align: center;
+}
+
+
+#add_address_form::after
+{
+    display:inline-block;
+    position:absolute;
+    top:0;
+    left:25px;
+    width:150px;;
+    font-size: 50px;
+    height:150px;;
+    content: "\00d7"
+}
+#add_address_form input, 
+#add_address_form select, 
+#add_address_submit
+{
+    width: 100%;
 }
 
 
@@ -41,6 +105,8 @@ address-element {
 .content
 {
     grid-area: data;
+    overflow-y:scroll;
+
 }
 
 #options

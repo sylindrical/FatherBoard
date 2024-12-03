@@ -27,7 +27,7 @@ class ProductFactory extends Factory
             "Title" => fake()->name(),
             "Description" => fake()->text(),
             "Manufacturer" => fake()->name(),
-            "Type" => $types[random_int(0,sizeof($types))]
+            "Type" => $types[random_int(0,sizeof($types)-1)]
         ];
     }
 }
