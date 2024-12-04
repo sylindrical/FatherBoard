@@ -14,19 +14,51 @@ class BasketController extends Controller
 // make it so that if a user is logged in it will save basket
          if(auth()->check()){    
             $user = auth()->user();
-            $basket = $user->basket ?:['items' =>[]];
-            $basket['items'][$productId] = ['product_id'=>$productId,'quantity' =>$basket['items']['quantity']?? 0+$quantity,];
+            $basket = json_decode($user->basket->items ?? '[]', true);
+            $basket[$productId] = [
+                'product_id' => $productId,
+                'quantity' => ($basket[$productId]['quantity'] ?? 0) + $quantity,];
             
-            $user->basket()->updateOrCreate([],['items'=>json_encode($basket['items'])]);
+            $user->basket()->updateOrCreate([],['items'=>json_encode($basket)]);
         } else{
             $basket = session()->get('basket',[]);
-            if(isset($basket[$productId])){
-                $basket[$productId]['quantity'] += $quantity;
-            }else{  
-                $basket[$productId] = ['product_id'=> $productId, 'quantity' => $quantity];
-            }
+            $basket[$productId] = [
+                'product_id' => $productId,
+                'quantity' => ($basket[$productId]['quantity'] ?? 0) + $quantity,];
+            
             session()->put('basket',$basket);
         }
-    return response()->json(['message'=>'Product has been successfully added!'], 200);
+    return redirect()->route('basket.index')->with(['success','Product has been successfully added!']);
     }
+
+//display the basket
+    public function index(){
+
+        $basket = auth()->check()
+       ? json_decode(auth()->user()->basket->items ?? '[]', true) : session()->get('basket',[]); 
+
+        return view('basket.index', compact('basket'));
+        }
+        public function update(Request $request){
+            $productId = $request->input('product_id');
+            $quantity = $request->input('quantity');
+            if (auth()->check()){
+                $user =auth()->user();
+                $basket = json_decode($user->basket->items ?? '[]', true);
+                if(isset($basket[$productId])){
+                    $basket[$productId]['quantity'] = $quantity;
+                }
+                $user->basket()->updateOrCreate([], ['items'=> json_encode($basket)]);
+            }else{
+$basket = session()->get('basket',[]);
+if(isset($basket[$productId])){
+    $basket[$productId]['quantity'] = $quantity;
 }
+session()->put('basket',$basket);
+}
+return redirect()->route('basket.index')->with('success','Basket Updated!');
+        }
+   
+        
+}
+

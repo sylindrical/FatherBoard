@@ -18,13 +18,6 @@ class BasketSyncLogin
     /**
      * Handle the event.
      */
-    public function handle(object $event): void
-    {
-$user = $event->user;
-$sessionBasket = session()->get('basket',[]);
-if ($sessionBasket){
-    $dbBasket = $user->basket ? json_decode($user->basket->items, true) : []
-;
-}
+    
     }
-}
+
