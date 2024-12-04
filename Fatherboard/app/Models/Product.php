@@ -17,8 +17,8 @@ class Product extends Model
         return new ProductFactory;
     }
 
-    public function Orders()
+    public function order_details() //Establishes many to many relationship with Orders model through order details pivot
     {
-        return $this->belongsToMany(Orders::class, 'order_details', 'products_id', 'order_id')->withPivot('number_ordered');
+        return $this->hasMany(order_details::class);
     }
 }

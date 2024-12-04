@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\SettingController;
 use App\Models\CustomerInfo;
 use App\Models\Product;
@@ -59,3 +60,6 @@ Route::post("/create/product", function ()
 
 });
 
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::post('/checkout',[CheckoutController::class, 'process'])->name('checkout.process');
+Route::get('/checkout/sucess', [CheckoutController::class,'success'])->name('checkout_success');

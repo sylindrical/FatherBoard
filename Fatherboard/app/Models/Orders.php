@@ -9,10 +9,10 @@ class Orders extends Model
 {
     /** @use HasFactory<\Database\Factories\OrdersFactory> */
     use HasFactory;
-    protected $fillable = ['order_id','order_status','customer_id','product_id','quantity'];
-    public function products()
+    protected $fillable = ['order_id','order_status','customer_id'];
+    public function order_details()//Establishes many to many relationship with Product model through order_details pivot
     {
-        return $this->belongsToMany(Product::class, 'order_details', 'order_id', 'products_id')->withPivot('number_ordered');
+        return $this->hasMany(order_details::class);
     }
     
 }
