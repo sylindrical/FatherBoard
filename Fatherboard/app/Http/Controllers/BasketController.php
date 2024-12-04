@@ -9,7 +9,7 @@ class BasketController extends Controller
     public function add(Request $request)
     {
         $productId = $request->input('product_id');
-        $quantity = $request->input('quantity');
+        $quantity = $request->input('quantity', 1);
 
 // make it so that if a user is logged in it will save basket
          if(auth()->check()){    
@@ -28,7 +28,7 @@ class BasketController extends Controller
             
             session()->put('basket',$basket);
         }
-    return redirect()->route('basket')->with(['success','Product has been successfully added!']);
+    return redirect()->route('basket')->with(['success','Product added!']);
     }
 
 //display the basket
@@ -39,6 +39,8 @@ class BasketController extends Controller
 
         return view('basket', compact('basket'));
         }
+
+
         public function update(Request $request){
             $productId = $request->input('product_id');
             $quantity = $request->input('quantity');
@@ -59,6 +61,23 @@ session()->put('basket',$basket);
 return redirect()->route('basket.index')->with('success','Basket Updated!');
         }
    
-        
+
+        public function remove(Request $request){
+            $basket = Session::get('basket',[]);
+            $productId = $request->input('product_id');
+            if (isset($basket[$productId])){
+                unset($basket[$productId]);
+            }
+            Session::put('basket',$basket);
+            return redirect()->route('basket.index')->with('success','Product removed!');
+        }
+        public function checkout(){
+            if (auth()->check()){
+                return view('checkout');
+            
+            }else{
+                return redirect()->route('register')->with('Info', 'Please create an account to continue');
+            }
+        }
 }
 
