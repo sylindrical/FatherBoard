@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
  */
 use App\Models\Product;
+use App\Models\ProductPrice;
 use Illuminate\Console\View\Components\Choice;
 use Nette\Utils\Random;
 
@@ -29,5 +30,19 @@ class ProductFactory extends Factory
             "Manufacturer" => fake()->name(),
             "Type" => $types[random_int(0,sizeof($types)-1)]
         ];
+    }
+
+    public function configure()
+    {
+        return $this->afterCreating(function ($product)
+        {
+            // $price = ProductPrice::create(attributes: ["Price"=>300]);
+            // $price->product()->associate(["Price"=>300]);
+            // $price->save();
+
+            $product->price()->create(["price"=>random_int(100,800)]);
+
+            $product->save();
+        });
     }
 }

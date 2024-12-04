@@ -55,14 +55,20 @@ function addLinks()
 }
 
 
-function filterClick(data)
+function filterClick(cat, pri)
 {
     // let type = menu_product_type.value;
     let csrf = document.getElementsByName("csrf-token");
+
     let csrf_token = csrf[0].getAttribute("content");
+
+    console.log("here is pri:" + pri);
+    console.log("here is cat:" + cat);
     fetch("/products", {method : "POST", headers :{
                     'Content-Type': 'application/json',
-                    "X-CSRF-TOKEN" : csrf_token} ,body : JSON.stringify({category : data })}).then((x)=>x.json()).then((dec)=>
+                    "X-CSRF-TOKEN" : csrf_token} ,body : JSON.stringify(
+                      {category : cat, price: pri })
+                    }).then((x)=>x.json()).then((dec)=>
                     {
                         console.log(dec);
                         showProduct(dec);
@@ -140,6 +146,33 @@ window.location.href = "./product/" + num;
 
 //
 
+function priceConvert(inequality)
+{
+    if (inequality.includes("+"))
+    {
+        divided = inequality.split("+")
+        return [">= "+ divided[0]];
+    }
+    divided = inequality.split("-")
+    if (divided.length == 2)
+    {
+    newStr = [">= " + divided[0], "<= " +divided[1]];
+    
+    return newStr;
+    }
+    console.log(inequality)
+
+}
+
+function priceConvertAll(inequality)
+{
+    newArr = [];
+
+    inequality.forEach(x=>{
+        newArr.push(priceConvert(x));
+    })
+    return newArr;
+}
 function change() { // https://stackoverflow.com/a/48316156
     var categoryCheckbox = document.querySelectorAll(".categories input[type='checkbox']");
     var priceCheckbox = document.querySelectorAll(".prices input[type='checkbox']");
@@ -147,9 +180,9 @@ function change() { // https://stackoverflow.com/a/48316156
       categories: getClassOfCheckedCheckboxes(categoryCheckbox),
       prices: getClassOfCheckedCheckboxes(priceCheckbox)
     };
-    console.log(filters["categories"]);
-    filterResults(filters);
-    filterClick(filters["categories"]);
+
+
+    filterClick(filters["categories"], priceConvertAll(filters["prices"]));
   }
   
   function getClassOfCheckedCheckboxes(checkboxes) {

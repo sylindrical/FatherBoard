@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Database\Factories\ProductFactory;
+
+use App\Models\ProductPrice;
 class Product extends Model
 {
     use HasFactory;
@@ -13,6 +15,11 @@ class Product extends Model
 
     public static function newFactory()
     {
-        return new ProductFactory;
+        return ProductFactory::new();
+    }
+
+    public function price()
+    {
+        return $this->hasOne(ProductPrice::class);
     }
 }

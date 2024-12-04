@@ -21,25 +21,53 @@ class ProductController extends Controller
     public function indexSpecific(Request $rq)
     {
         $user_cat = $rq->input("category");
-        
+        $user_price = $rq->input("price");
+
+        $curData = Product::whereRaw("1=0");
+        foreach($user_price as $cond)
+        {
+ 
+  
+            $curData = $curData->orWhereHas("price",function ($q) use ($cond) {
+                foreach($cond as $x)
+                {
+                $exp = explode(" ",$x );
+
+                if (count($exp) > 1)
+                {
+                $q->where("price", $exp[0], $exp[1]);
+                }
+
+                else
+                {
+                    $q->where("price",">=",$exp[0]);
+                }
+
+                    
+                };
+                });
+            }
+
+                
+        $query2 = Product::whereRaw("1=0");
         if (count($user_cat) == 1)
         {
-        $data = Product::where("Type",$user_cat)->get();
-        return json_encode($data);
+        $query2 = Product::where("Type",$user_cat);
         }
         else if (count($user_cat) >1)
         {
-            $data = Product::where(function ($x) use ($user_cat){
+            $query2 = Product::where(function ($x) use ($user_cat){
             
                 foreach ($user_cat as $category)
                 {
                     $x->orWhere("Type","=",$category);
                 };
-            })->get();
-            return json_encode($data);
+            });
 
         }
-        return json_encode("");
+        $combine = $curData->union($query2);
+
+        return json_encode($combine->get());
 
     }
     /**
