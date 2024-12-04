@@ -7,6 +7,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use App\Models\Review;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\BasketController;
 
 
 Route::get('/login', [AuthController::class, 'giveLogin']);
@@ -52,5 +53,6 @@ Route::post('/get/products', function()
 
 Route::get('/settings', [SettingController::class, 'pageSettings']);
 
+Route::get('/basket',[BasketController::class,'index'])->name('basket.index');
 Route::post('/basket/add',[BasketController::class,'add'])->name('basket.add');
-Route::post('/basket/remove',[BasketController::class,'remove'])->name('basket.index');
+Route::post('/basket/remove',[BasketController::class,'remove'])->name('basket.remove');

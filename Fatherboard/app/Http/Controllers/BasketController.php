@@ -28,7 +28,7 @@ class BasketController extends Controller
             
             session()->put('basket',$basket);
         }
-    return redirect()->route('basket.index')->with(['success','Product has been successfully added!']);
+    return redirect()->route('basket')->with(['success','Product has been successfully added!']);
     }
 
 //display the basket
@@ -37,7 +37,7 @@ class BasketController extends Controller
         $basket = auth()->check()
        ? json_decode(auth()->user()->basket->items ?? '[]', true) : session()->get('basket',[]); 
 
-        return view('basket.index', compact('basket'));
+        return view('basket', compact('basket'));
         }
         public function update(Request $request){
             $productId = $request->input('product_id');
