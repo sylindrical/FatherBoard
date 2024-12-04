@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CustomerInformation;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -35,11 +34,9 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(int $id)
+    public function show(Product $product)
     {
-        $product = Product::findOrFail($id);
-        $image = "rtx2070.png";
-        return view('product',["product"=>$product,"image"=>$image]);
+        //
     }
 
     /**

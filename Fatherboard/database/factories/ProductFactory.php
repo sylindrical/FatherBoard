@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
  */
-use App\Models\Product;
 class ProductFactory extends Factory
 {
     /**
@@ -15,8 +14,6 @@ class ProductFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    protected $model = Product::class;
-
     public function definition(): array
     {
         return [
