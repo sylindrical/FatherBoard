@@ -127,10 +127,7 @@ class AuthController extends Controller
                 $username = $_COOKIE["username"];
                 $password = $_COOKIE["password"];
 
-                $customer = CustomerInformation::where("Username", $username)->first();
-                if ($customer && Hash::check($password, $customer->Password)) {
-                    return $customer;
-                }
+                return self::login($username,$password);
             }
         
             return false;
@@ -175,9 +172,7 @@ class AuthController extends Controller
         $password = $_SESSION["password"];
         $customer = CustomerInformation::where("Username", $username)->first(); // Fetch customer username from database
 
-        if ($customer && Hash::check($password, $customer->Password)) {
-            return $customer; // returns customer if username and password matches
-        }
+        return self::login($username, $password);
     }
 
     return false;
