@@ -15,7 +15,7 @@ class CheckoutController extends Controller
     public function index()
     {
         $AuthController = new AuthController;//Not sure if this works, attempts to check if the user is logged in.
-        if($AuthController->loggedIn() == false){
+        if($user = $AuthController->loggedIn()){
             return view('login');
         }
         /*
@@ -65,8 +65,10 @@ class CheckoutController extends Controller
             /*
                 REQUIRED CODE TO GET USER DETAILS
             */
+            $AuthController = new AuthController;
+            $user = $AuthController->loggedIn();
         $order = Orders::create([
-            'customer_id'=> 1, //Replace 1 with $user=>id
+            'customer_id'=> $user['id'], //Replace 1 with $user=>id
             'order_status' => 'Pending',
 
         ]);
