@@ -20,6 +20,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
         $this->call(CustomerSeeder::class, parameters:['userAmount'=>15,'addressPerUser'=>3]);
-        $this->call(ProductSeeder::class, parameters:["amount"=>15]);
+        $this->call(ProductSeeder::class, parameters:["amount"=>100]);
     }
 }

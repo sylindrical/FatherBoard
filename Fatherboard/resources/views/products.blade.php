@@ -9,13 +9,6 @@
 
 <br>
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<select name="type" id="product_type">
-    <option value="gpu">GPU</option>
-    <option value="cpu">CPU</option>
-    <option value="psu">PSU</option>
-    <option value="memory">Memory</option>
-    <option value="prebuilt-pcs">Pre-built pcs</option>
-</select>
 
 
 <template  id="template_product">

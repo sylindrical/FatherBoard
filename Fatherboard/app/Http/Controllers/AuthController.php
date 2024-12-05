@@ -11,6 +11,7 @@ class AuthController extends Controller
     
     public static function login($username, $password): bool
     {
+        
         $customer = CustomerInformation::where("Username", $username)->first();
         if (!$customer) {
             return false; // User not found
@@ -71,6 +72,83 @@ class AuthController extends Controller
         {
             return redirect('login');
         }
+
+    }
+
+    // This form of login returns a json output of whether the user has logged in successfully
+    public static function explicit_login()
+    {
+        $username = request("username");
+        $password = request("password");
+        $permanent = request('permanent');
+
+        if (self::login($username,$password)  )
+        {
+            // "permanent" style login will be 1 hour in duration
+            $length = time() + 60*60*24*30;
+            if ($permanent == false)
+            {
+                session_start();
+                $_SESSION["username"] = $username;
+                $_SESSION["password"] = $password;
+                return json_encode(["conn" =>true]);
+            }
+            else
+            {
+                setcookie("username", $username, $length, "/");
+                setcookie("password", $password, $length, "/"); 
+                return json_encode(["conn" =>true]);
+
+            }
+
+        }
+        else
+        {
+            return json_encode(["conn" =>false]);
+        }
+    }
+
+
+    // This form of login returns a json output of whether the user has registered in successfully
+
+    public static function explicit_register()
+    {
+        $username = request("username");
+        $password = request("password");
+
+        $min_length_pass = 5;
+        $username_regex = "/.+@.+/";
+
+        // check if the user exists already
+
+        if (CustomerInformation::where("Username",$username)->get()->count())
+        {
+            return json_encode(["conn"=>false, "reason"=>"The user already exists"]);
+        }
+        // checks if given username and password matches certain crtieria.
+
+        if (!(preg_match($username_regex, $username) || (strlen($password) > $min_length_pass)))
+        {
+            return json_encode(["conn"=>false, "reason"=>sprintf("The email is not in correct format and the password is not atleast %d character length", $min_length_pass)]);
+        }
+        if (!preg_match($username_regex, $username))
+        {
+            return json_encode(["conn"=>false, "reason"=>"The email is not in correct format"]);
+
+        }
+        if (!(strlen($password) >= $min_length_pass))
+        {
+            return json_encode(["conn"=>false, "reason"=>sprintf("The password is not atleast %d character length", $min_length_pass)]);
+
+        }
+
+
+
+        self::addUser($username,$password);
+
+        $hash_password = password_hash($password, PASSWORD_DEFAULT);
+
+        return json_encode(["conn"=>true]);
 
     }
 
@@ -188,6 +266,7 @@ class AuthController extends Controller
 
     public static function loggedIn()
     {
+        
         $cl = self::isCookieLogin();
         $sl = self::isSessionLogin();
     

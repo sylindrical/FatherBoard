@@ -18,7 +18,8 @@ Route::get('/',function(){
 
 Route::post('/submit-review',[ReviewController::class,'store'])->name('submitReview');
 Route::post('/_login', [AuthController::class, 'form_login']);
-
+Route::post('/_explicit_login', [AuthController::class, "explicit_login"]);
+Route::post("/_explicit_register", [AuthController::class, "explicit_register"]);
 Route::post('/_register', [AuthController::class, "form_register"]);
 
 Route::get('/review', function () {

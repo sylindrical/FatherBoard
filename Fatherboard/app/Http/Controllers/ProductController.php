@@ -24,6 +24,11 @@ class ProductController extends Controller
         $user_price = $rq->input("price");
 
         $curData = Product::whereRaw("1=0");
+        if ((count($user_cat) == 0) && (count($user_price) ==0))
+        {
+            return json_encode(Product::query()->get());
+
+        };
         foreach($user_price as $cond)
         {
  

@@ -178,14 +178,12 @@ function showAddress(info)
     else
     {
 
-        let address_title = document.createElement("h3");
-        address_title.textContent = "Address Information";
+
 
 
         let info_elem = document.createElement("p");
         info_elem.textContent = "You do not have an address currently.";
 
-        option_information.append(address_title);
         option_information.append(info_elem);
 
     }
