@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CustomerInformation;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,63 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $data = Product::all();
+        return view("products", ["data"=>$data] );
     }
 
+
+    public function indexSpecific(Request $rq)
+    {
+        $user_cat = $rq->input("category");
+        $user_price = $rq->input("price");
+
+        $curData = Product::whereRaw("1=0");
+        foreach($user_price as $cond)
+        {
+ 
+  
+            $curData = $curData->orWhereHas("price",function ($q) use ($cond) {
+                foreach($cond as $x)
+                {
+                $exp = explode(" ",$x );
+
+                if (count($exp) > 1)
+                {
+                $q->where("price", $exp[0], $exp[1]);
+                }
+
+                else
+                {
+                    $q->where("price",">=",$exp[0]);
+                }
+
+                    
+                };
+                });
+            }
+
+                
+        $query2 = Product::whereRaw("1=0");
+        if (count($user_cat) == 1)
+        {
+        $query2 = Product::where("Type",$user_cat);
+        }
+        else if (count($user_cat) >1)
+        {
+            $query2 = Product::where(function ($x) use ($user_cat){
+            
+                foreach ($user_cat as $category)
+                {
+                    $x->orWhere("Type","=",$category);
+                };
+            });
+
+        }
+        $combine = $curData->union($query2);
+
+        return json_encode($combine->get());
+
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -34,9 +89,11 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show(int $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $image = "rtx2070.png";
+        return view('product',["product"=>$product,"image"=>$image]);
     }
 
     /**

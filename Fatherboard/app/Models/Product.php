@@ -2,15 +2,24 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Database\Factories\ProductFactory;
 
+use App\Models\ProductPrice;
 class Product extends Model
 {
-    public $fillable = ["Title","Description", "Owner"];
+    use HasFactory;
+    public $fillable = ["Title","Description", "Manufacturer", "Type"];
 
-public function reviews()
-{
-    return $this->hasMany(Review::class,'product_id');
 
-}
+    public static function newFactory()
+    {
+        return ProductFactory::new();
+    }
+
+    public function price()
+    {
+        return $this->hasOne(ProductPrice::class);
+    }
 }
