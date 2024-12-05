@@ -28,7 +28,7 @@ class BasketController extends Controller
             
             session()->put('basket',$basket);
         }
-    return redirect()->route('basket')->with(['success','Product added!']);
+    return redirect()->route('basketIndex')->with(['success','Product added!']);
     }
 
 //display the basket
@@ -58,7 +58,7 @@ if(isset($basket[$productId])){
 }
 session()->put('basket',$basket);
 }
-return redirect()->route('basket.index')->with('success','Basket Updated!');
+return redirect()->route('basketIndex')->with('success','Basket Updated!');
         }
    
 
@@ -69,7 +69,7 @@ return redirect()->route('basket.index')->with('success','Basket Updated!');
                 unset($basket[$productId]);
             }
             Session::put('basket',$basket);
-            return redirect()->route('basket.index')->with('success','Product removed!');
+            return redirect()->route('basketIndex')->with('success','Product removed!');
         }
         public function checkout(){
             if (auth()->check()){

@@ -53,8 +53,8 @@ Route::post('/get/products', function()
 
 Route::get('/settings', [SettingController::class, 'pageSettings']);
 
-Route::get('/basket',[BasketController::class,'index'])->name('basket.index');
-Route::post('/basket/add',[BasketController::class,'add'])->name('basket.add');
-Route::post('/basket/remove',[BasketController::class,'remove'])->name('basket.remove');
-Route::post('/basket/update',[BasketController::class,'update'])->name('basket.update');
-Route::get('/basket/checkout',[BasketController::class,'checkout'])->name('basket.checkout');
+Route::get('/basket',[BasketController::class,'index'])->name('basketIndex');
+Route::post('/basket/add',[BasketController::class,'add'])->name('basketAdd');
+Route::post('/basket/remove',[BasketController::class,'remove'])->name('basketRemove');
+Route::post('/basket/update',[BasketController::class,'update'])->name('basketUpdate');
+Route::get('/basket/checkout',[BasketController::class,'checkout'])->name('basketCheckout');
