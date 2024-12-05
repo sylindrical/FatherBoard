@@ -9,10 +9,10 @@ use App\Models\CustomerInformation;
 class AuthController extends Controller
 {
     
-    public static function login($username, $password): bool
+    public static function login($email, $password): bool
     {
         
-        $customer = CustomerInformation::where("Username", $username)->first();
+        $customer = CustomerInformation::where("Email", $email)->first();
         if (!$customer) {
             return false; // User not found
         }
@@ -44,7 +44,7 @@ class AuthController extends Controller
     }
     public function form_login()
     {
-        $username = request("username");
+        $username = request("email");
         $password = request("password");
         $permanent = request('permanent');
 
@@ -55,13 +55,13 @@ class AuthController extends Controller
             if ($permanent == false)
             {
                 session_start();
-                $_SESSION["username"] = $username;
+                $_SESSION["email"] = $username;
                 $_SESSION["password"] = $password;
                 return redirect('home');
             }
             else
             {
-                setcookie("username", $username, $length, "/");
+                setcookie("email", $username, $length, "/");
                 setcookie("password", $password, $length, "/"); 
                 return redirect('home');
 
@@ -78,24 +78,27 @@ class AuthController extends Controller
     // This form of login returns a json output of whether the user has logged in successfully
     public static function explicit_login()
     {
-        $username = request("username");
+        $email = request("email");
         $password = request("password");
+        $firstName = request("firstName");
+        $lastName = request("lastName");
+
         $permanent = request('permanent');
 
-        if (self::login($username,$password)  )
+        if (self::login($email,$password)  )
         {
             // "permanent" style login will be 1 hour in duration
             $length = time() + 60*60*24*30;
             if ($permanent == false)
             {
                 session_start();
-                $_SESSION["username"] = $username;
+                $_SESSION["email"] = $email;
                 $_SESSION["password"] = $password;
                 return json_encode(["conn" =>true]);
             }
             else
             {
-                setcookie("username", $username, $length, "/");
+                setcookie("email", $email, $length, "/");
                 setcookie("password", $password, $length, "/"); 
                 return json_encode(["conn" =>true]);
 
@@ -113,25 +116,27 @@ class AuthController extends Controller
 
     public static function explicit_register()
     {
-        $username = request("username");
+        $email = request("email");
         $password = request("password");
+        $firstName = request("firstName");
+        $lastName = request("lastName");
 
         $min_length_pass = 5;
-        $username_regex = "/.+@.+/";
+        $email_regex = "/.+@.+/";
 
         // check if the user exists already
-
-        if (CustomerInformation::where("Username",$username)->get()->count())
+        
+        if (CustomerInformation::where("Email",$email)->get()->count())
         {
             return json_encode(["conn"=>false, "reason"=>"The user already exists"]);
         }
         // checks if given username and password matches certain crtieria.
 
-        if (!(preg_match($username_regex, $username) || (strlen($password) > $min_length_pass)))
+        if (!(preg_match($email_regex, $email) || (strlen($password) > $min_length_pass)))
         {
             return json_encode(["conn"=>false, "reason"=>sprintf("The email is not in correct format and the password is not atleast %d character length", $min_length_pass)]);
         }
-        if (!preg_match($username_regex, $username))
+        if (!preg_match($email_regex, $email))
         {
             return json_encode(["conn"=>false, "reason"=>"The email is not in correct format"]);
 
@@ -144,7 +149,7 @@ class AuthController extends Controller
 
 
 
-        self::addUser($username,$password);
+        self::addUser($email,$firstName, $lastName, $password);
 
         $hash_password = password_hash($password, PASSWORD_DEFAULT);
 
@@ -164,11 +169,11 @@ class AuthController extends Controller
 
 
 
-    public static function addUser($username, $password)
+    public static function addUser($email, $firstName, $lastName, $password)
     {
 
     
-        $conf = ["Username"=>$username,"Password"=>$password];
+        $conf = ["Email"=>$email,"First Name"=>$firstName, "Last Name"=>$lastName, "Password"=>$password];
     
         
         CustomerInformation::create($conf);
@@ -179,10 +184,12 @@ class AuthController extends Controller
 
     public static function form_register()
     {
-        $username = request("username");
+        $email = request("email");
         $password = request("password");
+        $firstName = request("firstName");
+        $lastName = request("lastName");
 
-        self::addUser($username,$password);
+        self::addUser($email,$firstName, $lastName, $password);
 
         $hash_password = password_hash($password, PASSWORD_DEFAULT);
 
@@ -201,11 +208,11 @@ class AuthController extends Controller
 
         public static function isCookieLogin()
         {
-            if (isset($_COOKIE["username"]) && isset($_COOKIE["password"])) {
-                $username = $_COOKIE["username"];
+            if (isset($_COOKIE["email"]) && isset($_COOKIE["password"])) {
+                $email = $_COOKIE["email"];
                 $password = $_COOKIE["password"];
 
-                $customer = CustomerInformation::where("Username", $username)->first();
+                $customer = CustomerInformation::where("Email", $email)->first();
                 if ($customer && Hash::check($password, $customer->Password)) {
                     return $customer;
                 }
@@ -219,10 +226,10 @@ class AuthController extends Controller
     // Checks if the hashed value of "password" matches the assumed hash password in the database
     // If it matches, the model instance, representing the class, will be returned
 
-    public static function hash_check_login($username, $password)
+    public static function hash_check_login($email, $password)
     {
 
-        $account = CustomerInformation::where("Username",$username)->first();
+        $account = CustomerInformation::where("Email",$email)->first();
         if ($account != null)
         {
             if (password_verify($password, $account['Password']))
@@ -233,10 +240,10 @@ class AuthController extends Controller
 
     }
     
-    public static function check_login($username, $password)
-    {
+    // public static function check_login($username, $password)
+    // {
 
-    }
+    // }
     public static function enableSession()
     {
         if (!(isset($_SESSION)))
@@ -248,10 +255,10 @@ class AuthController extends Controller
 {
     self::enableSession();
 
-    if (isset($_SESSION["username"]) && isset($_SESSION["password"])) {
-        $username = $_SESSION["username"];
+    if (isset($_SESSION["email"]) && isset($_SESSION["password"])) {
+        $username = $_SESSION["email"];
         $password = $_SESSION["password"];
-        $customer = CustomerInformation::where("Username", $username)->first(); // Fetch customer username from database
+        $customer = CustomerInformation::where("Email", $username)->first(); // Fetch customer username from database
 
         if ($customer && Hash::check($password, $customer->Password)) {
             return $customer; // returns customer if username and password matches
@@ -281,7 +288,7 @@ class AuthController extends Controller
 
     public static function cookieLogout()
     {
-        setcookie("username", "", time()-3600);
+        setcookie("email", "", time()-3600);
         setcookie("password", "", time()-3600);
     }
 

@@ -53,7 +53,7 @@ function infoBox(container, string)
 function form_submit(ev)
 {
     ev.preventDefault();
-    let email = document.getElementById("username");
+    let email = document.getElementById("email");
     let password = document.getElementById("password");
     let persist = document.getElementById("permanent");
     let notification_container = document.getElementById("notification_container");
@@ -86,8 +86,12 @@ function form_submit(ev)
 
     }
     let fd = new FormData();
-    fd.append("username", email.value);
+    fd.append("email", email.value);
+
     fd.append("password", password.value);
+
+
+
     fd.append("permanent", persist.value);
     let token_el = document.getElementsByName("csrf-token")[0];
     let token = token_el.getAttribute("content");

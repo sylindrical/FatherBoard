@@ -35,8 +35,8 @@
                 padding:0;
             }
         </style>
-        <label>Username:</label>
-        <b><slot name="Username">Unknown Username</slot></b>
+        <label>Email:</label>
+        <b><slot name="Email">Unknown Email</slot></b>
         <label>Password:</label>
 
         <b><slot name="Password">Unknown Password</slot></b>

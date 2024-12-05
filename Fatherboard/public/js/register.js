@@ -22,6 +22,11 @@ function form_submit(ev)
     console.log("registering");
     let email = document.getElementById("username");
     let password = document.getElementById("password");
+
+    let first_name = document.getElementById("first_name");
+    let last_name = document.getElementById("last_name");
+
+
     let notification_container = document.getElementById("notification_container");
 
     if (!(checkEmail(email.value,default_regex) || checkPassword(password.value,min_password_length)))
@@ -51,8 +56,10 @@ function form_submit(ev)
         }
 
     let fd = new FormData();
-    fd.append("username", email.value);
+    fd.append("email", email.value);
     fd.append("password", password.value);
+    fd.append("firstName",first_name.value);
+    fd.append("lastName",last_name.value);
 
 
     fetch("/_explicit_register", {

@@ -185,6 +185,7 @@ function showAddress(info)
         info_elem.textContent = "You do not have an address currently.";
 
         option_information.append(info_elem);
+        option_information.querySelector("#button_show_address_gui").addEventListener("click",toggleAddAddress);
 
     }
 }
@@ -197,16 +198,16 @@ function showPersonal(info)
 
     let personal_element = document.createElement("personal-element");
 
-    let username_text = document.createElement("span");
-    username_text.setAttribute("slot","Username");
-    username_text.textContent = info["Username"];
+    let email_text = document.createElement("span");
+    email_text.setAttribute("slot","Email");
+    email_text.textContent = info["Email"];
 
 
     let password_text = document.createElement("span");
     password_text.setAttribute("slot","Password");
     password_text.textContent = info["Password"];
 
-    personal_element.append(username_text)
+    personal_element.append(email_text)
     personal_element.append(password_text);
 
     let option_information = document.getElementById("option-information");
@@ -283,7 +284,7 @@ function addAddress() {
     let postCode = document.getElementById("inp_postCode")?.value ? document.getElementById("inp_postCode").value : "None"
     console.log(postCode);
     
-
+    console.log("yippe")
 
     let form_data = new FormData();
 
