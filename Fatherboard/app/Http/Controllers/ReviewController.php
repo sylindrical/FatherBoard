@@ -18,7 +18,6 @@ class ReviewController extends Controller
             'rating' => 'required|integer|min:1|max:5',
             'review' => 'required|string|max:500',
         ]);
-        $validated['customer_id'] = auth()->check() ? auth()->id() : null;
        
             DB::enableQueryLog();
 
