@@ -8,12 +8,7 @@
     <title>Basket</title>
 </head>
 <body>
-    <form method="POST" action="{{route('basketAdd')}}">
-        @csrf
-        <h1> Product ID</h1>
-        <input type="hidden" id="quantity" name="product_id" required>
-        <h1>Quantity:</h1>
-        <input type="number" id="quantity" name="quantity" value="1" Required>
-        <button type="submit">Add to basket</button>
-</form>
+<h1>Your Basket</h1>
+<p> Your Basket is Empty!</p>
+
 </body>

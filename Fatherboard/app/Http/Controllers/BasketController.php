@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class BasketController extends Controller
 {
@@ -11,12 +12,19 @@ class BasketController extends Controller
         $productId = $request->input('product_id');
         $quantity = $request->input('quantity', 1);
 
-// make it so that if a user is logged in it will save basket
+$product = Product::findOrFail($productId);
+
         $basket = session()->get('basket',[]);
+if(isset($basket[$product->id])){
+    $basket[$product->id]['quantity']+=$quantity;
+}else{
 
-
-                $basket = [$productId]=['product_id' => $productId, 'quantity' => ($basket[$productId]['quantity'] ?? 0) + $quantity,];
-
+                $basket[$productId->id]=[
+                'product_id' => $productId->id,
+                'name' => $product->name,
+                'price'=> $product->price,
+                'quantity' => $quantity,];
+                }
 
             session()->put('basket',$basket);
 
