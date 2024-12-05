@@ -12,20 +12,19 @@ class BasketController extends Controller
         $quantity = $request->input('quantity', 1);
 
 // make it so that if a user is logged in it will save basket
-         if(auth()->check()){    
-            $user = auth()->user();
+
             $basket = json_decode($user->basket->items ?? '[]', true);
             $basket[$productId] = [
                 'product_id' => $productId,
                 'quantity' => ($basket[$productId]['quantity'] ?? 0) + $quantity,];
-            
+
             $user->basket()->updateOrCreate([],['items'=>json_encode($basket)]);
-        } else{
+
             $basket = session()->get('basket',[]);
             $basket[$productId] = [
                 'product_id' => $productId,
                 'quantity' => ($basket[$productId]['quantity'] ?? 0) + $quantity,];
-            
+
             session()->put('basket',$basket);
         }
     return redirect()->route('basketIndex')->with(['success','Product added!']);
@@ -35,7 +34,7 @@ class BasketController extends Controller
     public function index(){
 
         $basket = auth()->check()
-       ? json_decode(auth()->user()->basket->items ?? '[]', true) : session()->get('basket',[]); 
+       ? json_decode(auth()->user()->basket->items ?? '[]', true) : session()->get('basket',[]);
 
         return view('basket', compact('basket'));
         }
@@ -60,7 +59,7 @@ session()->put('basket',$basket);
 }
 return redirect()->route('basketIndex')->with('success','Basket Updated!');
         }
-   
+
 
         public function remove(Request $request){
             $basket = Session::get('basket',[]);
@@ -74,7 +73,7 @@ return redirect()->route('basketIndex')->with('success','Basket Updated!');
         public function checkout(){
             if (auth()->check()){
                 return view('checkout');
-            
+
             }else{
                 return redirect()->route('register')->with('Info', 'Please create an account to continue');
             }
