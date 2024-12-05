@@ -8,21 +8,12 @@
     <title>Basket</title>
 </head>
 <body>
-@section('content')
-<h1>Basket</h1>
-@if(session('success'))
-<p>{{session('success')}}</p>
-@endif
-@if (empty($basket))
-<p>Basket is Empty</p>
-@else
-@foreach($basket as $item)
-<div>
-    <p>Product ID: {{$item['product_id']}}</p>
-    <p> Quantity: {{$item['quantity']}}</p>
-    <form method="POST" action="{{route('basketUpdate')}}">
-        <input type="hidden" name="product_id" value="product_id">
-        <input type="number" name="quantity" value="quantity">
-        <button type="submit">Update Quantity</button>
+    <form method="POST" action="{{route('basketAdd')}}">
+        @csrf
+        <h1> Product ID</h1>
+        <input type="hidden" id="quantity" name="product_id" required>
+        <h1>Quantity:</h1>
+        <input type="number" id="quantity" name="quantity" value="1" Required>
+        <button type="submit">Add to basket</button>
 </form>
 </body>
