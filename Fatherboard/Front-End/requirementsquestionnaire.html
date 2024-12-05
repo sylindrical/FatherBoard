@@ -13,14 +13,16 @@
             font-family: Arial, sans-serif;
         }
 
+        /* Body Styling */
         body {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             background-color: #f4f4f4;
             padding: 20px;
         }
 
+        /* Container Styling */
         .container {
             text-align: center;
             width: 100%;
@@ -43,6 +45,7 @@
             color: #666;
         }
 
+        /* Product Card Styling */
         .products {
             display: flex;
             justify-content: space-around;
@@ -98,9 +101,96 @@
         .return-button:hover {
             background-color: #5a6268;
         }
+
+        /* Header Styling */
+        .main-header {
+            width: 100%;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        #logo {
+            height: 50px;
+        }
+
+        .SearchBar input {
+            padding: 5px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .main-nav ul, .lower-nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .main-nav-list li, .lower-nav-list li {
+            margin-right: 15px;
+        }
+
+        .main-nav-list a, .lower-nav-list a {
+            text-decoration: none;
+            font-size: 1em;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .main-nav-list a:hover, .lower-nav-list a:hover {
+            color: #007BFF;
+        }
+
+        .lower-nav {
+            background-color: #f8f9fa;
+            padding: 10px 0;
+        }
+
+        .lower-nav-list a {
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
+    <!-- Header Section -->
+    <header class="main-header">
+        <div class="container">
+            <a href="#default"><img src="FatherboardTransparentCrop.png" id="logo" alt="FatherBoard Logo" width="100"></a>
+            <form class="SearchBar">
+                <input type="text" placeholder="Search.." name="search">
+            </form>
+            <nav class="main-nav">
+                <ul class="main-nav-list">
+                    <li><a href="#register" class="active">About Us</a></li>
+                    <li><a href="#login">Account</a></li>
+                    <li><a href="#products">Basket</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="container">
+            <nav class="lower-nav">
+                <ul class="lower-nav-list">
+                    <li>
+                        <a href="#product1">Memory</a>
+                        <a href="#product2">CPUs</a>
+                        <a href="#product3">Prebuilt Computers</a>
+                        <a href="#product4">GPUs</a>
+                        <a href="#product5">PSUs</a>
+                        <a href="#sale">Sale!!!</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
     <div class="container">
         <h1 class="title">Requirements Questionnaire</h1>
         <p class="subtitle">Based on your answers, we suggest the following products / computers:</p>
@@ -108,17 +198,17 @@
             <div class="product">
                 <img src="" alt="AMD Ryzen 7 5700x">
                 <h3>AMD Ryzen 7 5700x</h3>
-                <div class="stars"></div>
+                <div class="stars">★★★★☆</div>
             </div>
             <div class="product">
                 <img src="" alt="NVIDIA GeForce RTX 4090">
                 <h3>NVIDIA GeForce RTX 4090</h3>
-                <div class="stars"></div>
+                <div class="stars">★★★★★</div>
             </div>
             <div class="product">
                 <img src="" alt="Intel Core i9-14900K">
                 <h3>Intel Core I9-14900K</h3>
-                <div class="stars"></div>
+                <div class="stars">★★★★★</div>
             </div>
         </div>
         <button class="return-button">RETURN TO HOME</button>
