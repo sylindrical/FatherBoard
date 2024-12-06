@@ -20,6 +20,7 @@ $().ready(function(){ //Validating forms
         $('label[for="' + element.attr("id") + '"]').text(error.text());
       }, //Places the error message, so that the original input text is not out of place.
       submitHandler: function(form){
+        fetch()
         alert('Submit Success!')
         return false; //alerts the user that the form was successfully submitted
       }
