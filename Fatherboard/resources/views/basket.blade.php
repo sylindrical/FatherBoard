@@ -8,6 +8,49 @@
 </head>
 <body>
 <h1>Your Basket</h1>
-<p> Your Basket is Empty!</p>
+@if(session('success'))
+<p>{{ session('success') }}</p>
+@endif
 
-</body>
+@if(empty($basket))
+<p> Your Basket is Empty!</p>
+@else
+<table>
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>SubTotal</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach($basket as $item)
+    <tr>
+        <td>{{ $item['name'] }}</td>
+        <td>{{ $item['price'] }}</td>
+        <td>
+            <form method="POST" action="{{ route('basketUpdate') }}">
+                @csrf
+<input type="hidden" name="product_id" value="{{ $item['productId'] }}">
+<input type="number" name="quantity" value="{{ $item['quantity'] }}" min="1">
+<button type="submit"> Update</button>
+            </form>
+        </td>
+        <td>{{ $item['price']* $item['quantity'] }}
+        </td>
+        <td>
+            <form method="POST" action="{{ route('basketRemove') }}">
+                @csrf
+<input type="hidden" name="product_id" value="{{ $item['product_id'] }}">
+<button type="submit">Remove</button>
+</form>
+        </td></tr>
+@endforeach
+    </tbody>
+    </table>
+    <a href="{{ route('basketCheckout') }}">Proceed To Checkout</a>
+    @endif
+            </body>
+</html>
