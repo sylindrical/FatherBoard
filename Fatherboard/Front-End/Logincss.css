@@ -23,8 +23,7 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url(https://media.istockphoto.com/id/1458825136/photo/macro-close-up-of-components-and-microchips-on-pc-circuit-board.jpg?s=612x612&w=0&k=20&c=_-gBfkUJFiSIXz6_W_DsOTGJS7Sq4s2aDddSfh9yQZ4=) no-repeat;
-    background-size: cover;
+    background-size:contain;
     background-position: center;
 
 }
@@ -43,7 +42,7 @@ body{
     width:420px;
     /* From https://css.glass */
     background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 50px rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(5.6px);
     -webkit-backdrop-filter: blur(5.6px);
     color: #333;
