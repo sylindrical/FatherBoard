@@ -32,7 +32,8 @@
     border: 2px solid rgba(255,255,255,.2);
     border-radius: 10px;
     padding:10px 40px;
-    margin-left: 1000px;
+    margin-left: 450px;
+    margin-top: 50px;
     height: 50%;
 }
 
@@ -60,7 +61,7 @@ form input, form select, form textarea{
 }
 
 form textarea{
-    margin-top: 10px;
+    margin-top: 30px;
 
 }
 
