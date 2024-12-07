@@ -18,50 +18,52 @@ class CheckoutController extends Controller
         if($user = $AuthController->loggedIn()){
             return view('login');
         }
+        $basket=session()->get('basket',[]);
         /*
             Basket is dummy data, link to real basket.
         */
-        $basket = [
-            [
-                'name' => 'Product 1',
-                'product_id' => 1,
-                'quantity' => 2
-            ],
-            [
-                'name' => 'Product 2',
-                'product_id' => 3,
-                'quantity' => 4
-            ],
-            [
-                'name' => 'Product 3',
-                'product_id' => 2,
-                'quantity' => 6
-            ]
-            ];
+        // $basket = [
+        //     [
+        //         'name' => 'Product 1',
+        //         'product_id' => 1,
+        //         'quantity' => 2
+        //     ],
+        //     [
+        //         'name' => 'Product 2',
+        //         'product_id' => 3,
+        //         'quantity' => 4
+        //     ],
+        //     [
+        //         'name' => 'Product 3',
+        //         'product_id' => 2,
+        //         'quantity' => 6
+        //     ]
+        //     ];
         return view('checkout',compact('basket'));
     }
     public function process(Request $request)
     {
+        $basket=session()->get('basket',[]);
         /*
             Basket is currently dummy data, link to real basket.
         */
-        $basket = [
-            [
-                'id' => 1,
-                'products_id' => 1,
-                'quantity' => 2
-            ],
-            [
-                'id' => 2,
-                'products_id' => 3,
-                'quantity' => 4
-            ],
-            [
-                'id' => 3,
-                'products_id' => 2,
-                'quantity' => 6
-            ]
-            ];
+        // $basket = [
+        //     [
+        //         'id' => 1,
+        //         'products_id' => 1,
+        //         'quantity' => 2
+        //     ],
+        //     [
+        //         'id' => 2,
+        //         'products_id' => 3,
+        //         'quantity' => 4
+        //     ],
+        //     [
+        //         'id' => 3,
+        //         'products_id' => 2,
+        //         'quantity' => 6
+        //     ]
+        //    ];
             /*
                 REQUIRED CODE TO GET USER DETAILS
             */
@@ -77,11 +79,11 @@ class CheckoutController extends Controller
         {
             order_details::create([
                 'order_id'=> $order->id,
-                'products_id'=>$item['id'],
+                'products_id'=>$item['product_id'],
                 'quantity'=>$item['quantity']
             ]);
         }
-        //session()->forget('basket'); //Removes basket data after checkout finishes(?)
+        session()->forget('basket'); //Removes basket data after checkout finishes(?)
 
         return redirect()->route('checkout_success');
     }

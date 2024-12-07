@@ -65,8 +65,7 @@ return redirect()->route('basketIndex')->with('success','Basket Updated!');
             return redirect()->route('basketIndex')->with('success','Product removed!');
         }
         public function checkout(){
-
-                return view('checkout');
-
+            $basket=session()->get('basket',[]);
+                return view('checkout',compact('basket'));
         }
 }
