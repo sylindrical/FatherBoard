@@ -35,6 +35,7 @@
 #basket_button
 {
     background-color: #03fc98;
+    width:100%;
     border: none;
 }
 .review
@@ -67,7 +68,13 @@
 {
     text-align: center;
 }
+#rating_summary
+{
+    background-size: 2px;
+    background-color: yellow;
 
+    display:block;
+}
 #reviews
 {
     display:flex;
