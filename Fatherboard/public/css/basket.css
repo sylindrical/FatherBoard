@@ -1,5 +1,6 @@
 /* General Styles for the Basket Page */
 .basket-page {
+    text-align: center;
     max-width: 75rem;
     margin: 1.25rem auto;
     padding: 1.25rem;
@@ -10,6 +11,8 @@
 
 .basket-container {
     padding: 1.25rem;
+    text-align: center;
+    align-items: center;
 }
 
 h2 {
@@ -68,4 +71,9 @@ button:hover {
 /* Utility Classes */
 .hidden {
     display: none;
+    text-align: center;
+}
+
+table {
+    text-align: center;
 }
