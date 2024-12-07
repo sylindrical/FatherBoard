@@ -5,7 +5,7 @@
         <script src={{ asset('js/product.js') }}></script>
         <title>Product</title>
     </x-slot:head>
-{{-- 
+{{--
     <header class="main-header">
         <div class="container">
             <a href="#default"><img src="FatherboardTransparentCrop.png" id="logo" alt="FatherBoard Logo" width="100" height="50"></a>
@@ -45,14 +45,17 @@
             <h2 id="title">{{ $product->Title}} </h2>
             <p>{{ $product["Description"]}} </p>
 
-            <button id="basket_button">Add to basket</button>
+            <form action="{{ route('basketAdd') }}" method="POST">
+                @csrf
+                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                <button type="submit" id="BasketButton">Add To Basket</button>
+            </form>
         </div>
 
         <div id="review-area">
         <p>
             There is no reviews;
             <p>{{$rating}}</p>
-        <button id="review_button">Add Review</button>
         
         <div id="reviews">
 

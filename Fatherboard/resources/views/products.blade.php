@@ -3,12 +3,12 @@
     <x-slot:head>
         <link rel="stylesheet" href={{ asset('css/products.css') }}>
         <script src={{ asset('js/products.js') }}></script>
+        <link rel="stylesheet" href={{asset('css/aboutus.css')}}>
         <title>Products</title>
     </x-slot:head>
-    <h2>Products</h2>
 
-<br>
 <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
 
 <template  id="template_product">
@@ -16,6 +16,14 @@
     <p><slot name="Description">Unknown Description</slot></p>
     <p><slot name="Manufacturer">Unknown Manufacturer</slot></p>
 </template>
+<!-- header.html -->
+<x-header></x-header>
+
+<h2>Products</h2>
+
+
+
+
 
 <div class="filter-sidebar filter"> <!--https://dev.to/clairecodes/how-to-make-a-sticky-sidebar-with-two-lines-of-css-2ki7-->
     <h3>Filter By:</h3>
@@ -87,9 +95,9 @@
 </div>
 <div id="ProductContainer">
     <?php
-    foreach($data as $x=>$item)
+    if (count($data) > 0) {
+    foreach($data as $item)
     {
-        
             ?>
 
 
@@ -102,7 +110,7 @@
             </product-element>
             <?php
 
-    }
+    }};
     ?>
     </div>
 </x-lowlayout>
