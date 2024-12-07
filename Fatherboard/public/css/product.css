@@ -35,15 +35,13 @@
 #basket_button
 {
     background-color: #03fc98;
+    height:2rem;
+    margin-top: 2rem;
+    border-radius: 0.5rem;
     width:100%;
     border: none;
 }
-.review
-{
-    border: 0.2rem solid black;
-    padding: 1rem;
-    width:100%
-}
+
 
 
 #image_container
@@ -72,7 +70,14 @@
 {
     background-size: 2px;
 
-    display:block;
+    display:flex;
+    justify-content: left;
+    align-items: center;
+}
+#rating_summary > b
+{
+    color:yellow;
+    font-size: 2rem;
 }
 #review_text
 {
@@ -87,24 +92,26 @@
 {
     display:block;
     width:100%;
-    margin-bottom: 2rem;
 }
 #review_form
 {
-    display:flex;
+    display: none;
     width: 20%;
     flex-direction: column;
     align-items: center;
     background-color: white;
+    border: 0.3rem solid black;
+    border-radius: 2rem;
     padding: 3rem;
     position:absolute;
     top:50%;
     left:50%;
     transform: translate(-50%, -50%);
 }
+
 #review_form > .input
 {
-    margin: 20px;
+    margin: 1rem;
     width:100%;
 }
 #review_submit
@@ -116,11 +123,35 @@
 }
 .star
 {
-    width:50px;
-    height:50px;
+    width:3rem;
+    height:3rem;
+}
+
+#review_button
+{
+    border: 0.2rem solid black;
+    background-color: white;
+    height:3rem;
+    float:left;
+    padding: 0.5rem;
+    border-radius: 5rem;
+}
+.review
+{
+    border: 0.2rem solid black;
+    padding: 1rem;
+    margin: 0.6rem 0;
+    width:100%
+}
+#star_container
+{
+    margin: 0 2rem;
+    width: 15rem;
 }
 #reviews
 {
     display:flex;
+    flex-direction: column;
     width:100%;
+
 }

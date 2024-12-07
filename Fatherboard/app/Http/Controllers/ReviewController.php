@@ -50,4 +50,25 @@ public function create()
         return json_encode($data);
     }
 
+    public static function add()
+    {
+        $rating = request("rating");
+        $review = request("review");
+        $product_id = request("product_id");
+        
+        if ($user = AuthController::loggedIn())
+        {
+        $data = ["customer_id"=>$user->id,"review"=>$review, "rating"=>$rating, "product_id"=>$product_id];
+        Review::create($data);
+
+        return json_encode(["conn"=>true]);
+        }
+        else
+        {
+            return json_encode(["conn"=>false]);
+
+        }
+    }
+
+
 }

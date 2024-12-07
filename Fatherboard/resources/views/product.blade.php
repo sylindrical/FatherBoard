@@ -12,6 +12,10 @@
 
     </x-header>
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="product_identity" content="{{ $product->id }}">
+
+
     <main id="product">
         <div id="image_container">
             <img src={{asset("images/" . $image)}} alt="Image" id="product_image"/>
@@ -29,30 +33,34 @@
         </div>
         
         
-        <div id="review_form">
-            
-
+        <form action="/add/review" method="POST" id="review_form">
             <div class="input">
-            <select id="rating">
-                <option >1</option>
-                <option >2</option>
-                <option >3</option>
-                <option >4</option>
-                <option >5</option>   
-            </select>
+                <label for="rating">Rating</label>
 
-            <div class="input">
-                <textarea name="review_text" id="review_text"></textarea>
+                <select id="rating">
+                    <option >1</option>
+                    <option >2</option>
+                    <option >3</option>
+                    <option >4</option>
+                    <option >5</option>   
+                </select>
                 </div>
-        </div>
-            <input type="submit" name="submit" id="review_submit"/>
-        </div>
+
+            <div class="input">
+                <label for="rating">Description</label>
+
+            <textarea name="review_text" id="review_text"></textarea>
+            </div>
+
+            
+            <input type="submit" name="submit" id="review_submit" value="Submit"/>
+        </form>
         
         <div id="review-area">
             <h3>Reviews</h3>
             <button id="review_button">Add review</button>
-            <p>{{$rating}}</p>
             <div id="rating_summary">
+                <div id="star_container">
                 <?php
 
                 for ($i = 0; $i < $amount; $i++)
@@ -62,10 +70,13 @@
                     <?php
 
                 } ?>
+                </div>
+                <b>{{$rating}}</b>
+
             </div>
+
      
-            <p>
-            
+
             
         
         <div id="reviews">
@@ -83,7 +94,7 @@
                     <div class="review">
                     <p>{{$rev["review"]}}</p>
                     <p>{{$rev["rating"]}}</p>
-                    <div>
+                    </div>
                     <?php
                 }
             }
