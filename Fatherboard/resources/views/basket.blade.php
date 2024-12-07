@@ -14,6 +14,10 @@
         <x-header></x-header>
 
 <body>
+    <main class="basket-page">
+
+    <div class="basket-container">
+
 <h2>Your Basket</h2>
 @if(session('success'))
 <p>{{ session('success') }}</p>
@@ -62,8 +66,9 @@
 @endforeach
     </tbody>
     </table>
-    <a href="{{ route('basketCheckout') }}">Proceed To Checkout</a>
+    <button id="checkout-btn" href="{{ route('basketCheckout') }}">Proceed To Checkout</button>
     @endif
-
+</div>
+</main>
             </body>
         </x-lowlayout>
