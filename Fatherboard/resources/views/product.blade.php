@@ -20,36 +20,63 @@
             <h2 id="title">{{ $product->Title}} </h2>
             <p>{{ $product["Description"]}} </p>
             <p>{{ $product["Manufacturer"] }}</p>
-            <p>{{ $product->price["price"] }}</p>
+            <p>{{ $product["price"] }}</p>
             <form action="{{ route('basketAdd') }}" method="POST">
                 @csrf
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                 <button type="submit" id="basket_button">Add To Basket</button>
             </form>
         </div>
+        
+        
+        <div id="review_form">
+            
 
+            <div class="input">
+            <select id="rating">
+                <option >1</option>
+                <option >2</option>
+                <option >3</option>
+                <option >4</option>
+                <option >5</option>   
+            </select>
+
+            <div class="input">
+                <textarea name="review_text" id="review_text"></textarea>
+                </div>
+        </div>
+            <input type="submit" name="submit" id="review_submit"/>
+        </div>
+        
         <div id="review-area">
             <h3>Reviews</h3>
-            <div id="rating_summary">
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="background: red; color:pink">
-                    <path
-                      d="M 10,30
-                             A 20,20 0,0,1 50,30
-                             A 20,20 0,0,1 90,30
-                             Q 90,60 50,90
-                             Q 10,60 10,30 z" />
-                  </svg>
-                              </div>
-        <p>
-            
-            There is no reviews;
+            <button id="review_button">Add review</button>
             <p>{{$rating}}</p>
+            <div id="rating_summary">
+                <?php
+
+                for ($i = 0; $i < $amount; $i++)
+                {
+                    ?>
+                   <img class="star" src="{{asset('images/full_star.png')}}"/>
+                    <?php
+
+                } ?>
+            </div>
+     
+            <p>
+            
+            
         
         <div id="reviews">
 
                 <?php
-
-
+                if (count($product->reviews()->get()) == 0)
+                {
+                    ?><p>There is no reviews</p><?php
+                }
+                else
+                {
                 foreach($product->reviews()->get() as $rev)
                 {
                     ?>
@@ -59,6 +86,7 @@
                     <div>
                     <?php
                 }
+            }
 
                 ?>
             </p>

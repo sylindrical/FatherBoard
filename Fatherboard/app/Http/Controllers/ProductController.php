@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CustomerInformation;
 use App\Models\Product;
+use App\Utility\Utility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -121,7 +122,8 @@ class ProductController extends Controller
         $product = Product::with('reviews')->findOrFail($id);
         $curRating = DB::table("reviews")->where("product_id",$id)->select(DB::raw("avg(rating) as avg_rating"))->first();
         $image = "rtx2070.png";
-        return view('product',["product"=>$product,"image"=>$image, "rating"=>$curRating->avg_rating]);
+        $amountStar = Utility::numberClosest($curRating->avg_rating/2, [1,2,3,4,5]);
+        return view('product',["product"=>$product,"image"=>$image, "rating"=>$curRating->avg_rating, "amount"=>$amountStar]);
     }
 
     /**
