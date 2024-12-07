@@ -1,11 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<x-lowlayout>
+    <x-slot:head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Basket</title>
-</head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>FatherBoard - Basket</title>
+        <link rel="stylesheet" type="text/css" href="{{asset('css/aboutus.css')}}"> <!-- Link for the header styles -->
+        <link rel="stylesheet" type="text/css" href="{{asset('css/basket.css')}}"> <!-- Link for basket styles -->
+        <script src="{{asset('js/basket.js')}}" defer></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.js" type="text/javascript"></script> <!--Scripts needed for jQuery-->
+    </x-slot:head>
+
+        <!-- Header Section (unchanged, linked to stylesheet.css) -->
+        <x-header></x-header>
+
 <body>
 <h1>Your Basket</h1>
 @if(session('success'))
@@ -58,4 +65,4 @@
     <a href="{{ route('basketCheckout') }}">Proceed To Checkout</a>
     @endif
             </body>
-</html>
+        </x-lowlayout>
