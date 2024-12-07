@@ -8,6 +8,13 @@
 }
 
 
+
+
+
+
+
+
+
 #product_image
 {
     width:100%;
@@ -19,9 +26,22 @@
     width:80%;
     height:90%;
     display:grid;
+    margin: 0 auto;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 300px 300px;
     grid-template-areas: "";
+}
+
+#basket_button
+{
+    background-color: #03fc98;
+    border: none;
+}
+.review
+{
+    border: 0.2rem solid black;
+    padding: 1rem;
+    width:100%
 }
 
 
@@ -50,5 +70,6 @@
 
 #reviews
 {
-
+    display:flex;
+    width:100%;
 }

@@ -22,4 +22,9 @@ class Product extends Model
     {
         return $this->hasOne(ProductPrice::class);
     }
+
+    public function reviews()
+    {
+        return $this->hasOne(Review::class);
+    }
 }
