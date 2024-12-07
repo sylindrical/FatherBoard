@@ -1,7 +1,7 @@
 <!-- header.html -->
 <header class="main-header">
     <div class="container">
-        <a href="#default"><img src="FatherboardTransparentCrop.png" id="logo" alt="FatherBoard Logo" width="100" height="50"></a>
+        <a href="#default"><img src="{{asset('images/FatherboardTransparentCrop.png')}}" id="logo" alt="FatherBoard Logo" width="100" height="50"></a>
         <form class="SearchBar">
             <input type="text" placeholder="Search.." name="search">
         </form>
