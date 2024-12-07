@@ -14,8 +14,18 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $search = request("search");
+        if ($search == null)
+        {
         $data = Product::all();
         return view("products", ["data"=>$data] );
+        }
+        else
+        {
+            $queryString = sprintf("description REGEXP '.*%s.*'", $search);
+            $data = Product::whereRaw($queryString)->get();
+            return view("products", ["data"=>$data] );
+        }
     }
 
 
@@ -23,6 +33,10 @@ class ProductController extends Controller
     {
         $user_cat = $rq->input("category");
         $user_price = $rq->input("price");
+
+        $search = $rq->input("params");
+
+
 
         $curData = Product::whereRaw("1=0");
         if ((count($user_cat) == 0) && (count($user_price) ==0))
@@ -71,9 +85,16 @@ class ProductController extends Controller
             });
 
         }
-        $combine = $curData->union($query2);
+        $combinedQuery = $curData->union($query2);
 
-        return json_encode($combine->get());
+        $queryString = sprintf("description REGEXP '.*%s.*'", $search);
+        $data = Product::whereRaw($queryString);
+
+
+        $finalQuery = Product::fromSub($combinedQuery, 'sub')->whereRaw("description REGEXP ?", [".*{$search}.*"]);
+
+
+        return json_encode($finalQuery->get());
 
     }
     /**
