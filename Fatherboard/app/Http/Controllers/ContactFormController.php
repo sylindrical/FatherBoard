@@ -36,4 +36,11 @@ class ContactFormController extends Controller
     {
         return view("contact");
     }
+
+    public static function index()
+    {
+        $messages = ContactForm::query()->get();
+        return $messages;
+    }
+
 }
