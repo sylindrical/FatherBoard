@@ -22,7 +22,7 @@ if(isset($basket[$product->id])){
                 $basket[$product->id]=[
                 'product_id' => $product->id,
                 'name' => $product->Title,
-                'price'=> $product->price,
+                'price'=> (float) $product->price->price,
                 'quantity' => $quantity,];
                 }
 

@@ -27,4 +27,7 @@ class Product extends Model
     {
         return $this->hasOne(Review::class);
     }
+    protected $casts = [
+        'price' =>'float',
+    ];
 }
