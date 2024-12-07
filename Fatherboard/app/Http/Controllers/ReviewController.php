@@ -21,10 +21,10 @@ class ReviewController extends Controller
 
             DB::enableQueryLog();
 
-$review = new Review($validated);
-$review->save();
+        $review = new Review($validated);
+        $review->save();
 
-Log::info('Executed Queries:', DB::getQueryLog());
+        Log::info('Executed Queries:', DB::getQueryLog());
 
         return redirect()->back()->with('success','Thank You For Your Review!');
              } catch (\Exception $e) {
@@ -40,5 +40,14 @@ public function create()
     return view('review',['products'=>$products]);
 
 }
+
+    public static function show()
+    {
+        $product = request("product_id");
+        $info = Review::where("product_id",$product)->first();
+
+        $data = ["product"=>$info];
+        return json_encode($data);
+    }
 
 }
