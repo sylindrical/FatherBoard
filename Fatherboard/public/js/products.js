@@ -64,10 +64,15 @@ function filterClick(cat, pri)
 
     console.log("here is pri:" + pri);
     console.log("here is cat:" + cat);
+
+    let params = new URLSearchParams(window.location.search);
+    let search = params.get("search");
+
+
     fetch("/products", {method : "POST", headers :{
                     'Content-Type': 'application/json',
                     "X-CSRF-TOKEN" : csrf_token} ,body : JSON.stringify(
-                      {category : cat, price: pri })
+                      {category : cat, price: pri , params: search })
                     }).then((x)=>x.json()).then((dec)=>
                     {
                         console.log(dec);

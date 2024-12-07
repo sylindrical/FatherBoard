@@ -3,12 +3,12 @@
     <x-slot:head>
         <link rel="stylesheet" href={{ asset('css/products.css') }}>
         <script src={{ asset('js/products.js') }}></script>
+        <link rel="stylesheet" href={{asset('css/aboutus.css')}}>
         <title>Products</title>
     </x-slot:head>
-    <h2>Products</h2>
 
-<br>
 <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
 
 <template  id="template_product">
@@ -16,6 +16,43 @@
     <p><slot name="Description">Unknown Description</slot></p>
     <p><slot name="Manufacturer">Unknown Manufacturer</slot></p>
 </template>
+<!-- header.html -->
+<header class="main-header">
+    <div class="container">
+        <a href="Home.html">
+            <img src="{{asset('images/FatherboardTransparentCrop.png')}}" id="logo" alt="FatherBoard Logo" width="100" height="50"></a>
+        <form class="SearchBar">
+            <input type="text" placeholder="Search.." name="search">
+        </form>
+        <nav class="main-nav">
+            <ul class="main-nav-list">
+                <li><a href="About.html" class="active">About Us</a></li>
+                <li><a href="Login.html">Account</a></li>
+                <li><a href="basket.html">Basket</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container">
+        <nav class="lower-nav">
+            <ul class="lower-nav-list">
+                <li>
+                    <a href="#product1">Memory</a>
+                    <a href="#product2">CPUs</a>
+                    <a href="#product3">Prebuilt Computers</a>
+                    <a href="#product4">GPUs</a>
+                    <a href="#product5">PSUs</a>
+                    <a href="#sale">Sale!!!</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<h2>Products</h2>
+
+
+
+
 
 <div class="filter-sidebar filter"> <!--https://dev.to/clairecodes/how-to-make-a-sticky-sidebar-with-two-lines-of-css-2ki7-->
     <h3>Filter By:</h3>
@@ -87,9 +124,9 @@
 </div>
 <div id="ProductContainer">
     <?php
-    foreach($data as $x=>$item)
+    if (count($data) > 0) {
+    foreach($data as $item)
     {
-        
             ?>
 
 
@@ -102,7 +139,7 @@
             </product-element>
             <?php
 
-    }
+    }};
     ?>
     </div>
 </x-lowlayout>
