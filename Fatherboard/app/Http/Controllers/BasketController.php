@@ -19,9 +19,9 @@ if(isset($basket[$product->id])){
     $basket[$product->id]['quantity']+=$quantity;
 }else{
 
-                $basket[$productId->id]=[
-                'product_id' => $productId->id,
-                'name' => $product->name,
+                $basket[$product->id]=[
+                'product_id' => $product->id,
+                'name' => $product->Title,
                 'price'=> $product->price,
                 'quantity' => $quantity,];
                 }

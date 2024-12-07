@@ -33,7 +33,7 @@
         <td>
             <form method="POST" action="{{ route('basketUpdate') }}">
                 @csrf
-<input type="hidden" name="product_id" value="{{ $item['productId'] }}">
+<input type="hidden" name="product_id" value="{{ $item['product_id'] }}">
 <input type="number" name="quantity" value="{{ $item['quantity'] }}" min="1">
 <button type="submit"> Update</button>
             </form>
