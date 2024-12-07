@@ -1,33 +1,58 @@
 <x-lowlayout>
     <x-slot:head>
         <link rel="stylesheet" href={{ asset('css/register.css') }}>
+        <link rel="stylesheet" href={{ asset('css/auth_message.css')}}>
+
         <script src={{ asset('js/register.js') }}></script>
         <title>Register</title>
     </x-slot:head>
-    <h2>Register</h2>
 
+    <div class="wrapper">
     <form action="./_register" method="POST" id="register_form">
+        <a class="exitCross" href="Home.html"></a>
+        <h1>Register</h1> <p class="returnToLogin">
+            Current User? <br><a href="Login.html">Login!</a></p> 
+
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <label for="email">Email:</label>
-        <input type="text" name="username" id="username">
 
-        <br>
+        
+        <div class="text-input">
 
-        <label for="first_name">First Name:</label>
-        <input type="text" name="first_name" id="first_name">
+            <input type="text" name="username" id="username" placeholder="Email">
+            
+        </div>
 
-        <br>
 
-        <label for="last_name">Last Name:</label>
-        <input type="text" name="last_name" id="last_name">
 
-        <br>
-        <label for="password">Password</label>
-        <input type="text" name="password" id="password">
 
-        <input type="submit" name="submit">
+        <div class="text-input">
+            <input type="text" name="first_name" id="first_name" placeholder="First Name">
+        </div>
+
+
+        <div class="text-input">
+            <input type="text" id="last_name" placeholder="Last Name" required/>
+        </div>
+
+
+        <div class="text-input">
+            <input type="password" id ="password" placeholder="Password" required />
+        </div>
+        <div id="notification_container">
+        </div>
+        <div class="checkConfirm">
+            <a href="terms.html">Agree to Terms and Conditions</a>
+            <label>
+                <input type="checkbox" id="check" required/>
+            </label>
+        </div>
+
+        <input type="submit" id="submit" name="submit" value="Register">
     </form>
-
-    <div id="notification_container">
     </div>
+
+    
 </x-lowlayout>
+
+
+
