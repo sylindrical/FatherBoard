@@ -72,7 +72,15 @@ function form_submit(ev)
     }).then((x)=>x.json()).then((js)=>
         {
             console.log(js)
+            if (js["conn"] == true)
+            {
             window.location.href= "/login";
+            }
+            else
+            {
+                clearBoxes();
+                errorBox(notification_container, js["reason"]);
+            }
 });
 }
 
