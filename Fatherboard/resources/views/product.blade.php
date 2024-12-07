@@ -2,6 +2,8 @@
 
     <x-slot:head>
         <link rel="stylesheet" href={{ asset('css/product.css') }}>
+        <link rel="stylesheet" href={{asset('css/aboutus.css')}}>
+
         <script src={{ asset('js/product.js') }}></script>
         <title>Product</title>
     </x-slot:head>
