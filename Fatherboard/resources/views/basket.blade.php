@@ -14,7 +14,7 @@
         <x-header></x-header>
 
 <body>
-<h1>Your Basket</h1>
+<h2>Your Basket</h2>
 @if(session('success'))
 <p>{{ session('success') }}</p>
 @endif
@@ -37,7 +37,7 @@
     <tr>
         <td>{{ $item['name'] }}</td>
         <td>{{ $item['price'] }}</td>
-
+    </div>
         <td>
 
             <form method="POST" action="{{ route('basketUpdate') }}">
@@ -64,5 +64,6 @@
     </table>
     <a href="{{ route('basketCheckout') }}">Proceed To Checkout</a>
     @endif
+
             </body>
         </x-lowlayout>
