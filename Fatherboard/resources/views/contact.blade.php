@@ -52,7 +52,7 @@
                 <div class="row" id="names">
                     <label for="firstName"></label>
                     <input type="text" placeholder="First Name" name="firstName" id="firstName" required>
-                    <label for="lastName">Last Name</label>
+                    <label for="lastName"></label>
                     <input type="text" placeholder="Last Name"  name="lastName" id="lastName" required>
                 </div>
                 <div class="row">
