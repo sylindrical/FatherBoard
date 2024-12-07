@@ -63,3 +63,4 @@ Route::post('/basket/add',[BasketController::class,'add'])->name('basketAdd');
 Route::post('/basket/remove',[BasketController::class,'remove'])->name('basketRemove');
 Route::post('/basket/update',[BasketController::class,'update'])->name('basketUpdate');
 Route::get('/basket/checkout',[BasketController::class,'checkout'])->name('basketCheckout');
+
