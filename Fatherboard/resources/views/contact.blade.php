@@ -4,9 +4,9 @@
     <meta charset="utf-8" />
     <title>FatherBoard - Contact Us</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel = "stylesheet" type="text/css" href="Contact.css" /> <!-- Link for Login page stylesheet -->
-    <link rel = "stylesheet" type="text/css" href="AboutUsStyle.css"/> <!-- Link for the header styles -->
-    <script src="Contact.js" defer></script>
+    <link rel = "stylesheet" type="text/css" href="public\css\Contact.css" /> <!-- Link for Login page stylesheet -->
+    <link rel = "stylesheet" type="text/css" href="public\css\AboutUsStyle.css"/> <!-- Link for the header styles -->
+    <script src="resources\js\Contact.js" defer></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.js" type="text/javascript"></script> <!--Scripts needed for jQuery-->
    </head>
