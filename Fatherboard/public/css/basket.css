@@ -1,7 +1,8 @@
 /* General Styles for the Basket Page */
 .basket-page {
-    text-align: center;
     max-width: 75rem;
+    text-align: center;
+    display: block;
     margin: 1.25rem auto;
     padding: 1.25rem;
     background-color: #fff;
@@ -11,9 +12,10 @@
 
 .basket-container {
     padding: 1.25rem;
-    text-align: center;
-    align-items: center;
+    margin-left: 25%;
+    margin-right: 25%;
 }
+
 
 h2 {
     text-align: center;

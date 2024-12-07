@@ -26,7 +26,7 @@
     <div id="basket-items" class="basket-items hidden">
 
     <p> Your Basket is Empty!</p>
-    @else
+    @else 
     <table>
         <thead>
             <tr>
