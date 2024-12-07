@@ -11,6 +11,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\BasketController;
 use App\Models\ContactForm;
+use App\Http\Controllers\CheckoutController;
 
 Route::get('/login', [AuthController::class, 'giveLogin']);
 Route::get('/',function(){
@@ -74,3 +75,7 @@ Route::post('/basket/remove',[BasketController::class,'remove'])->name('basketRe
 Route::post('/basket/update',[BasketController::class,'update'])->name('basketUpdate');
 Route::get('/basket/checkout',[BasketController::class,'checkout'])->name('basketCheckout');
 
+//checkout
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::post('/checkout',[CheckoutController::class, 'process'])->name('checkout.process');
+Route::get('/checkout/sucess', [CheckoutController::class,'success'])->name('checkout_success');
