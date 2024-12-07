@@ -36,7 +36,7 @@
         </div>
     </header> --}}
     
-
+<x-header></x-header>
     <main id="product">
         <div id="image_container">
             <img src={{asset("images/" . $image)}} alt="Image" id="product_image"/>
