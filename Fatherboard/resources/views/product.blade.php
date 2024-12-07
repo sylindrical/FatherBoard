@@ -52,6 +52,7 @@
         <p>
             There is no reviews;
             <p>{{$rating}}</p>
+        <button id="review_button">Add Review</button>
         
         <div id="reviews">
 
