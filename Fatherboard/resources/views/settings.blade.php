@@ -4,6 +4,8 @@
     <x-slot:head>
         <link rel="stylesheet" href={{ asset('css/settings.css') }}>
         <script src={{ asset('js/settings.js') }}></script>
+        <link rel="stylesheet" href={{asset('css/aboutus.css')}}>
+
         <title>Settings</title>
     </x-slot:head>
 
@@ -45,6 +47,10 @@
     <template id="template_add_address_box">
 
     </template> --}}
+
+    <x-header>
+
+    </x-header>
 
     <div id="add_address_box"  hidden>
     <div>
