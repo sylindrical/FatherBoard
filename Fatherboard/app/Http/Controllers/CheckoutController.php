@@ -68,7 +68,9 @@ class CheckoutController extends Controller
                 REQUIRED CODE TO GET USER DETAILS
             */
             $AuthController = new AuthController;
-            $user = $AuthController->loggedIn();
+            if($user = $AuthController->loggedIn() == false){//Redirects to login if the user doesn't have an account
+                return redirect('/login');
+            }
         $order = Orders::create([
             'customer_id'=> $user['id'], //Replace 1 with $user=>id
             'order_status' => 'Pending',
