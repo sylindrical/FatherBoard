@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('basket', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('customer_information_id')->constrained('customer_information')->onDelete('cascade');
             $table->json('items');
             $table->timestamps();
         });
