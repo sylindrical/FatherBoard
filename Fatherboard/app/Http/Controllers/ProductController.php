@@ -21,9 +21,33 @@ class ProductController extends Controller
 
         // category filtering
         $category = explode(',', $rq->query('category', ''));
-    
-        $category_obj = Product::where(function($query) use ($category) {        
-            foreach ($category as $x) {
+        $filteredCat = [];
+
+        // $validTypes = Product::distinct()->pluck('type');
+
+        // foreach ($category as $x)
+        // {   
+        //     if ($validTypes->contains(strtoupper($x)))
+        //     {
+        //         array_push($filteredCat,$x);
+        //     }
+        // }
+        // dd($filteredCat);
+
+        $originalProd = Product::whereRaw("1=1");
+
+        $validCategories = Product::distinct()->pluck('type')->map(fn ($x) => strtolower($x))->toArray();
+
+        foreach ($category as $cat)
+        {
+            if (in_array(strtolower($cat),$validCategories))
+            {
+                array_push($filteredCat, $cat);
+            };
+        }    
+
+        $category_obj = $originalProd->where(function($query) use ($category, $filteredCat) {   
+            foreach ($filteredCat as $x) {
                 $query->orWhere("type", $x);
             }
         });
@@ -31,8 +55,7 @@ class ProductController extends Controller
         // dd($category_obj->get());
 
         // Price Filtering
-        $priceM = Product::whereRaw("1=0");
-
+        $priceM = Product::whereRaw("1=1");
         if (strlen($prices) > 0)
         {
         $prices = explode(',', $rq->query("prices", ''));
@@ -68,7 +91,7 @@ class ProductController extends Controller
             }
             else
             {
-                $q->where("price",">=","1000");
+                // $q->where("price",">=","1000");
             }
         
             }
@@ -82,24 +105,25 @@ class ProductController extends Controller
         {
             $priceM = Product::whereRaw("1=1");
         }
-        // dd($priceM->get());
 
-    $all = $category_obj->union($priceM);
+    $all = $category_obj->get()->intersect($priceM->get());
 
     if ($search == null) {
         $data = Product::all();
-        return view("products", ["data" => $all->get()]);
+        return view("products", ["data" => $all]);
     } else {
         $queryString = sprintf("Title REGEXP '.*%s.*'", $search);
         // $data = Product::whereRaw($queryString)->get();
-        $subQ = Product::fromSub($all, "sub")->whereRaw($queryString);
+        // $subQ = Product::fromSub($all, "sub")->whereRaw($queryString);
+        $subQ = $all->intersect(Product::whereRaw($queryString)->get());
         // dd($subQ->ddRawSql());
-        return view("products", ["data" => $subQ->get()]);
+        return view("products", ["data" => $subQ]);
     }
 
     }
 
 
+    // Filter by interesection of category, price and search
     public static function indexSpecific(Request $rq)
     {
         $user_cat = $rq->input("category");
@@ -110,11 +134,13 @@ class ProductController extends Controller
 
 
         $curData = Product::whereRaw("1=0");
-        if ((count($user_cat) == 0) && (count($user_price) ==0))
-        {
-            return json_encode(Product::query()->get());
+        // if ((count($user_cat) == 0) && (count($user_price) ==0))
+        // {
+        //     return json_encode(Product::query()->get());
 
-        };
+        // };
+        if (count($user_price) > 0)
+        {
         foreach($user_price as $cond)
         {
  
@@ -138,14 +164,19 @@ class ProductController extends Controller
                 };
                 });
             }
-
-                
-        $query2 = Product::whereRaw("1=0");
-        if (count($user_cat) == 1)
-        {
-        $query2 = Product::where("Type",$user_cat);
         }
-        else if (count($user_cat) >1)
+        else
+        {
+            $curData = Product::whereRaw("1=1");
+
+        }
+
+        $query2 = Product::whereRaw("1=1");
+        if (count($user_cat) == 0)
+        {
+        // $query2 = Product::where("Type",$user_cat);
+        }
+        else if (count($user_cat) >=1)
         {
             $query2 = Product::where(function ($x) use ($user_cat){
             
@@ -156,16 +187,18 @@ class ProductController extends Controller
             });
 
         }
-        $combinedQuery = $curData->union($query2);
+        // $combinedQuery = $curData->union($query2);
+
+        $intersect_combined = $curData->get()->intersect($query2->get());
 
         $queryString = sprintf("description REGEXP '.*%s.*'", $search);
         $data = Product::whereRaw($queryString);
 
 
-        $finalQuery = Product::fromSub($combinedQuery, 'sub')->whereRaw("description REGEXP ?", [".*{$search}.*"]);
+        // $finalQuery = Product::fromSub($combinedQuery, 'sub')->whereRaw("description REGEXP ?", [".*{$search}.*"]);
 
-
-        return json_encode($finalQuery->get());
+        $intersect_final = $intersect_combined->intersect($data->get());
+        return json_encode($intersect_final);
 
     }
     /**
