@@ -25,5 +25,8 @@ class Utility
     
         return $arr[$closestIndex]; // Return the closest number
     }
+
+    
+
 }
 ?>

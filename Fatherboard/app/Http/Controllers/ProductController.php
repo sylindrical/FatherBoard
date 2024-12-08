@@ -13,24 +13,81 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $rq)
     {
         $search = request("search");
-        if ($search == null)
+        $prices = request("prices");
+
+
+        // category filtering
+        $category = explode(',', $rq->query('category', ''));
+    
+        $category_obj = Product::where(function($query) use ($category) {        
+            foreach ($category as $x) {
+                $query->orWhere("type", $x);
+            }
+        });
+
+
+        // Price Filtering
+        $prices = explode(',', $rq->query("prices", ''));
+
+        $priceM = Product::whereRaw("1=0");
+
+        
+        foreach ($prices as $pri) {
+
+        $priceM = $priceM->orWhereHas("price", function($q) use ($pri)
         {
-        $data = Product::all();
-        return view("products", ["data"=>$data] );
-        }
-        else
-        {
-            $queryString = sprintf("description REGEXP '.*%s.*'", $search);
-            $data = Product::whereRaw($queryString)->get();
-            return view("products", ["data"=>$data] );
-        }
+
+            $reg = "/(<=|>=)(\d+)(?:-(<=|>=)(\d+))?/";
+            $matches = [];
+            $curData = [];
+            preg_match($reg, $pri, $matches);
+            // dd($matches);
+           
+                // $x->price$matches[1],$matches[2])->get()
+
+                if (count($matches)==5)
+                {
+                for($i =1; $i<3;$i++)
+                {
+                    $q->where("price",$matches[$i*2-1],$matches[$i*2]);
+                }
+                }
+                else if ((count($matches) == 3))
+                {
+                    $q->where("price",$matches[1],$matches[2]);
+
+                }
+                else
+                {
+                    $q->whereRaw("1=0");
+                }
+        
+                }
+            );
+            
     }
 
 
-    public function indexSpecific(Request $rq)
+    $all = $category_obj->union($priceM);
+    // dd($all->get());
+    
+    return view("products", ["data" => $all->get()]);
+
+    if ($search == null) {
+        $data = Product::all();
+        return view("products", ["data" => $data]);
+    } else {
+        $queryString = sprintf("description REGEXP '.*%s.*'", $search);
+        $data = Product::whereRaw($queryString)->get();
+        return view("products", ["data" => $data]);
+    }
+    }
+
+
+    public static function indexSpecific(Request $rq)
     {
         $user_cat = $rq->input("category");
         $user_price = $rq->input("price");
