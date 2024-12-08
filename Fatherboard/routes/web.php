@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\SettingController;
 use App\Models\CustomerInfo;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 use App\Models\Review;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\BasketController;
 
 
 Route::get('/login', [AuthController::class, 'giveLogin']);
@@ -54,3 +56,6 @@ Route::get('/settings', [SettingController::class, 'pageSettings']);
 
 Route::post('/basket/add',[BasketController::class,'add'])->name('basket.add');
 Route::post('/basket/remove',[BasketController::class,'remove'])->name('basket.index');
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::post('/checkout',[CheckoutController::class, 'process'])->name('checkout.process');
+Route::get('/checkout/sucess', [CheckoutController::class,'success'])->name('checkout_success');
