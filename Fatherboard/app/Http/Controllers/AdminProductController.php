@@ -10,7 +10,7 @@ use App\Models\Product;
 use App\Models\ProductPrice;
 use Dotenv\Parser\Value;
 
-class AdminPage extends Controller
+class AdminProductController extends Controller
 {
     public function index()
     {
