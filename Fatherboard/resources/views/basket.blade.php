@@ -34,6 +34,7 @@
             <tr>
 <th> Product</th>
                 <th>Name</th>
+
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>SubTotal</th>
@@ -78,8 +79,11 @@
         </table>
 
     </div>
+    <div class="basket-summary">
+
     <button id="checkout-btn" href="{{ route('basketCheckout') }}">Proceed To Checkout</button>
     @endif
+    </div>
 </div>
 </main>
             </body>
