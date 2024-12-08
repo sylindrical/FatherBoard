@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminPage;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\HomeController;
@@ -86,3 +87,11 @@ Route::get('/basket/checkout',[BasketController::class,'checkout'])->name('baske
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 Route::post('/checkout',[CheckoutController::class, 'process'])->name('checkout.process');
 Route::get('/checkout/sucess', [CheckoutController::class,'success'])->name('checkout_success');
+
+//Admin
+Route::get('/admin/products', [AdminPage::class, "index"])->name('adminIndex');
+Route::get('/admin/product/create', [AdminPage::class, "create"])->name('create');
+Route::get('/admin/product/{id}', action: [AdminPage::class, "show"])->name('edit');
+Route::delete('/admin/products{id}', action: [AdminPage::class, "destroy"])->name('delete');
+Route::post('/admin/product/create', [AdminPage::class, "created"])->name('created');
+Route::put('/admin/product/{product_id}', [AdminPage::class, "update"])->name('update');
