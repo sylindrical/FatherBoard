@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Https\Controllers;
+use App\Models\Product;
+use Illuminate\Http\Request; 
+
+class RequirementController extends Controller
+{
+
+    public function filterProducts(Request $Request)
+{
+
+$filteredProducts = [];
+$filteredProducts['0-100'] = filterProducts($products, 0, 100);
+$filteredProducts['100-200'] = filterProducts($products, 100, 200);
+$filteredProducts['200-300'] = filterProducts($products, 200, 300);
+$filteredProducts['400-500'] = filterProducts($products, 400, 500);
+
+return view('filteredProducts', ['filteredProducts' => $filteredProducts]);
+}
+}
