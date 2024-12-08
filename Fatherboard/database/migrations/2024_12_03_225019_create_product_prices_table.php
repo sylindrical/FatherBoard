@@ -17,7 +17,7 @@ return new class extends Migration
     {
         Schema::create('product_prices', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(App\Models\Product::class)->constrained();
+            $table->foreignIdFor(App\Models\Product::class)->constrained()->cascadeOnDelete();
             $table->integer("price");
             $table->timestamps();
         });

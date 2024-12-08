@@ -28,15 +28,18 @@ class ProductController extends Controller
             }
         });
 
+        // dd($category_obj->get());
 
         // Price Filtering
+        $priceM = Product::whereRaw("1=0");
+
+        if (strlen($prices) > 0)
+        {
         $prices = explode(',', $rq->query("prices", ''));
 
-        $priceM = Product::whereRaw("1=0");
 
         
         foreach ($prices as $pri) {
-
         $priceM = $priceM->orWhereHas("price", function($q) use ($pri)
         {
 
@@ -48,42 +51,52 @@ class ProductController extends Controller
            
                 // $x->price$matches[1],$matches[2])->get()
 
-                if (count($matches)==5)
-                {
+            if (count($matches)==5)
+            {
                 for($i =1; $i<3;$i++)
                 {
+
+
                     $q->where("price",$matches[$i*2-1],$matches[$i*2]);
                 }
-                }
-                else if ((count($matches) == 3))
-                {
-                    $q->where("price",$matches[1],$matches[2]);
+            }
+            else if ((count($matches) == 3))
+            {
 
-                }
-                else
-                {
-                    $q->whereRaw("1=0");
-                }
+                $q->where("price",$matches[1],$matches[2]);
+
+            }
+            else
+            {
+                $q->where("price",">=","1000");
+            }
         
-                }
+            }
             );
-            
-    }
 
+            
+        }
+        
+    }
+    else
+        {
+            $priceM = Product::whereRaw("1=1");
+        }
+        // dd($priceM->get());
 
     $all = $category_obj->union($priceM);
-    // dd($all->get());
-    
-    return view("products", ["data" => $all->get()]);
 
     if ($search == null) {
         $data = Product::all();
-        return view("products", ["data" => $data]);
+        return view("products", ["data" => $all->get()]);
     } else {
-        $queryString = sprintf("description REGEXP '.*%s.*'", $search);
-        $data = Product::whereRaw($queryString)->get();
-        return view("products", ["data" => $data]);
+        $queryString = sprintf("Title REGEXP '.*%s.*'", $search);
+        // $data = Product::whereRaw($queryString)->get();
+        $subQ = Product::fromSub($all, "sub")->whereRaw($queryString);
+        // dd($subQ->ddRawSql());
+        return view("products", ["data" => $subQ->get()]);
     }
+
     }
 
 
