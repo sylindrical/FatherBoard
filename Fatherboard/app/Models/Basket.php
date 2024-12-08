@@ -12,9 +12,10 @@ use HasFactory;
 
 protected $table = 'Basket';
 protected $fillable = [
-    'user_id',
-    'product_id',
+    'customer_information_id',
+    'items'
     ,];
+
 protected $casts = [ 'items'=>'array',];
 
 public function product(){

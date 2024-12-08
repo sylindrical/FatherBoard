@@ -31,9 +31,9 @@ if(isset($basket[$product->id])){
                 }
 
             session()->put('basket',$basket);
-$userId = $request->user()->id ?? null;
+$userId = $request->user()->customer_information_id->id ?? null;
         if($userId) {
-            $existingBasket = Basket::where('user_id',$userId)->first();
+            $existingBasket = Basket::where('customer_information_id',$userId)->first();
 
             if($existingBasket){
         $existingItems = json_decode($existingBasket->items,true) ?? [];
@@ -44,16 +44,13 @@ $userId = $request->user()->id ?? null;
 
             }else{
                 Basket::create([
-                    'user_id'=> $userId, 'items'=>json_encode($basket),
+                    'customer_information_id'=> $userId, 'items'=>json_encode($basket),
                 ]);
             }
         }
 
     return redirect()->route('basketIndex')->with(['success','Product added!']);
     }
-
-
-
 
 //display the basket
     public function index(){
