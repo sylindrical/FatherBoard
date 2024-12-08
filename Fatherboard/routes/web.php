@@ -23,6 +23,9 @@ Route::post('/review',[ReviewController::class,'store'])->name('submitReview');
 Route::get('/review', [ReviewController::class, 'create'])->name('createReview');
 Route::get('/product/{id}/review', [ReviewController::class,'showReview'])->name('review.show');
 
+Route::post("/add/review", [ReviewController::class, 'add']);
+
+// Login / Authentication System
 Route::post('/submit-review',[ReviewController::class,'store'])->name('submitReview');
 Route::post('/_login', [AuthController::class, 'form_login']);
 Route::post('/_explicit_login', [AuthController::class, "explicit_login"]);
@@ -53,6 +56,9 @@ Route::post("/create/product", function ()
 // Settings-related
 
 Route::get('/settings', [SettingController::class, 'pageSettings']);
+Route::post('/get/personal', action: [SettingController::class, "showPersonal"]);
+
+
 
 // Handles address
 Route::post('/get/address', [SettingController::class, "showAddress"]);
@@ -66,7 +72,8 @@ Route::get("/contact", [ContactFormController::class, "giveContact"]);
 
 
 
-Route::post('/get/personal', [SettingController::class, "showPersonal"]);
+
+
 
 //basket side back-end
 Route::get('/basket',[BasketController::class,'index'])->name('basketIndex');
