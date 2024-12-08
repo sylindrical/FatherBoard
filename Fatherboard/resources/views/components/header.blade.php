@@ -1,6 +1,6 @@
 <header class="main-header">
     <div class="container">
-        <a href="Home.html">
+        <a href="/home">
             <img src="{{asset('images/FatherboardTransparentCrop.png')}}" id="logo" alt="FatherBoard Logo" width="100" height="50">
         </a>
 
@@ -10,9 +10,9 @@
 
         <nav class="main-nav">
             <ul class="main-nav-list">
-                <li><a href="about">About Us</a></li>
-                <li><a href="login">Account</a></li>
-                <li><a href="basket">Basket</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/settings">Settings</a></li>
+                <li><a href="/basket">Basket</a></li>
             </ul>
         </nav>
     </div>
@@ -20,12 +20,11 @@
         <nav class="lower-nav">
             <ul class="lower-nav-list">
                 <li>
-                    <a href="#product1">Memory</a>
-                    <a href="Products.html#CPUs">CPUs</a>
-                    <a href="#product3">Prebuilt Computers</a>
-                    <a href="#product4">GPUs</a>
-                    <a href="#product5">PSUs</a>
-                    <a href="#sale">Sale!!!</a>
+                    <a href="/products?category=memory">Memory</a>
+                    <a href="/products?category=cpu">CPUs</a>
+                    <a href="/products?category=prebuilt">Prebuilt Computers</a>
+                    <a href="/products?category=gpu">GPUs</a>
+                    <a href="/products?category=psu">PSUs</a>
                 </li>
             </ul>
         </nav>
