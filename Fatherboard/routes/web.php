@@ -71,6 +71,12 @@ Route::post("/delete/address", [SettingController::class, "form_removeAddress"])
 Route::post("/add/message", [ContactFormController::class, "form_message"]);
 Route::get("/contact", [ContactFormController::class, "giveContact"]);
 
+// About Us
+
+Route::get('/about', function()
+{
+    return view('about');
+});
 
 
 
