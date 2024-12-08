@@ -5,6 +5,7 @@ use App\Http\Controllers\SettingController;
 use App\Models\CustomerInfo;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RequirementController;
 
 use App\Http\Controllers\ProductController;
 
@@ -55,3 +56,5 @@ Route::post("/edit/product", [ProductController::class, 'edit']);
 Route::post("/update/product", [ProductController::class, 'update']);
 
 Route::post("/delete/product", [ProductController::class, 'destroy']);
+
+Route::get('/filter-products', [RequirementController::class, 'filterProducts']);
