@@ -58,7 +58,7 @@ Route::post("/create/product", function ()
 
 Route::get('/settings', [SettingController::class, 'pageSettings']);
 Route::post('/get/personal', action: [SettingController::class, "showPersonal"]);
-
+Route::post('/update/personal', [SettingController::class, 'updatePersonal']);
 
 // Terms
 
