@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Basket;
 
 class BasketController extends Controller
 {
@@ -11,6 +12,9 @@ class BasketController extends Controller
     {
         $productId = $request->input('product_id');
         $quantity = $request->input('quantity', 1);
+
+
+
 
 $product = Product::findOrFail($productId);
 
@@ -27,6 +31,23 @@ if(isset($basket[$product->id])){
                 }
 
             session()->put('basket',$basket);
+$userId = $request->user()->id ?? null;
+        if($userId) {
+            $existingBasket = Basket::where('user_id',$userId)->first();
+
+            if($existingBasket){
+        $existingItems = json_decode($existingBasket->items,true) ?? [];
+        foreach($basket as $itemId => $itemData){
+            $existingItems[$itemId] = $itemData;
+        }
+        $existingBasket->update(['items'=>json_encode($existingItems)]);
+
+            }else{
+                Basket::create([
+                    'user_id'=> $userId, 'items'=>json_encode($basket),
+                ]);
+            }
+        }
 
     return redirect()->route('basketIndex')->with(['success','Product added!']);
     }
