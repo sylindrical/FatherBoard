@@ -14,23 +14,19 @@ class BasketController extends Controller
 
 $product = Product::findOrFail($productId);
 
-        $basket = Basket::firstOrCreate(['user_id' => $user->id]);
-
-$items = json_decode($basket->items, true) ?? [];
-
-if(isset($items[$product->id])){
-    $items[$product->id]['quantity']+=$quantity;
+        $basket = session()->get('basket',[]);
+if(isset($basket[$product->id])){
+    $basket[$product->id]['quantity']+=$quantity;
 }else{
 
-                $items[$product->id]=[
+                $basket[$product->id]=[
                 'product_id' => $product->id,
                 'name' => $product->Title,
                 'price'=> $product->Price->price,
                 'quantity' => $quantity,];
                 }
 
-            $basket->items = json_encode($items);
-            $basket->save();
+            session()->put('basket',$basket);
 
     return redirect()->route('basketIndex')->with(['success','Product added!']);
     }

@@ -47,7 +47,7 @@
 
 
         <tr>
-            <td>     <img src="{{ asset('images/product' . $item['product_id'] . '.png') }}" alt="product image" class ="product-image">
+            <td>     <img src="{{ asset('images/product_images/' . $item['product_id'] . '.jpg') }}" alt="product image" class ="product-image">
             </td>
 
             <td>{{ $item['name'] }}</td>
