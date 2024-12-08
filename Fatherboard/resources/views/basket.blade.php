@@ -26,26 +26,34 @@
     <div id="basket-items" class="basket-items hidden">
 
     <p> Your Basket is Empty!</p>
-    @else 
+    @else
 
     <table>
         <thead>
+
             <tr>
-                <th>Product</th>
+<th> Product</th>
+                <th>Name</th>
+
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>SubTotal</th>
                 <th>Actions</th>
             </tr>
         </thead>
+
         <tbody>
         @foreach($basket as $item)
+
+
         <tr>
+            <td>     <img src="{{ asset('images/product' . $item['product_id'] . '.png') }}" alt="product image" class ="product-image">
+            </td>
+
             <td>{{ $item['name'] }}</td>
             <td>{{ $item['price'] }}</td>
         </div>
             <td>
-
                 <form method="POST" action="{{ route('basketUpdate') }}">
                     @csrf
     <input type="hidden" name="product_id" value="{{ $item['product_id'] }}">
@@ -63,14 +71,19 @@
     <input type="hidden" name="product_id" value="{{ $item['product_id'] }}">
     <button type="submit">Remove</button>
     </form>
+
             </td></tr>
 
     @endforeach
         </tbody>
         </table>
+
     </div>
+    <div class="basket-summary">
+
     <button id="checkout-btn" href="{{ route('basketCheckout') }}">Proceed To Checkout</button>
     @endif
+    </div>
 </div>
 </main>
             </body>

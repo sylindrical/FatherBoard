@@ -79,3 +79,9 @@ button:hover {
 table {
     text-align: center;
 }
+
+img {
+    width: 6.25rem;
+    height: 6.25rem;
+    border-radius: 0.5rem;
+}
