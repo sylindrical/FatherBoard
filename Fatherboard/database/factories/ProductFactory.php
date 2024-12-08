@@ -43,7 +43,7 @@ class ProductFactory extends Factory
             // $price->save();
 
             $product->price()->create(["price"=>random_int(100,800)]);
-            $product->reviews()->create(["customer_id"=>CustomerInformation::factory()->create()->id,"review"=>"Default text like it", "rating"=>random_int(1,5)]);
+            $product->reviews()->create(["customer_id"=>CustomerInformation::factory()->create()->id,"review"=>fake()->sentence(), "rating"=>random_int(1,5)]);
             $product->save();
         });
     }
