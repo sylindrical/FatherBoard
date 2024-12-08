@@ -52,6 +52,9 @@ $userId = $request->user()->id ?? null;
     return redirect()->route('basketIndex')->with(['success','Product added!']);
     }
 
+
+
+
 //display the basket
     public function index(){
 

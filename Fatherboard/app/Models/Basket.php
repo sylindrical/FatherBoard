@@ -14,7 +14,7 @@ protected $table = 'Basket';
 protected $fillable = [
     'user_id',
     'product_id',
-    'quantity',];
+    ,];
 protected $casts = [ 'items'=>'array',];
 
 public function product(){
