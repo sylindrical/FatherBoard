@@ -19,3 +19,4 @@ $filteredProducts['400-500'] = filterProducts($products, 400, 500);
 return view('filteredProducts', ['filteredProducts' => $filteredProducts]);
 }
 }
+
