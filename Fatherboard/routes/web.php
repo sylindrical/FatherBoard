@@ -14,7 +14,7 @@ use App\Http\Controllers\BasketController;
 use App\Models\ContactForm;
 use App\Http\Controllers\CheckoutController;
 
-Route::get('/login', [AuthController::class, 'giveLogin']);
+Route::get('/login', [AuthController::class, 'giveLogin'])->name("login");
 Route::get('/',function(){
 
     return view('home');
@@ -38,13 +38,13 @@ Route::get("/register",[AuthController::class,"giveRegister"])->name("register")
 
 
 // Home System
-Route::get('/home', [HomeController::class, "giveHome"]);
+Route::get('/home', [HomeController::class, "giveHome"])->name("home");
 
 
 
 // Handles products
 Route::get('/product/{id}', action: [ProductController::class, "show"]);
-Route::get('/products', [ProductController::class, "index"]);
+Route::get('/products', [ProductController::class, "index"])->name("products");
 Route::post('/products', [ProductController::class, "indexSpecific"]);
 
 Route::post("/create/product", function ()

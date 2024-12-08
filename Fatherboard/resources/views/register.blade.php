@@ -9,9 +9,9 @@
 
     <div class="wrapper">
     <form action="./_register" method="POST" id="register_form">
-        <a class="exitCross" href="Home.html"></a>
+        <a class="exitCross" href="{{route('home')}}"></a>
         <h1>Register</h1> <p class="returnToLogin">
-            Current User? <br><a href="Login.html">Login!</a></p> 
+            Current User? <br><a href="{{route("login")}}">Login!</a></p> 
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
 

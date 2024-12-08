@@ -11,7 +11,7 @@
 
     <form action="./_login" method="POST" id="login_form">
 
-        <a class="exitCross" href="Home.html"></a>
+        <a class="exitCross" href="{{ route('home') }}"></a>
         <h1>Log in</h1>
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -40,7 +40,7 @@
         <input type="submit"  name="submit" id="submit" value="Login">
 
         <div class="register">
-            <p id="newUserText">New user? <a href="Signup.html">Create a new account!</a></p>
+            <p id="newUserText">New user? <a href="{{route('register')}}">Create a new account!</a></p>
         </div>
 
     </form>

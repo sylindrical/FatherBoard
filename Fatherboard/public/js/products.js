@@ -131,7 +131,9 @@ function showProduct(info)
 
 
         let info_elem = document.createElement("p");
-        info_elem.textContent = "You do not have an address currently.";
+        info_elem.style.display = "block";
+        info_elem.style.width = "100%";
+        info_elem.textContent = "There are no products";
 
         product_container.append(info_title);
         product_container.append(info_elem);
