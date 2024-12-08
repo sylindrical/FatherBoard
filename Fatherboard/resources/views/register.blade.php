@@ -41,7 +41,7 @@
         <div id="notification_container">
         </div>
         <div class="checkConfirm">
-            <a href="terms.html">Agree to Terms and Conditions</a>
+            <a href="{{route('terms')}}">Agree to Terms and Conditions</a>
             <label>
                 <input type="checkbox" id="check" required/>
             </label>

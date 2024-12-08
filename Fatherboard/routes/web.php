@@ -60,6 +60,13 @@ Route::get('/settings', [SettingController::class, 'pageSettings']);
 Route::post('/get/personal', action: [SettingController::class, "showPersonal"]);
 
 
+// Terms
+
+Route::get("/terms", function()
+{
+    return view("terms");
+})->name("terms");
+
 
 // Handles address
 Route::post('/get/address', [SettingController::class, "showAddress"]);
