@@ -193,6 +193,15 @@ class ProductController extends Controller
         $curRating = DB::table("reviews")->where("product_id",$id)->select(DB::raw("avg(rating) as avg_rating"))->first();
         $image = "rtx2070.png";
         $amountStar = Utility::numberClosest($curRating->avg_rating, [1,2,3,4,5]);
+        if ($id <=25)
+        {
+            $image = $id . ".jpg";
+        }
+        else
+        {
+            $image = "rtx2070.png";
+
+        }
         return view('product',["product"=>$product,"image"=>$image, "rating"=>$curRating->avg_rating, "amount"=>$amountStar]);
     }
 

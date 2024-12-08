@@ -17,7 +17,7 @@ use App\Http\Controllers\CheckoutController;
 Route::get('/login', [AuthController::class, 'giveLogin']);
 Route::get('/',function(){
 
-    return view('welcome');
+    return view('home');
 });
 //review side back-end
 Route::post('/review',[ReviewController::class,'store'])->name('submitReview');

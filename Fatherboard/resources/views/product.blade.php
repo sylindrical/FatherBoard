@@ -18,7 +18,9 @@
 
     <main id="product">
         <div id="image_container">
-            <img src={{asset("images/" . $image)}} alt="Image" id="product_image"/>
+
+            <img src={{asset("images/product_images/" . $image)}} alt="Image" id="product_image"/>
+
         </div>
         <div id="content">
             <h2 id="title">{{ $product->Title}} </h2>
