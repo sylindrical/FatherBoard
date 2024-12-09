@@ -14,17 +14,26 @@ class AdminProductController extends Controller
 {
     public function index()
     {
-        $search = request("search");
-        if ($search == null)
-        {
-        $data = Product::all();
-        return view("admin.products.index", ["data"=>$data] );
+        $AuthController = new AuthController;//Not sure if this works, attempts to check if the user is logged in.
+        if(($user = $AuthController->loggedIn()) == false){
+            return view('login');
         }
-        else
-        {
-            $queryString = sprintf("description REGEXP '.*%s.*'", $search);
-            $data = Product::whereRaw($queryString)->get();
+        if($user['Admin'] == 1) {
+            $search = request("search");
+            if ($search == null)
+            {
+            $data = Product::all();
             return view("admin.products.index", ["data"=>$data] );
+            }
+            else
+            {
+                $queryString = sprintf("description REGEXP '.*%s.*'", $search);
+                $data = Product::whereRaw($queryString)->get();
+                return view("admin.products.index", ["data"=>$data] );
+            }
+        }
+        else {
+            abort(403, "Admin only.");
         }
     }
 
