@@ -15,7 +15,7 @@ class CheckoutController extends Controller
     public function index()
     {
         $AuthController = new AuthController;//Not sure if this works, attempts to check if the user is logged in.
-        if($user = $AuthController->loggedIn()){
+        if(($user = $AuthController->loggedIn()) == false){
             return view('login');
         }
         $basket=session()->get('basket',[]);
@@ -68,7 +68,7 @@ class CheckoutController extends Controller
                 REQUIRED CODE TO GET USER DETAILS
             */
             $AuthController = new AuthController;
-            if($user = $AuthController->loggedIn() == false){//Redirects to login if the user doesn't have an account
+            if(($user = $AuthController->loggedIn()) == false){//Redirects to login if the user doesn't have an account
                 return redirect('/login');
             }
         $order = Orders::create([
