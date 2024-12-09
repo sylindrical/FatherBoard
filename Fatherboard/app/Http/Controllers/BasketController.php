@@ -4,32 +4,34 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\BasketItem;
+use App\Models\Basket;
 
-class BasketController extends Controller
-{
 
 
-    public function add(Request $request)
+    class BasketController extends Controller
     {
-        $productId = $request->input('product_id');
-        $quantity = $request->input('quantity', 1);
+        public function add(Request $request)
+        {
+            $productId = $request->input('product_id');
+            $quantity = $request->input('quantity', 1);
 
-$product = Product::findOrFail($productId);
+    $product = Product::findOrFail($productId);
 
-        $basket = session()->get('basket',[]);
-if(isset($basket[$product->id])){
-    $basket[$product->id]['quantity']+=$quantity;
-}else{
+            $basket = session()->get('basket',[]);
+    if(isset($basket[$product->id])){
+        $basket[$product->id]['quantity']+=$quantity;
+    }else{
 
-                $basket[$product->id]=[
-                'product_id' => $product->id,
-                'quantity' => $quantity,];
-                }
+                    $basket[$product->id]=[
+                    'product_id' => $product->id,
+                    'quantity' => $quantity,];
+                    }
 
-            session()->put('basket',$basket);
+                session()->put('basket',$basket);
 
-    return redirect()->route('basketIndex')->with(['success','Product added!']);
-    }
+        return redirect()->route('basketIndex')->with(['success','Product added!']);
+        }
 
 
 
