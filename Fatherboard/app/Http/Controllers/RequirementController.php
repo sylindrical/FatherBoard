@@ -48,7 +48,7 @@ if (!empty($priceRanges)) {
 
 $all = $category_obj->get()->intersect($priceM->get());
 
-// Search functionality
+
 $search = $request->query('search');
 
 if ($search == null) {
