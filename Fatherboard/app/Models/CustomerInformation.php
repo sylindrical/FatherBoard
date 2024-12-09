@@ -28,4 +28,9 @@ class CustomerInformation extends Model
     {
         return CustomerFactory::new();
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Orders::class, "customer_id");
+    }
 }

@@ -12,7 +12,12 @@ class Orders extends Model
     protected $fillable = ['order_id','order_status','customer_id', 'address_id'];
     public function order_details()//Establishes many to many relationship with Product model through order_details pivot
     {
-        return $this->hasMany(order_details::class);
+        return $this->hasMany(order_details::class, "order_id");
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(CustomerInformation::class, "customer_id");
     }
     
 }

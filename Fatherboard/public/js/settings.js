@@ -171,6 +171,13 @@ function billingClicked()
 function historyClicked()
 {
     console.log("History clicked");
+    let order_hist = document.getElementById("order-info").cloneNode(true);
+    order_hist.removeAttribute("hidden");
+    let option_information = document.getElementById("option-information");
+
+    option_information.innerHTML = "";
+    option_information.append(order_hist)
+
 
 }
 function personalClicked()

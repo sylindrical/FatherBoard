@@ -9,6 +9,30 @@
         <title>Settings</title>
     </x-slot:head>
 
+    <div class="content" id="order-info" hidden>
+        <div>
+        <?php
+        if (isset($items))
+        {
+            foreach($items as $order)
+            {
+                ?>
+                <br>
+                <h2>Order</h2>
+                <br>
+                <?php
+                foreach($order as $info)
+                {
+                ?>
+
+                <p >{{$info}}</p>
+                <?php
+                }
+            }
+        }
+        ?>
+        </div>
+    </div>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <template id="address-template">
         <style>
@@ -183,6 +207,8 @@
 
 
     </div> --}}
+
+    
 
     
 

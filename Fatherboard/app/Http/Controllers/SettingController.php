@@ -10,6 +10,7 @@ use App\Models\ContactForm;
 use App\Models\CustomerInformation;
 use Faker\Provider\ar_EG\Address;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Product;
 
 class SettingController extends Controller
 {
@@ -20,15 +21,32 @@ class SettingController extends Controller
         if ($user = AuthController::loggedIn())
         {
             $addr = $user->address;
-            
+            $orders = [];
+
             if ($user["Admin"])
             {
-                return view('settings', ["addr"=>$addr, "user"=>$user, "messages"=>ContactForm::all()]);
+
+                foreach ($user->orders as $x)
+                {
+                    $details = $x->order_details->all();
+                    $orderProduct = [];
+                    
+                    foreach ($details as $x)
+                    {
+                        // dd(Product::where("id",$x["products_id"])->first());
+                         $product = Product::where("id",$x["products_id"])->first();
+                         array_push($orderProduct, $product["Title"]);
+
+                    }
+                    array_push($orders, $orderProduct);
+            };
+            return view('settings', ["addr"=>$addr, "user"=>$user, "messages"=>ContactForm::all(), "items"=>$orders]);
+
 
             }
             else
             {
-                return view('settings', ["addr"=>$addr, "user"=>$user]);
+                return view('settings', ["addr"=>$addr, "user"=>$user, "items"=>$user->orders]);
 
             }
 
