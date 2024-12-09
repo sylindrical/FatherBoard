@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\AuthController;
 use App\Models\AddressInformation;
+use App\Models\ContactForm;
 use App\Models\CustomerInformation;
 use Faker\Provider\ar_EG\Address;
 use Illuminate\Support\Facades\Hash;
@@ -19,8 +20,17 @@ class SettingController extends Controller
         if ($user = AuthController::loggedIn())
         {
             $addr = $user->address;
+            
+            if ($user["Admin"])
+            {
+                return view('settings', ["addr"=>$addr, "user"=>$user, "messages"=>ContactForm::all()]);
 
-            return view('settings', ["addr"=>$addr]);
+            }
+            else
+            {
+                return view('settings', ["addr"=>$addr, "user"=>$user]);
+
+            }
 
         }
         else
@@ -42,12 +52,29 @@ class SettingController extends Controller
 
     public static function showPersonal()
     {
+
+        $form = AuthController::whichLog();
+        $password = null;
+
+        if ($form == "cookie")
+        {
+            $password = $_COOKIE["password"];
+        }
+        else if ($form == "session")
+        {
+            AuthController::enableSession();
+            $password = $_SESSION["password"];
+
+        }
         if ($user = AuthController::loggedIn())
         {
-            $addr = $user;
-
+            $addr = $user->toArray();
+            $addr["Password"] = $password;
             return json_encode($addr);
         }
+
+
+
         return json_encode("");   
     }
 
@@ -100,8 +127,10 @@ class SettingController extends Controller
             $_SESSION["email"] = $updated;
         }
     }
+    return json_encode(["conn"=>true]);
 
         }
+    
 
 
     }

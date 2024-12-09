@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("First Name");
             $table->string("Last Name");
             $table->string("Password");
+            $table->boolean("Admin")->default(false);
 
         });
     }

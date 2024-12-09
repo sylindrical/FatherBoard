@@ -30,4 +30,9 @@ class CustomerFactory extends Factory
     {
         return $this->has(AddressInformation::factory($num), 'address');
     }
+
+    public function admin()
+    {
+        $this->state(fn ($attr) => ["Admin"=>true]);
+    }
 }

@@ -3,8 +3,8 @@
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactFormController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\HomeController;
 use App\Models\CustomerInfo;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +13,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\BasketController;
 use App\Models\ContactForm;
 use App\Http\Controllers\CheckoutController;
+
 
 Route::get('/login', [AuthController::class, 'giveLogin'])->name("login");
 Route::get('/',function(){

@@ -72,6 +72,21 @@
     <x-header>
 
     </x-header>
+
+    <div class="content" id="message-info" hidden>
+        <?php
+        foreach($messages as $x)
+        {?>
+        <div class="message">
+            <p>{{$x["Message"]}}</p>
+            <p>{{$x["Email"]}}</p>
+
+        </div>
+        
+        <?php
+        }
+        ?>
+    </div>
     <div id="update_personal">
     <form action="/update/personal" method="POST" id="update_personal_form">
         <meta name="type" content="">
@@ -135,15 +150,28 @@
             <li>
                 <button class="option" id="logout_button">Logout</button> 
             </li>
+            <?php
+
+            if ($user["Admin"])
+            {
+                ?>
+            <li>
+                <button class="option" id="message_button">Messages</button> 
+            </li>
+            <?php
+            }
+            ?>
 
         </ul>
     </div>
 
     <div id="option-information">
-    <div class="content" id="personal-info">
+    {{-- <div class="content" id="personal-info">
 
 
-    </div>
+    </div> --}}
+
+    
 
     <div class="content" id="address-info">
         <h3>Address Information</h3>
