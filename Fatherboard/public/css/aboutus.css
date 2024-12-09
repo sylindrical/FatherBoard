@@ -40,8 +40,8 @@ body h1{
 
 .right{
     right:0;
-    padding-top: 59.375rem;
-    padding-right: 68.75rem;
+    padding-top: 50%;
+    padding-right: 50%;
 }
 
 .centered {
@@ -53,7 +53,7 @@ body h1{
 }
 .centered img {
     width: auto;
-    height: 100%;
+    height: auto;
 }
 .container{ /* using flexbox for the header - container is used to keep items in the header.*/
     background-color: black;
