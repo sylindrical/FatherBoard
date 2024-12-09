@@ -29,6 +29,8 @@
   }
 
 
+
+
 .filter-sidebar{
     padding-top: 1.563rem;
     margin-left: 5rem;
@@ -40,7 +42,21 @@
     float:left;
     top: 5%;
 }
+#filter-button
+{
+    margin-top: 2rem;
+    background-color: #03fc98;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    border: none;
+    width:100%;
 
+}
+
+#filter-button:hover
+{
+    background-color: #32a83c;
+}
 .filter-sidebar p{
     text-align: left;
     padding: 0.313rem;

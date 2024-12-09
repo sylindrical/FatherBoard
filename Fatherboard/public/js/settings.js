@@ -7,6 +7,17 @@ let history_button = null
 let show_add_address_button  = null;
 let add_address_submit =null;
 
+let update_personal_form = null;
+
+let logout_button = null;
+
+let update_personal_buttons = null
+
+let update_personal_submit = null;
+
+let message_button = null;
+
+
 let csrf =null;
 let csrf_val =null;
 
@@ -18,14 +29,32 @@ billing_button = document.getElementById("button_billing");
 personal_button = document.getElementById("button_personal");
 history_button = document.getElementById("button_history");
 show_add_address_button = document.getElementById("button_show_address_gui");
+update_personal_buttons = document.getElementsByClassName("update_personal_button");
+update_personal_submit = document.getElementById("update_personal_submit");
+
+message_button= document.getElementById("message_button");
+
+
+logout_button = document.getElementById("logout_button");
+
+
+
 csrf = document.getElementsByName("csrf-token")[0];
 csrf_val =  csrf.getAttribute("content");
 
 
+message_button.addEventListener("click", showMessages);
+logout_button.addEventListener("click",logOut);
+update_personal_submit.addEventListener("click", updateSubmit);
 address_button.addEventListener("click", addressClicked);
 billing_button.addEventListener("click",billingClicked);
 history_button.addEventListener("click", historyClicked);
 personal_button.addEventListener("click",personalClicked)
+
+for (let el of update_personal_buttons)
+{
+    el.addEventListener("click",showPersonalForm);
+}
 
 show_add_address_button.addEventListener("click", toggleAddAddress);
 
@@ -46,6 +75,28 @@ e.preventDefault();
 
 
 });
+
+function showMessages()
+{
+    console.log("showing Messages");
+    let message_box = document.getElementById('message-info').cloneNode(true);
+    let option_information = document.getElementById("option-information");
+
+    message_box.removeAttribute("hidden")
+    option_information.innerHTML = "";
+
+    option_information.appendChild(message_box)
+
+}
+
+function logOut()
+{
+    window.location.replace("/logout");
+}
+function showPersonalForm()
+{
+    console.log("showing personal form");
+}
 
 
 class AddressElement extends HTMLElement
@@ -170,6 +221,7 @@ function showAddress(info)
     show_add_address_button.addEventListener("click",toggleAddAddress);
 
     console.log(address_element.shadowRoot);
+    
     let remove_button = address_element.shadowRoot.querySelector("[name=remove-item]");
     
     remove_button.addEventListener("click",removeAddress);
@@ -207,19 +259,97 @@ function showPersonal(info)
     password_text.setAttribute("slot","Password");
     password_text.textContent = info["Password"];
 
+    let firstname_text = document.createElement("span");
+    firstname_text.setAttribute("slot","FirstName");
+    firstname_text.textContent = info["First Name"];
+
+
+    let lastname_text = document.createElement("span");
+    lastname_text.setAttribute("slot","LastName");
+    lastname_text.textContent = info["Last Name"];
+
     personal_element.append(email_text)
     personal_element.append(password_text);
+    personal_element.append(firstname_text);
+    personal_element.append(lastname_text);
 
     let option_information = document.getElementById("option-information");
 
-    option_information.innerHTML = personal_element.outerHTML;
 
+    console.log(personal_element.shadowRoot); // Ensure it is not null
+
+   
+        
+    option_information.innerHTML = "";
+    option_information.appendChild(personal_element);
+
+    requestAnimationFrame(() => {  
+        update_personal_buttons = personal_element.shadowRoot.querySelectorAll(".update_personal_button");
+        console.log(update_personal_buttons);
+        for (let el of update_personal_buttons)
+        {
+            console.log("s")
+            el.addEventListener("click",toggleShowPersonal);
+        }
+    });
+
+};
+
+function updateSubmit(ev)
+{
+    ev.preventDefault()
+    console.log("Submitting update")
+    let personal_text = document.getElementById("personal_text");
+    let version = document.getElementsByName("type")[0];
+
+    console.log(personal_text)
+    let fd = new FormData()
+    fd.append("personal_text", personal_text.value);
+    fd.append("version", version.content);
+
+    fetch('/update/personal',
+        {
+            method: "POST",
+            headers: {
+                "X-CSRF-TOKEN" : csrf_val
+            },
+            body: fd
+        }
+    ).then((res)=>res.json()).then((js)=>
+    {
+        console.log(js)
+        window.location.href="/settings";
+    }).catch((err)=>{
+        console.log(err)
+    })
+}
+function toggleShowPersonal(ev) {
+    let type_meta = document.getElementsByName("type")[0];
+    let form = document.getElementById("update_personal_form");
+    let version = ev.target.getAttribute("version");
+
+    type_meta.setAttribute("content", version);
+    console.log(version);
+
+    if (form.style.display === "") {
+        form.style.display = "none";
+    }
+
+    if (form.style.display == "none") {
+        form.style.display = "flex";
+    } else {
+        form.style.display = "none";
+    }
 }
 
 function toggleAddAddress()
 {
     let address_box = document.getElementById("add_address_box")
-    console.log("y")
+    console.log("y");
+
+    
+
+
     if (address_box.hasAttribute("hidden"))
     {
         address_box.removeAttribute("hidden");

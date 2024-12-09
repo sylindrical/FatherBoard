@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('customer_information', function (Blueprint $table) {
+        Schema::create('basket_items', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('basket_id')->constrained('basket')->onDelete('cascade');
+            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
+            $table->integer('quantity');
             $table->timestamps();
-            $table->string("Email");
-            $table->string("First Name");
-            $table->string("Last Name");
-            $table->string("Password");
-            $table->boolean("Admin")->default(false);
-
         });
     }
 
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('customer_infos');
+        Schema::dropIfExists('basket_items');
     }
 };

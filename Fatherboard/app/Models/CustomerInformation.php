@@ -11,7 +11,7 @@ class CustomerInformation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["Email","Password", "First Name", "Last Name"];
+    protected $fillable = ["Email","Password", "First Name", "Last Name", "Admin"];
 
     public function setPasswordAttribute($value)
     {

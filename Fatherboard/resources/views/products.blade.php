@@ -12,14 +12,19 @@
 
 
 <template  id="template_product">
+    <style>
+        .price
+        {
+            color:black;
+        }
+        </style>
     <h2><slot name="Title">Unknown Title</slot></h2>
     <p><slot name="Description">Unknown Description</slot></p>
-    <p><slot name="Manufacturer">Unknown Manufacturer</slot></p>
+    <p><slot class="price" name="Manufacturer">Unknown Manufacturer</slot></p>
 </template>
 <!-- header.html -->
 <x-header></x-header>
 
-<h2>Products</h2>
 
 
 
@@ -105,7 +110,7 @@
                 <p hidden class="product_identity"> {{$item["id"]}} </p>
                 <span slot="Title">{{ $item['Title'] }}</span>
                 <span slot="Description">{{ $item['Description'] }}</span>
-                <span slot="Manufacturer"> {{ $item['Manufacturer']  }}</span>
+                <span slot="Manufacturer"> {{ $item->price()->first()["price"] }}</span>
 
             </product-element>
             <?php

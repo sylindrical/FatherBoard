@@ -22,7 +22,7 @@
     <p>{{ session('success') }}</p>
     @endif
 
-    @if(empty($basket))
+    @if(empty($basketDetails))
     <div id="basket-items" class="basket-items hidden">
 
     <p> Your Basket is Empty!</p>
@@ -34,7 +34,6 @@
             <tr>
 <th> Product</th>
                 <th>Name</th>
-
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>SubTotal</th>
@@ -43,7 +42,7 @@
         </thead>
 
         <tbody>
-        @foreach($basket as $item)
+        @foreach($basketDetails as $item)
 
 
         <tr>

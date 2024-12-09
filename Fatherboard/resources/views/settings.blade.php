@@ -39,19 +39,61 @@
         </style>
         <label>Email:</label>
         <b><slot name="Email">Unknown Email</slot></b>
-        <label>Password:</label>
+        <button version="Email" class="update_personal_button">Update</button>
 
+        <br>
+        <label>First Name:</label>
+        <b><slot name="FirstName">Unknown First Name</slot></b>
+        <button version="First Name" class="update_personal_button">Update</button>
+
+        <br>
+
+        <label>Last Name:</label>
+        <b><slot name="LastName">Unknown Last Name</slot></b>
+        <button version="Last Name" class="update_personal_button">Update</button>
+
+        <br>
+
+        <label>Password:</label>
         <b><slot name="Password">Unknown Password</slot></b>
+        <button version="Password" class="update_personal_button">Update</button>
+
+        
+        <br>
+ 
     </template>
 {{-- 
     <template id="template_add_address_box">
 
     </template> --}}
 
+
+
     <x-header>
 
     </x-header>
 
+    <div class="content" id="message-info" hidden>
+        <?php
+        foreach($messages as $x)
+        {?>
+        <div class="message">
+            <p>{{$x["Message"]}}</p>
+            <p>{{$x["Email"]}}</p>
+
+        </div>
+        
+        <?php
+        }
+        ?>
+    </div>
+    <div id="update_personal">
+    <form action="/update/personal" method="POST" id="update_personal_form">
+        <meta name="type" content="">
+        <input type="text" name="personal_text" placeholder="change" id="personal_text"></input>
+        <input type="submit" name="submit" id="update_personal_submit" value="Submit"/>
+    </form>
+    </div>
     <div id="add_address_box"  hidden>
     <div>
 
@@ -101,18 +143,35 @@
             <li>
                 <button class="option" id="button_billing">Billing</button> 
             </li>
+            
             <li>
                 <button class="option" id="button_history">History</button> 
             </li>
+            <li>
+                <button class="option" id="logout_button">Logout</button> 
+            </li>
+            <?php
+
+            if ($user["Admin"])
+            {
+                ?>
+            <li>
+                <button class="option" id="message_button">Messages</button> 
+            </li>
+            <?php
+            }
+            ?>
 
         </ul>
     </div>
 
     <div id="option-information">
-    <div class="content" id="personal-info">
+    {{-- <div class="content" id="personal-info">
 
 
-    </div>
+    </div> --}}
+
+    
 
     <div class="content" id="address-info">
         <h3>Address Information</h3>

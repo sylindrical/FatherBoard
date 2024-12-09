@@ -283,6 +283,27 @@ class AuthController extends Controller
     
         return false;
     }
+
+    public static function whichLog()
+    {
+        $cl = self::isCookieLogin();
+        $sl = self::isSessionLogin();
+
+        if ($cl && $sl)
+        {
+            return "both";
+        }
+        if ($cl)
+        {
+            return "cookie";
+        }
+        if ($sl)
+        {
+            return "session";
+        };
+
+        return false;
+    }
     
 
 

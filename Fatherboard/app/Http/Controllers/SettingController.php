@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\AuthController;
 use App\Models\AddressInformation;
+use App\Models\ContactForm;
 use App\Models\CustomerInformation;
 use Faker\Provider\ar_EG\Address;
+use Illuminate\Support\Facades\Hash;
 
 class SettingController extends Controller
 {
@@ -18,8 +20,17 @@ class SettingController extends Controller
         if ($user = AuthController::loggedIn())
         {
             $addr = $user->address;
+            
+            if ($user["Admin"])
+            {
+                return view('settings', ["addr"=>$addr, "user"=>$user, "messages"=>ContactForm::all()]);
 
-            return view('settings', ["addr"=>$addr]);
+            }
+            else
+            {
+                return view('settings', ["addr"=>$addr, "user"=>$user]);
+
+            }
 
         }
         else
@@ -41,15 +52,88 @@ class SettingController extends Controller
 
     public static function showPersonal()
     {
+
+        $form = AuthController::whichLog();
+        $password = null;
+
+        if ($form == "cookie")
+        {
+            $password = $_COOKIE["password"];
+        }
+        else if ($form == "session")
+        {
+            AuthController::enableSession();
+            $password = $_SESSION["password"];
+
+        }
         if ($user = AuthController::loggedIn())
         {
-            $addr = $user;
-
+            $addr = $user->toArray();
+            $addr["Password"] = $password;
             return json_encode($addr);
         }
+
+
+
         return json_encode("");   
     }
 
+    public static function updatePersonal()
+    {
+        if ($user = AuthController::loggedIn())
+        {
+        $updated = request("personal_text");
+        $version = request("version");
+
+        $data = [$version=>$updated];
+        
+        $form = AuthController::whichLog();
+
+        if ($version == "Password")
+        {
+            $data = [$version=>Hash::make($updated)];
+
+        }
+        CustomerInformation::where("id",$user["id"])->update($data);
+        
+        if ($version == "Password")
+        {
+        if ($form == "cookie")
+        {
+            $length = time() + 60*60*24*30;
+
+            // setcookie("email", $updated, $length, path: "/");
+            setcookie("password", $updated, $length, "/"); 
+
+        }
+        if ($form == "session")
+        {
+            AuthController::enableSession();
+            $_SESSION["password"] = $updated;
+        }
+    }
+    if ($version == "Email")
+        {
+        if ($form == "cookie")
+        {
+            $length = time() + 60*60*24*30;
+
+            setcookie("email", $updated, $length, "/"); 
+
+        }
+        if ($form == "session")
+        {
+            AuthController::enableSession();
+            $_SESSION["email"] = $updated;
+        }
+    }
+    return json_encode(["conn"=>true]);
+
+        }
+    
+
+
+    }
     public static function addAddress($id, $Country, $City, $AddrLine, $postCode)
 {
     $cust = CustomerInformation::find($id);
