@@ -24,7 +24,9 @@
         <p id="Country"><slot name="Country">Unknown Country</slot></p>
         <p id="City"><slot name="City">Unknown City</slot></p>
         <p id="AddressLine"><slot name="AddressLine">Unknown Address</slot></p>
-        
+        <p id="PostCode"><slot name="PostCode">Unknown PostCode</slot></p>
+
+
         <button name="remove-item">-</button>
     </template>
 
@@ -124,6 +126,12 @@
 
             <input type="text" id="inp_addrLine" name="Address Line"></input>
         </div>
+
+        <div>
+            <label for="PostCode">Post Code</label>
+            <input type="text" id="inp_postCode" name="PostCode"></input>
+        </div>
+
         <div>
             <input type="submit" name="add_address_button" id="add_address_submit" value="Add" target=""></input>
         </div>
@@ -192,6 +200,7 @@
                 <span slot="Country">{{ $value["Country"] }}</span>
                 <span slot="City">{{ $value["City"] }}</span>
                 <span slot="AddressLine">{{$value["Address Line"] }}</span>
+                <span slot="PostCode">{{$value["PostCode"]}}</span>
                 <p name="address_id" value={{ $value["id"] }} hidden></p>
             </address-element>
 

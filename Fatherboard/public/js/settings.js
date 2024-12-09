@@ -221,10 +221,19 @@ function showAddress(info)
     id_text.setAttribute("value", elem["id"]);
     id_text.setAttribute("name","address_id");
 
+
+    let postCode_text = document.createElement("span")
+    postCode_text.setAttribute("slot","PostCode");
+    postCode_text.textContent = elem["PostCode"];
+
+    console.log(elem["Post Code"]);
+
+
     address_element.appendChild(country_text);
     address_element.appendChild(city_text);
     address_element.appendChild(address_text);
     address_element.appendChild(id_text);
+    address_element.appendChild(postCode_text);
     
     option_information.append(address_element);
     show_add_address_button = document.getElementById("button_show_address_gui");
@@ -422,6 +431,7 @@ function addAddress() {
     let addrline = document.getElementById("inp_addrLine").value;
 
     let postCode = document.getElementById("inp_postCode")?.value ? document.getElementById("inp_postCode").value : "None"
+
     console.log(postCode);
     
     console.log("yippe")
