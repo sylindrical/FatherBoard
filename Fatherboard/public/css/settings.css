@@ -94,7 +94,17 @@ address-element:hover
     text-align: center;
 }
 
+.message
+{
+    margin: 3rem;
+    height: 5rem;
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    
 
+    border: 1px black solid;
+}
 /* #add_address_form::after
 {
     display:inline-block;

@@ -15,6 +15,8 @@ let update_personal_buttons = null
 
 let update_personal_submit = null;
 
+let message_button = null;
+
 
 let csrf =null;
 let csrf_val =null;
@@ -29,6 +31,10 @@ history_button = document.getElementById("button_history");
 show_add_address_button = document.getElementById("button_show_address_gui");
 update_personal_buttons = document.getElementsByClassName("update_personal_button");
 update_personal_submit = document.getElementById("update_personal_submit");
+
+message_button= document.getElementById("message_button");
+
+
 logout_button = document.getElementById("logout_button");
 
 
@@ -36,6 +42,8 @@ logout_button = document.getElementById("logout_button");
 csrf = document.getElementsByName("csrf-token")[0];
 csrf_val =  csrf.getAttribute("content");
 
+
+message_button.addEventListener("click", showMessages);
 logout_button.addEventListener("click",logOut);
 update_personal_submit.addEventListener("click", updateSubmit);
 address_button.addEventListener("click", addressClicked);
@@ -67,6 +75,19 @@ e.preventDefault();
 
 
 });
+
+function showMessages()
+{
+    console.log("showing Messages");
+    let message_box = document.getElementById('message-info').cloneNode(true);
+    let option_information = document.getElementById("option-information");
+
+    message_box.removeAttribute("hidden")
+    option_information.innerHTML = "";
+
+    option_information.appendChild(message_box)
+
+}
 
 function logOut()
 {
@@ -297,7 +318,7 @@ function updateSubmit(ev)
     ).then((res)=>res.json()).then((js)=>
     {
         console.log(js)
-        // window.location.href="/settings";
+        window.location.href="/settings";
     }).catch((err)=>{
         console.log(err)
     })
