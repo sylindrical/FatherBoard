@@ -45,7 +45,7 @@ class CheckoutController extends Controller
             'PostCode'=>$request->input('Postcode'),
             'City'=>$request->input('City')
         ])->first();
-        if($existingAddress->exists() == false){
+        if($existingAddress== null){
             $address = AddressInformation::create([
                 'Address Line' =>$request->input('Address_Line_1'),
                 'Country'=>$request->input('Country'),

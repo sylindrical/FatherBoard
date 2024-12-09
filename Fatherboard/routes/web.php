@@ -101,7 +101,7 @@ Route::get('/basket/checkout',[BasketController::class,'checkout'])->name('baske
 //checkout
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 Route::post('/checkout',[CheckoutController::class, 'process'])->name('checkout.process');
-Route::get('/checkout/sucess', [CheckoutController::class,'success'])->name('checkout_success');
+Route::get('/checkout/success', [CheckoutController::class,'success'])->name('checkout_success');
 
 //Admin
 Route::get('/admin/products', [AdminProductController::class, "index"])->name('adminIndex');
