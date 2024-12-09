@@ -75,6 +75,8 @@
 
     <div class="content" id="message-info" hidden>
         <?php
+        if (isset($messages))
+        {
         foreach($messages as $x)
         {?>
         <div class="message">
@@ -84,7 +86,7 @@
         </div>
         
         <?php
-        }
+        }}
         ?>
     </div>
     <div id="update_personal">
