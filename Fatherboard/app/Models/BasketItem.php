@@ -9,7 +9,7 @@ class BasketItem extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'basket_id',
+        'customer_id',
         'product_id',
         'quantity',
     ];

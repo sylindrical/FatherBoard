@@ -30,11 +30,12 @@
             <form action="{{ route('basketAdd') }}" method="POST">
                 @csrf
                 <input type="hidden" name="product_id" value="{{ $product->id }}">
+                <input type="number" name="quantity" value="1" min="1">
                 <button type="submit" id="basket_button">Add To Basket</button>
             </form>
         </div>
-        
-        
+
+
         <form action="/add/review" method="POST" id="review_form">
             <div class="input">
                 <label for="rating">Rating</label>
@@ -44,7 +45,7 @@
                     <option >2</option>
                     <option >3</option>
                     <option >4</option>
-                    <option >5</option>   
+                    <option >5</option>
                 </select>
                 </div>
 
@@ -54,10 +55,10 @@
             <textarea name="review_text" id="review_text"></textarea>
             </div>
 
-            
+
             <input type="submit" name="submit" id="review_submit" value="Submit"/>
         </form>
-        
+
         <div id="review-area">
             <h3>Reviews</h3>
             <button id="review_button">Add review</button>
@@ -77,10 +78,10 @@
 
             </div>
 
-     
 
-            
-        
+
+
+
         <div id="reviews">
 
                 <?php

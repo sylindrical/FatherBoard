@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\BasketItem;
 use App\Models\Basket;
-
+use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 
     class BasketController extends Controller
@@ -16,6 +18,18 @@ use App\Models\Basket;
             $productId = $request->input('product_id');
             $quantity = $request->input('quantity', 1);
 
+            $customerId = Auth::id();
+            if ($customerId) {
+                BasketItem::updateOrCreate(
+                    ['customer_id' => $customerId, 'product_id' => $productId],
+                    ['quantity' => $quantity]
+                );
+                Log::info('Basket Add Request', [
+                    'customer_id' => $customerId,
+                    'product_id' => $productId,
+                    'quantity' => $quantity
+                ]);
+            }
     $product = Product::findOrFail($productId);
 
             $basket = session()->get('basket',[]);

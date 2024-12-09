@@ -12,7 +12,8 @@ use HasFactory;
 
 protected $table = 'basket';
 protected $fillable = [
-    'customer_information_id'
+    'customer_information_id',
+'items'
     ,];
 
 public function items(){
