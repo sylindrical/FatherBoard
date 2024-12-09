@@ -95,7 +95,7 @@ address-element:hover
 }
 
 
-#add_address_form::after
+/* #add_address_form::after
 {
     display:inline-block;
     position:absolute;
@@ -105,7 +105,7 @@ address-element:hover
     font-size: 50px;
     height:150px;;
     content: "\00d7"
-}
+} */
 #add_address_form input, 
 #add_address_form select, 
 #add_address_submit

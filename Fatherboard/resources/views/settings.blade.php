@@ -128,8 +128,12 @@
             <li>
                 <button class="option" id="button_billing">Billing</button> 
             </li>
+            
             <li>
                 <button class="option" id="button_history">History</button> 
+            </li>
+            <li>
+                <button class="option" id="logout_button">Logout</button> 
             </li>
 
         </ul>

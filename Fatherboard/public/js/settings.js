@@ -9,6 +9,8 @@ let add_address_submit =null;
 
 let update_personal_form = null;
 
+let logout_button = null;
+
 let update_personal_buttons = null
 
 let update_personal_submit = null;
@@ -27,11 +29,14 @@ history_button = document.getElementById("button_history");
 show_add_address_button = document.getElementById("button_show_address_gui");
 update_personal_buttons = document.getElementsByClassName("update_personal_button");
 update_personal_submit = document.getElementById("update_personal_submit");
+logout_button = document.getElementById("logout_button");
+
+
 
 csrf = document.getElementsByName("csrf-token")[0];
 csrf_val =  csrf.getAttribute("content");
 
-
+logout_button.addEventListener("click",logOut);
 update_personal_submit.addEventListener("click", updateSubmit);
 address_button.addEventListener("click", addressClicked);
 billing_button.addEventListener("click",billingClicked);
@@ -63,6 +68,10 @@ e.preventDefault();
 
 });
 
+function logOut()
+{
+    window.location.replace("/logout");
+}
 function showPersonalForm()
 {
     console.log("showing personal form");
