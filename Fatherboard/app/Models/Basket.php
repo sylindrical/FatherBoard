@@ -12,11 +12,12 @@ use HasFactory;
 
 protected $table = 'Basket';
 protected $fillable = [
-    'customer_information_id',
-    'items'
+    'customer_information_id'
     ,];
 
-protected $casts = [ 'items'=>'array',];
+public function items(){
+    return $this->hasMany(BasketItem::class, 'basket_id');
+}
 
 public function product(){
     return $this->belongsTo(Product::class,'product_id');
@@ -28,9 +29,5 @@ public function productPrice(){
 public function customerInformation(){
     return $this->belongsTo(CustomerInformation::class,'customer_information_id');
 }
-public function getProductsAttribute()
-{
-    $productIds = collect($this->items)->pluck('product_id')->toArray();
-    return Product::whereIn('id', $productIds)->get();
-}
+
 }
