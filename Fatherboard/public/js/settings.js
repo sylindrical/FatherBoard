@@ -7,6 +7,8 @@ let history_button = null
 let show_add_address_button  = null;
 let add_address_submit =null;
 
+let admin_index_button = null;
+
 let update_personal_form = null;
 
 let logout_button = null;
@@ -32,6 +34,8 @@ show_add_address_button = document.getElementById("button_show_address_gui");
 update_personal_buttons = document.getElementsByClassName("update_personal_button");
 update_personal_submit = document.getElementById("update_personal_submit");
 
+admin_index_button = document.getElementById("admin_index_button");
+
 message_button= document.getElementById("message_button");
 
 
@@ -45,6 +49,10 @@ csrf_val =  csrf.getAttribute("content");
 if (message_button)
 {
 message_button.addEventListener("click", showMessages);
+}
+if (admin_index_button)
+{
+admin_index_button.addEventListener("click",()=>window.location.href = "/admin/products");
 }
 logout_button.addEventListener("click",logOut);
 update_personal_submit.addEventListener("click", updateSubmit);
