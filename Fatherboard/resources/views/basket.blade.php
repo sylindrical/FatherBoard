@@ -79,8 +79,10 @@
 
     </div>
     <div class="basket-summary">
-
-    <button id="checkout-btn" href="{{ route('basketCheckout') }}">Proceed To Checkout</button>
+        <form method="GET" action="{{ route('basketCheckout') }}">
+            @csrf
+    <button id="checkout-btn">Proceed To Checkout</button>
+        </form>
     @endif
     </div>
 </div>
