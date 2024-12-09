@@ -42,8 +42,10 @@ logout_button = document.getElementById("logout_button");
 csrf = document.getElementsByName("csrf-token")[0];
 csrf_val =  csrf.getAttribute("content");
 
-
+if (message_button)
+{
 message_button.addEventListener("click", showMessages);
+}
 logout_button.addEventListener("click",logOut);
 update_personal_submit.addEventListener("click", updateSubmit);
 address_button.addEventListener("click", addressClicked);
