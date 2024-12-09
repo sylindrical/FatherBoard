@@ -7,6 +7,7 @@ use App\Models\Orders;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\AddressInformation;
+use PhpParser\NodeVisitor\FirstFindingVisitor;
 use Symfony\Component\Console\Input\Input;
 
 class CheckoutController extends Controller
@@ -38,12 +39,24 @@ class CheckoutController extends Controller
     }
     public function process(Request $request)
     {
-        $address = AddressInformation::create([
+        $existingAddress = AddressInformation::where([
             'Address Line' =>$request->input('Address_Line_1'),
             'Country'=>$request->input('Country'),
             'PostCode'=>$request->input('Postcode'),
             'City'=>$request->input('City')
-        ]);
+        ])->first();
+        if($existingAddress->exists() == false){
+            $address = AddressInformation::create([
+                'Address Line' =>$request->input('Address_Line_1'),
+                'Country'=>$request->input('Country'),
+                'PostCode'=>$request->input('Postcode'),
+                'City'=>$request->input('City')
+            ]);
+        }
+        else
+        {
+            $address = $existingAddress;
+        }
         $basket=session()->get('basket',[]);
 
             $basketDetails = [];
