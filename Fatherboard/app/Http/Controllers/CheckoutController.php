@@ -19,54 +19,37 @@ class CheckoutController extends Controller
             return view('login');
         }
         $basket=session()->get('basket',[]);
-        /*
-            Basket is dummy data, link to real basket.
-        */
-        // $basket = [
-        //     [
-        //         'name' => 'Product 1',
-        //         'product_id' => 1,
-        //         'quantity' => 2
-        //     ],
-        //     [
-        //         'name' => 'Product 2',
-        //         'product_id' => 3,
-        //         'quantity' => 4
-        //     ],
-        //     [
-        //         'name' => 'Product 3',
-        //         'product_id' => 2,
-        //         'quantity' => 6
-        //     ]
-        //     ];
-        return view('checkout',compact('basket'));
+        
+        $basketDetails = [];
+        foreach ($basket as $item) {
+            $product = Product::find($item['product_id']);
+            if ($product) {
+                $basketDetails[] = [
+                    'product_id' => $product->id,
+                    'name' => $product->Title,
+                    'price' => $product->Price->price,
+                    'quantity' => $item['quantity'],
+                ];
+            }
+        }
+        return view('checkout',compact('basketDetails'));
     }
     public function process(Request $request)
     {
         $basket=session()->get('basket',[]);
-        /*
-            Basket is currently dummy data, link to real basket.
-        */
-        // $basket = [
-        //     [
-        //         'id' => 1,
-        //         'products_id' => 1,
-        //         'quantity' => 2
-        //     ],
-        //     [
-        //         'id' => 2,
-        //         'products_id' => 3,
-        //         'quantity' => 4
-        //     ],
-        //     [
-        //         'id' => 3,
-        //         'products_id' => 2,
-        //         'quantity' => 6
-        //     ]
-        //    ];
-            /*
-                REQUIRED CODE TO GET USER DETAILS
-            */
+
+            $basketDetails = [];
+            foreach ($basket as $item) {
+                $product = Product::find($item['product_id']);
+                if ($product) {
+                    $basketDetails[] = [
+                        'product_id' => $product->id,
+                        'name' => $product->Title,
+                        'price' => $product->Price->price,
+                        'quantity' => $item['quantity'],
+                    ];
+                }
+            }
             $AuthController = new AuthController;
             if(($user = $AuthController->loggedIn()) == false){//Redirects to login if the user doesn't have an account
                 return redirect('/login');
@@ -77,7 +60,7 @@ class CheckoutController extends Controller
 
         ]);
 
-        foreach ($basket as $item)
+        foreach ($basketDetails as $item)
         {
             order_details::create([
                 'order_id'=> $order->id,
