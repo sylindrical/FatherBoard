@@ -16,20 +16,20 @@
             @csrf
             <div class="row">
                 <input type="text" placeholder="Address Line 1" name="Address Line 1"  required >
-                <input type="text" placeholder="Address Line 2" name="Address Line 2">
+                <input type="text" placeholder="Zip/Postal Code" name="Postcode" required>  
             </div>
             <div class="row">
-                <select name="country" required>
+                <select name="Country" required>
                     <option value="" disabled selected>Country<option>
                         <option value="UK">United Kingdom</option>
                         <!-- ADD CODE HERE -->
                     </select>
-                    <input type="text" placeholder="Zip/Postal Code" name="Postcode" required>
+                    <input type="text" placeholder="City" name="City" required>
                 </div>
-                <div class="row">
+                <!--<div class="row">
                     <input type="text" placeholder="First Name" name="First Name" required>
                     <input type="text" placeholder="Last Name" name="Last Name" required>
-                </div>
+                </div>-->
                 <!--<div class="row">
                     <select required>
                         <option value="" disabled selected>Shipping Method</option>

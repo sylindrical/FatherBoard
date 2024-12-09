@@ -6,6 +6,8 @@ use App\Models\order_details;
 use App\Models\Orders;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\AddressInformation;
+use Symfony\Component\Console\Input\Input;
 
 class CheckoutController extends Controller
 {
@@ -36,6 +38,12 @@ class CheckoutController extends Controller
     }
     public function process(Request $request)
     {
+        $address = AddressInformation::create([
+            'Address Line' =>$request->input('Address_Line_1'),
+            'Country'=>$request->input('Country'),
+            'PostCode'=>$request->input('Postcode'),
+            'City'=>$request->input('City')
+        ]);
         $basket=session()->get('basket',[]);
 
             $basketDetails = [];
@@ -56,8 +64,8 @@ class CheckoutController extends Controller
             }
         $order = Orders::create([
             'customer_id'=> $user['id'], //Replace 1 with $user=>id
-            'order_status' => 'Pending',
-
+            'address_id'=>$address['id'],
+            'order_status' => 'Pending'
         ]);
 
         foreach ($basketDetails as $item)
@@ -65,7 +73,7 @@ class CheckoutController extends Controller
             order_details::create([
                 'order_id'=> $order->id,
                 'products_id'=>$item['product_id'],
-                'quantity'=>$item['quantity']
+                'quantity'=>$item['quantity'],
             ]);
         }
         session()->forget('basket'); //Removes basket data after checkout finishes(?)
