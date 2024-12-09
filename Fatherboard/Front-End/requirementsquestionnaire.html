@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requirements Questionnaire Results</title>
+    <style>
+        /* General reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Body Styling */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        /* Container Styling */
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 1200px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        /* Product Card Styling */
+        .products {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .product {
+            text-align: center;
+            width: 250px;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .product img {
+            max-width: 100%;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .product h3 {
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .stars {
+            color: #ffcc00;
+            font-size: 1.2em;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .return-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .return-button:hover {
+            background-color: #5a6268;
+        }
+
+        /* Header Styling */
+        .main-header {
+            width: 100%;
+            background-color: #000; /* Fully black background */
+            color: #fff; /* White text for header */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #000; /* Ensure black for all containers */
+        }
+
+        #logo {
+            height: 50px;
+        }
+
+        .SearchBar input {
+            padding: 5px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .main-nav ul, .lower-nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .main-nav-list li, .lower-nav-list li {
+            margin-right: 15px;
+        }
+
+        .main-nav-list a, .lower-nav-list a {
+            text-decoration: none;
+            font-size: 1em;
+            color: #fff; /* Ensure white text for links */
+            transition: color 0.3s ease;
+        }
+
+        .main-nav-list a:hover, .lower-nav-list a:hover {
+            color: #007BFF; /* Highlight color */
+        }
+
+        .lower-nav {
+            background-color: #000; /* Fully black background */
+            padding: 10px 0;
+        }
+
+        .lower-nav-list a {
+            margin-right: 10px;
+            color: #fff; /* White text for lower navbar links */
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #000; /* Black footer */
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            width: 100%;
+        }
+
+        footer a {
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a img {
+            width: 30px;
+            height: 30px;
+        }
+
+        footer p {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="main-header">
+        <div class="container">
+            <a href="Home.html">
+                <img src="FatherboardTransparentCrop.png" id="logo" alt="FatherBoard Logo" width="100" height="50">
+            </a>
+            <form class="SearchBar">
+                <input type="text" placeholder="Search.." name="search">
+            </form>
+            <nav class="main-nav">
+                <ul class="main-nav-list">
+                    <li><a href="About.html">About Us</a></li>
+                    <li><a href="Login.html">Account</a></li>
+                    <li><a href="Basket.html">Basket</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="container">
+            <nav class="lower-nav">
+                <ul class="lower-nav-list">
+                    <li>
+                        <a href="#product1">Memory</a>
+                        <a href="Products.html#CPUs">CPUs</a>
+                        <a href="#product3">Prebuilt Computers</a>
+                        <a href="#product4">GPUs</a>
+                        <a href="#product5">PSUs</a>
+                        <a href="#sale">Sale!!!</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <div class="container">
+        <h1 class="title">Requirements Questionnaire</h1>
+        <p class="subtitle">Based on your answers, we suggest the following products:</p>
+        <div class="products" id="products-container">
+            <!-- Products will be dynamically injected here -->
+        </div>
+        <button class="return-button" onclick="window.location.href='Home.html'">RETURN TO HOME</button>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div>
+            <a href="https://facebook.com" target="_blank">
+                <img src="images/facebook.png" alt="Facebook">
+            </a>
+            <a href="https://x.com" target="_blank">
+                <img src="images/twitter.png" alt="Twitter">
+            </a>
+            <a href="https://instagram.com" target="_blank">
+                <img src="images/instagram.png" alt="Instagram">
+            </a>
+            <a href="https://linkedin.com" target="_blank">
+                <img src="images/linkedin.png" alt="LinkedIn">
+            </a>
+        </div>
+        <p>&copy; 2024 FatherBoard. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Sample data source (can be extended or fetched from a backend API)
+        const products = [
+            { name: "AMD Ryzen 7 5700x", category: "CPUs", price: 200, image: "amd_5700x.jpg", stars: 4 },
+            { name: "NVIDIA GeForce RTX 4090", category: "GPUs", price: 1500, image: "rtx_4090.jpg", stars: 5 },
+            { name: "Intel Core i9-14900K", category: "CPUs", price: 600, image: "intel_i9.jpg", stars: 5 },
+            { name: "Corsair Vengeance RAM", category: "Memory", price: 150, image: "corsair_ram.jpg", stars: 4 },
+            { name: "MSI Prebuilt Gaming PC", category: "Prebuilts", price: 1200, image: "msi_prebuilt.jpg", stars: 5 },
+        ];
+
+        // Simulated user choices
+        const userChoices = {
+            category: ["CPUs", "GPUs"], // Example: categories selected
+            priceRange: [100, 1000],   // Example: price range selected
+        };
+
+        // Filter products based on user choices
+        const filteredProducts = products.filter(product => {
+            const withinPrice = product.price >= userChoices.priceRange[0] && product.price <= userChoices.priceRange[1];
+            const inCategory = userChoices.category.includes(product.category);
+            return withinPrice && inCategory;
+        });
+
+        // Dynamically render filtered products
+        const productsContainer = document.getElementById("products-container");
+        filteredProducts.forEach(product => {
+            const productCard = `
+                <div class="product">
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <div class="stars">${"★".repeat(product.stars)}${"☆".repeat(5 - product.stars)}</div>
+                </div>
+            `;
+            productsContainer.innerHTML += productCard;
+        });
+    </script>
+</body>
+</html>

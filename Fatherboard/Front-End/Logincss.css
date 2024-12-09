@@ -1,29 +1,69 @@
-body {
-    background-color: #d2d2d2 !important;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.exitCross::after{
+    display: inline-block;
+    content: "\00d7"; /* This will render the 'X' */
+    font-size: 3.063rem;
+    width: 0.1%;
+    height: 0.1%;
+    margin-top: 0.5rem;
+}
+
+body{
+    background-color: #d2d2d2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url(https://media.istockphoto.com/id/1458825136/photo/macro-close-up-of-components-and-microchips-on-pc-circuit-board.jpg?s=612x612&w=0&k=20&c=_-gBfkUJFiSIXz6_W_DsOTGJS7Sq4s2aDddSfh9yQZ4=) no-repeat;
+    background-size: cover;
+    background-position: center;
+
 }
 
 #header1, #header2{
+    padding-top: 20px;
     text-align: center;
 }
-#mail {
-    width: 600px;
-    margin-top: 40px;
+
+#login{
+    width: 100%;
+    margin-left: 30%;
+}
+
+.wrapper{
+    width:420px;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5.6px);
+    -webkit-backdrop-filter: blur(5.6px);
+    color: #333;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255,255,255,.2);
+    border-radius: 10px;
+    padding:10px 40px;
 }
 
 #mail2 {
-    width: 600px;
-    margin-top: 10px;
+    width: 37.5rem;
+    margin-top: 0.625rem;
 }
 
 #pass {
-    width: 600px;
-    margin-top: 10px;
+    width: 37.5rem;
+    margin-top: 0.625rem;
 }
 
 #pass2{
     text-align: right;
-    font-size: 12px;
-    margin-right: 350px;
+    font-size: 0.75rem;
+    margin-right: 21.875rem;
 }
 
 #lgnbtn, #sbtn {
@@ -39,8 +79,8 @@ body {
 }
 
 #lname {
-    width: 600px;
-    margin-top: 10px;
+    width: 37.5rem;
+    margin-top: 0.625rem;
 }
 
 #spass {
