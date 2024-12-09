@@ -20,15 +20,15 @@ use App\Models\CustomerInformation;
 
             $customerId = Auth::id();
             if ($customerId) {
-                BasketItem::updateOrCreate(
-                    ['[customer_id' => $customerId, 'product_id' => $productId],
-                    ['quantity' => $quantity, 'customer_information_id'=> $customerInformationId ?? null]
-                );
-                Log::info('Basket Add Request', [
-                    'customer_id' => $customerId,
-                    'product_id' => $productId,
-                    'quantity' => $quantity
-                ]);
+                Basket::updateOrCreate([
+                    'customer_id' => auth::id(),
+                     'items' => json_encode([
+' product_id'=>'$product',
+'quantity' => '1'
+                     ]),
+                     ]);
+
+
             }
     $product = Product::findOrFail($productId);
 
