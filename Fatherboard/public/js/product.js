@@ -15,9 +15,8 @@ window.addEventListener("DOMContentLoaded", function () {
     review_form_button.addEventListener("click", showReviewForm);
     review_form.addEventListener("submit", submitReview)
 })
-function addToBasket() {
-    console.log("Adding to basket");
-}
+
+
 function addToBasket() {
     console.log("Adding to basket");
 

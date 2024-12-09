@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('basket_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id')->constrained('customer_information')->onDelete('cascade');
-            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
+            $table->foreignId('customer_information_id')->references(column: 'id')->on('customer_information')->nullable()->change();
+            $table->foreignId('product_id')->references(column: 'id')->on('products')->onDelete('cascade');
             $table->integer('quantity');
             $table->timestamps();
         });

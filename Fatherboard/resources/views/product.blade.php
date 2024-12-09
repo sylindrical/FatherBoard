@@ -27,6 +27,7 @@
             <p>{{ $product["Description"]}} </p>
             <p>{{ $product["Manufacturer"] }}</p>
             <p>{{ $product["price"] }}</p>
+
             <form action="{{ route('basketAdd') }}" method="POST">
                 @csrf
                 <input type="hidden" name="product_id" value="{{ $product->id }}">

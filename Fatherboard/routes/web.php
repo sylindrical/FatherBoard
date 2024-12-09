@@ -92,7 +92,8 @@ Route::get('/about', function()
 
 //basket side back-end
 Route::get('/basket',[BasketController::class,'index'])->name('basketIndex');
-Route::post('/basket/add',[BasketController::class,'add'])->name('basketAdd');
+Route::post('/basket/add/',[BasketController::class,'add'])->name('basketAdd');
+
 Route::post('/basket/remove',[BasketController::class,'remove'])->name('basketRemove');
 Route::post('/basket/update',[BasketController::class,'update'])->name('basketUpdate');
 Route::get('/basket/checkout',[BasketController::class,'checkout'])->name('basketCheckout');

@@ -9,7 +9,7 @@ use App\Models\Basket;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-
+use App\Models\CustomerInformation;
 
     class BasketController extends Controller
     {
@@ -21,8 +21,8 @@ use Illuminate\Support\Facades\Log;
             $customerId = Auth::id();
             if ($customerId) {
                 BasketItem::updateOrCreate(
-                    ['customer_id' => $customerId, 'product_id' => $productId],
-                    ['quantity' => $quantity]
+                    ['[customer_id' => $customerId, 'product_id' => $productId],
+                    ['quantity' => $quantity, 'customer_information_id'=> $customerInformationId ?? null]
                 );
                 Log::info('Basket Add Request', [
                     'customer_id' => $customerId,
