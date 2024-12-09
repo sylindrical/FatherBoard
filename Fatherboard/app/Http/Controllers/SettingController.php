@@ -40,7 +40,6 @@ class SettingController extends Controller
                     }
                     array_push($orders, $orderProduct);
             };
-            dd($orders);
             return view('settings', ["addr"=>$addr, "user"=>$user, "messages"=>ContactForm::all(), "items"=>$orders]);
 
 
