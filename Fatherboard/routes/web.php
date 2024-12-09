@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Review;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\BasketController;
+use App\Http\Controllers\RequirementController;
 
 
 Route::get('/login', [AuthController::class, 'giveLogin']);
@@ -59,3 +60,13 @@ Route::post('/basket/remove',[BasketController::class,'remove'])->name('basket.i
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 Route::post('/checkout',[CheckoutController::class, 'process'])->name('checkout.process');
 Route::get('/checkout/sucess', [CheckoutController::class,'success'])->name('checkout_success');
+
+Route::post("/create/product", [ProductController::class, 'create']);
+
+Route::post("/edit/product", [ProductController::class, 'edit']);
+
+Route::post("/update/product", [ProductController::class, 'update']);
+
+Route::post("/delete/product", [ProductController::class, 'destroy']);
+
+Route::get('/filter-products', [RequirementController::class, 'filterProducts']);
