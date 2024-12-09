@@ -4,11 +4,13 @@ let review_button = null;
 let review_form_button = null;
 let review_form = null;
 
+
 window.addEventListener("DOMContentLoaded", function()
 {
     basket_button = document.getElementById("basket_button");
     review_form_button = document.getElementById("review_button");
     review_form = document.getElementById("review_form");
+
 
     basket_button.addEventListener("click", addToBasket);
     review_form_button.addEventListener("click", showReviewForm);

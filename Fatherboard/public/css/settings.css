@@ -7,7 +7,31 @@
 ul{
     list-style-type: none;
 }
+#update_personal
+{
 
+    background-color: white;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+}
+#update_personal > form
+{
+    display:none;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height:10rem;
+    padding: 1rem;
+    margin: 2rem;
+}
+#update_personal_submit
+{
+    width:100%;
+    background-color: green;
+    border:none;
+}
 #setting-container
 {
 
@@ -71,7 +95,7 @@ address-element:hover
 }
 
 
-#add_address_form::after
+/* #add_address_form::after
 {
     display:inline-block;
     position:absolute;
@@ -81,7 +105,7 @@ address-element:hover
     font-size: 50px;
     height:150px;;
     content: "\00d7"
-}
+} */
 #add_address_form input, 
 #add_address_form select, 
 #add_address_submit

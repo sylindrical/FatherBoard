@@ -96,6 +96,7 @@
                     <div class="review">
                     <p>{{$rev["review"]}}</p>
                     <p>{{$rev["rating"]}}</p>
+                    {{-- <p>{{$rev["person"]}}</p> --}}
                     </div>
                     <?php
                 }
