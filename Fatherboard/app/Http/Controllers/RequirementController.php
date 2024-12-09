@@ -24,6 +24,41 @@ class RequirementController extends Controller
     }
 }
 
+$priceRanges = $request->query('prices', '');
+$priceM = Product::whereRaw("1=1");
+
+if (!empty($priceRanges)) {
+    $prices = explode(',', $priceRanges);
+
+    foreach ($prices as $pri) {
+        $priceM = $priceM->orWhereHas('price', function ($q) use ($pri) {
+            $reg = "/(<=|>=|<|>)(\d+)(?:-(<=|>=|<|>)(\d+))?/";
+            preg_match($reg, $pri, $matches);
+
+            if (count($matches) == 5) {
+                for ($i = 1; $i < 3; $i++) {
+                    $q->where('price', $matches[$i * 2 - 1], $matches[$i * 2]);
+                }
+            } elseif (count($matches) == 3) {
+                $q->where('price', $matches[1], $matches[2]);
+            }
+        });
+    }
+}
+
+$all = $category_obj->get()->intersect($priceM->get());
+
+// Search functionality
+$search = $request->query('search');
+
+if ($search == null) {
+    return view('filteredProducts', ['filteredProducts' => $all]);
+} else {
+    $queryString = sprintf("Title REGEXP '.*%s.*'", $search);
+    $subQ = $all->intersect(Product::whereRaw($queryString)->get());
+
+    return view('filteredProducts', ['filteredProducts' => $subQ]);
+}
 
 
 
