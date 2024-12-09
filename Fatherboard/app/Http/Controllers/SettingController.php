@@ -40,14 +40,32 @@ class SettingController extends Controller
                     }
                     array_push($orders, $orderProduct);
             };
+            dd($orders);
             return view('settings', ["addr"=>$addr, "user"=>$user, "messages"=>ContactForm::all(), "items"=>$orders]);
 
 
             }
             else
             {
-                return view('settings', ["addr"=>$addr, "user"=>$user, "items"=>$user->orders]);
+                $orders = [];
 
+                foreach ($user->orders as $x)
+                {
+                    $details = $x->order_details->all();
+                    $orderProduct = [];
+                    
+                    foreach ($details as $x)
+                    {
+                        // dd(Product::where("id",$x["products_id"])->first());
+                         $product = Product::where("id",$x["products_id"])->first();
+                         array_push($orderProduct, $product["Title"]);
+
+                    }
+                    array_push($orders, $orderProduct);
+
+                 
+                }
+                return view('settings', ["addr"=>$addr, "user"=>$user, "messages"=>ContactForm::all(), "items"=>$orders]);
             }
 
         }
